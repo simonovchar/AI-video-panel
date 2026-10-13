@@ -1,0 +1,7 @@
+# Личный прогресс — не код, хранится только локально
+data/progress.json
+data/progress.backup.json
+data/*.tmp
+.DS_Store
+node_modules/
+__pycache__/

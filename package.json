@@ -1,0 +1,10 @@
+{
+  "name": "roadmap-control",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Локальный трекер прохождения AI video roadmap",
+  "scripts": {
+    "start": "node server.js",
+    "build:roadmap": "python3 tools/build_roadmap.py ../AI_video_roadmap_RU_v2.docx"
+  }
+}

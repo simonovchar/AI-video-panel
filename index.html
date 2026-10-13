@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Roadmap Control</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark">AI</div>
+        <div>
+          <div class="brand-title">Roadmap Control</div>
+          <div class="brand-sub">AI-ролики и реклама</div>
+        </div>
+      </div>
+      <input class="search" id="search" type="search" placeholder="Поиск по темам и заданиям…" autocomplete="off">
+      <nav class="nav" id="nav"></nav>
+      <div class="stage-nav" id="stage-nav"></div>
+    </aside>
+
+    <div class="main-wrap">
+      <header class="topbar">
+        <button class="icon-btn menu-btn" id="menu-btn" aria-label="Меню">☰</button>
+        <div class="overall" id="overall"></div>
+        <div class="topbar-actions">
+          <span class="save-status" id="save-status"></span>
+          <button class="btn ghost" id="export-btn" title="Скачать прогресс в JSON">Экспорт</button>
+          <label class="btn ghost" title="Загрузить прогресс из JSON">Импорт<input type="file" id="import-input" accept="application/json" hidden></label>
+          <button class="icon-btn" id="theme-btn" aria-label="Сменить тему">◐</button>
+        </div>
+      </header>
+      <div class="banner" id="banner" hidden></div>
+      <main class="main" id="main"></main>
+    </div>
+  </div>
+  <script src="roadmap.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
