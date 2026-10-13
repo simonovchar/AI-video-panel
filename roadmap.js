@@ -1,62 +1,78 @@
 // Сгенерировано tools/build_roadmap.py — не редактировать вручную.
 window.ROADMAP = {
  "title": "ROADMAP: Профессиональное создание AI-роликов и рекламы",
- "subtitle": "53 недель (≈ 12 месяцев): темы, переводы терминов, инструменты и практические задания",
+ "subtitle": "51 неделя (≈ 12 месяцев): темы, переводы терминов, инструменты и практические задания. Локальная генерация вынесена в дополнительный блок по желанию.",
  "blocks": [
   {
    "num": 1,
    "title": "Фундамент: инструменты и визуальный язык",
    "from": 1,
    "to": 6,
-   "weeks": "недели 1–7"
+   "weeks": "недели 1–7",
+   "extra": false
   },
   {
    "num": 2,
    "title": "Идея, реклама и подготовка производства",
    "from": 7,
    "to": 12,
-   "weeks": "недели 8–15"
+   "weeks": "недели 8–15",
+   "extra": false
   },
   {
    "num": 3,
    "title": "Изображение",
    "from": 13,
-   "to": 18,
-   "weeks": "недели 16–24"
+   "to": 17,
+   "weeks": "недели 16–22",
+   "extra": false
   },
   {
    "num": 4,
    "title": "Видео",
-   "from": 19,
-   "to": 23,
-   "weeks": "недели 25–31"
+   "from": 18,
+   "to": 22,
+   "weeks": "недели 23–29",
+   "extra": false
   },
   {
    "num": 5,
    "title": "Постпродакшн",
-   "from": 24,
-   "to": 35,
-   "weeks": "недели 32–45"
+   "from": 23,
+   "to": 34,
+   "weeks": "недели 30–43",
+   "extra": false
   },
   {
    "num": 6,
    "title": "Дистрибуция, масштабирование и бизнес",
-   "from": 36,
-   "to": 40,
-   "weeks": "недели 46–50"
+   "from": 35,
+   "to": 39,
+   "weeks": "недели 44–48",
+   "extra": false
   },
   {
    "num": 7,
    "title": "Финальный проект",
-   "from": 41,
-   "to": 41,
-   "weeks": "недели 51–53"
+   "from": 40,
+   "to": 40,
+   "weeks": "недели 49–51",
+   "extra": false
+  },
+  {
+   "num": 0,
+   "title": "Локальная генерация",
+   "from": 1,
+   "to": 3,
+   "weeks": "по желанию, ≈ 3–6 недель, когда появятся ресурсы",
+   "extra": true
   }
  ],
  "stages": [
   {
    "id": "s01",
    "num": 1,
+   "extra": false,
    "title": "Экосистема AI-продакшна и рабочая среда",
    "isTool": true,
    "term": "Неделя 1",
@@ -79,58 +95,46 @@ window.ROADMAP = {
       },
       {
        "id": "s01-topics-03",
-       "text": "Open-source / Open-weight models — открытые модели, которые можно запускать на своём компьютере"
-      },
-      {
-       "id": "s01-topics-04",
        "text": "Aggregator platforms — платформы-агрегаторы: много моделей в одном интерфейсе"
       },
       {
-       "id": "s01-topics-05",
+       "id": "s01-topics-04",
        "text": "Credits — кредиты, внутренняя валюта сервисов генерации"
       },
       {
-       "id": "s01-topics-06",
+       "id": "s01-topics-05",
        "text": "Cost per generation / Cost per second — стоимость одной генерации и секунды видео"
       },
       {
-       "id": "s01-topics-07",
+       "id": "s01-topics-06",
        "text": "Generation queue — очередь генерации и время ожидания"
       },
       {
-       "id": "s01-topics-08",
+       "id": "s01-topics-07",
        "text": "Seed — зерно случайности, позволяющее повторить результат"
       },
       {
-       "id": "s01-topics-09",
-       "text": "Local vs Cloud generation — локальная и облачная генерация"
-      },
-      {
-       "id": "s01-topics-10",
-       "text": "GPU, VRAM — видеокарта и её видеопамять (главный ресурс для локальной генерации)"
-      },
-      {
-       "id": "s01-topics-11",
+       "id": "s01-topics-08",
        "text": "Commercial license — коммерческая лицензия на использование результатов"
       },
       {
-       "id": "s01-topics-12",
+       "id": "s01-topics-09",
        "text": "Asset management — управление файлами проекта"
       },
       {
-       "id": "s01-topics-13",
+       "id": "s01-topics-10",
        "text": "Naming convention — правила именования файлов (проект_сцена_кадр_версия)"
       },
       {
-       "id": "s01-topics-14",
+       "id": "s01-topics-11",
        "text": "Versioning — версионирование (v001, v002, v003…)"
       },
       {
-       "id": "s01-topics-15",
+       "id": "s01-topics-12",
        "text": "Backup — резервное копирование (правило 3-2-1: 3 копии, 2 носителя, 1 вне дома)"
       },
       {
-       "id": "s01-topics-16",
+       "id": "s01-topics-13",
        "text": "Prompt library — личная библиотека промптов"
       }
      ]
@@ -146,7 +150,7 @@ window.ROADMAP = {
       },
       {
        "id": "s01-tools-02",
-       "text": "Генерация видео — Google Veo, OpenAI Sora, Kling, Runway, Luma, Hailuo (MiniMax), Seedance, Pika, Midjourney Video; открытые — Wan, LTX-Video, HunyuanVideo"
+       "text": "Генерация видео — Google Veo, OpenAI Sora, Kling, Runway, Luma, Hailuo (MiniMax), Seedance, Pika, Midjourney Video"
       },
       {
        "id": "s01-tools-03",
@@ -158,31 +162,27 @@ window.ROADMAP = {
       },
       {
        "id": "s01-tools-05",
-       "text": "Локальная генерация — ComfyUI"
-      },
-      {
-       "id": "s01-tools-06",
        "text": "LLM-ассистенты для идей, сценариев и промптов — Claude, ChatGPT, Gemini"
       },
       {
-       "id": "s01-tools-07",
+       "id": "s01-tools-06",
        "text": "Референсы — PureRef, Eagle, Pinterest, ShotDeck, FilmGrab"
       },
       {
-       "id": "s01-tools-08",
+       "id": "s01-tools-07",
        "text": "Монтаж и постпродакшн — DaVinci Resolve, Adobe Premiere Pro, After Effects, Photoshop, CapCut"
       },
       {
-       "id": "s01-tools-09",
+       "id": "s01-tools-08",
        "text": "Звук — ElevenLabs, Suno, Udio"
       },
       {
-       "id": "s01-tools-10",
+       "id": "s01-tools-09",
        "text": "Хранение и согласование — облачный диск, Frame.io"
       },
       {
-       "id": "s01-tools-11",
-       "text": "Железо — для монтажа достаточно мощного ноутбука или Mac на Apple Silicon; для локальной генерации нужна видеокарта NVIDIA с 12–24 ГБ видеопамяти или аренда облачного GPU (RunPod и аналоги)"
+       "id": "s01-tools-10",
+       "text": "Железо — для всей программы достаточно мощного ноутбука или Mac на Apple Silicon: генерация идёт в облачных сервисах"
       }
      ]
     },
@@ -222,6 +222,7 @@ window.ROADMAP = {
   {
    "id": "s02",
    "num": 2,
+   "extra": false,
    "title": "Композиция и визуальный язык",
    "isTool": false,
    "term": "Недели 2–3",
@@ -418,6 +419,7 @@ window.ROADMAP = {
   {
    "id": "s03",
    "num": 3,
+   "extra": false,
    "title": "Объективы и камера",
    "isTool": false,
    "term": "Неделя 4",
@@ -610,6 +612,7 @@ window.ROADMAP = {
   {
    "id": "s04",
    "num": 4,
+   "extra": false,
    "title": "Свет",
    "isTool": false,
    "term": "Неделя 5",
@@ -766,6 +769,7 @@ window.ROADMAP = {
   {
    "id": "s05",
    "num": 5,
+   "extra": false,
    "title": "Цвет",
    "isTool": false,
    "term": "Неделя 6",
@@ -893,6 +897,7 @@ window.ROADMAP = {
   {
    "id": "s06",
    "num": 6,
+   "extra": false,
    "title": "Визуальное повествование",
    "isTool": false,
    "term": "Неделя 7",
@@ -993,6 +998,7 @@ window.ROADMAP = {
   {
    "id": "s07",
    "num": 7,
+   "extra": false,
    "title": "Маркетинг и психология рекламы",
    "isTool": false,
    "term": "Недели 8–9",
@@ -1177,6 +1183,7 @@ window.ROADMAP = {
   {
    "id": "s08",
    "num": 8,
+   "extra": false,
    "title": "Зацепки",
    "isTool": false,
    "term": "Неделя 10",
@@ -1273,6 +1280,7 @@ window.ROADMAP = {
   {
    "id": "s09",
    "num": 9,
+   "extra": false,
    "title": "Сценаристика",
    "isTool": false,
    "term": "Недели 11–12",
@@ -1416,6 +1424,7 @@ window.ROADMAP = {
   {
    "id": "s10",
    "num": 10,
+   "extra": false,
    "title": "Режиссура: мизансцена и игра персонажей",
    "isTool": false,
    "term": "Неделя 13",
@@ -1516,6 +1525,7 @@ window.ROADMAP = {
   {
    "id": "s11",
    "num": 11,
+   "extra": false,
    "title": "Художественное направление",
    "isTool": false,
    "term": "Неделя 14",
@@ -1651,6 +1661,7 @@ window.ROADMAP = {
   {
    "id": "s12",
    "num": 12,
+   "extra": false,
    "title": "Препродакшн — раскадровка, аниматик и шот-лист",
    "isTool": true,
    "term": "Неделя 15",
@@ -1762,6 +1773,7 @@ window.ROADMAP = {
   {
    "id": "s13",
    "num": 13,
+   "extra": false,
    "title": "Генерация изображений",
    "isTool": false,
    "term": "Недели 16–17",
@@ -1930,6 +1942,7 @@ window.ROADMAP = {
   {
    "id": "s14",
    "num": 14,
+   "extra": false,
    "title": "Платформы генерации изображений",
    "isTool": true,
    "term": "Неделя 18",
@@ -1985,7 +1998,7 @@ window.ROADMAP = {
       },
       {
        "id": "s14-tools-02",
-       "text": "FLUX (Pro, Kontext) — фотореализм, точное следование промпту, правка по инструкции; открытые версии работают в ComfyUI"
+       "text": "FLUX (Pro, Kontext) — фотореализм, точное следование промпту, правка по инструкции"
       },
       {
        "id": "s14-tools-03",
@@ -2053,6 +2066,7 @@ window.ROADMAP = {
   {
    "id": "s15",
    "num": 15,
+   "extra": false,
    "title": "Редактирование и доработка изображений",
    "isTool": true,
    "term": "Неделя 19",
@@ -2192,9 +2206,10 @@ window.ROADMAP = {
   {
    "id": "s16",
    "num": 16,
-   "title": "ComfyUI, ControlNet и обучение LoRA",
-   "isTool": true,
-   "term": "Недели 20–21",
+   "extra": false,
+   "title": "Предметная реклама",
+   "isTool": false,
+   "term": "Неделя 20",
    "notes": [],
    "sections": [
     {
@@ -2204,110 +2219,83 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s16-topics-01",
-       "text": "Diffusion basics — как работает диффузия: шум → изображение"
+       "text": "Product photography — предметная фотосъёмка"
       },
       {
        "id": "s16-topics-02",
-       "text": "Node-based workflow — нодовый рабочий процесс"
+       "text": "Hero shot — главный эффектный кадр продукта"
       },
       {
        "id": "s16-topics-03",
-       "text": "Checkpoint / Base model — базовая модель"
+       "text": "Packshot — чистый финальный кадр продукта"
       },
       {
        "id": "s16-topics-04",
-       "text": "Sampler / Scheduler — сэмплер и планировщик шума"
+       "text": "Product on white — продукт на белом фоне"
       },
       {
        "id": "s16-topics-05",
-       "text": "Steps — шаги генерации"
+       "text": "Tabletop — настольная предметная съёмка"
       },
       {
        "id": "s16-topics-06",
-       "text": "CFG / Guidance — сила следования промпту"
+       "text": "Lifestyle shot — продукт в контексте жизни"
       },
       {
        "id": "s16-topics-07",
-       "text": "Image-to-image — генерация на основе изображения"
+       "text": "Product macro — крупная съёмка продукта"
       },
       {
        "id": "s16-topics-08",
-       "text": "Denoise strength — сила изменения исходника"
+       "text": "Floating product / Levitation — левитация продукта"
       },
       {
        "id": "s16-topics-09",
-       "text": "ControlNet — управление генерацией через карты (поза, глубина, контуры)"
+       "text": "Ingredients shot — продукт с ингредиентами"
       },
       {
        "id": "s16-topics-10",
-       "text": "Depth map — карта глубины"
+       "text": "Liquid photography — съёмка жидкостей"
       },
       {
        "id": "s16-topics-11",
-       "text": "Canny / Lineart — карта контуров"
+       "text": "Splash photography — съёмка брызг"
       },
       {
        "id": "s16-topics-12",
-       "text": "OpenPose — скелет позы"
+       "text": "Condensation — конденсат и капли на холодной бутылке"
       },
       {
        "id": "s16-topics-13",
-       "text": "IP-Adapter — передача стиля и внешности по изображению"
+       "text": "Glass — работа со стеклом"
       },
       {
        "id": "s16-topics-14",
-       "text": "LoRA — дообучение модели под персонажа, продукт или стиль"
+       "text": "Metal — работа с металлом"
       },
       {
        "id": "s16-topics-15",
-       "text": "Dataset — датасет для обучения"
+       "text": "Chrome — работа с хромированными поверхностями"
       },
       {
        "id": "s16-topics-16",
-       "text": "Captioning — подписи к изображениям датасета"
+       "text": "Fabric — работа с тканями"
       },
       {
        "id": "s16-topics-17",
-       "text": "Trigger word — слово-активатор LoRA"
+       "text": "Reflections — отражения"
       },
       {
        "id": "s16-topics-18",
-       "text": "Overfitting — переобучение"
+       "text": "Turntable — вращение продукта на 360°"
       },
       {
        "id": "s16-topics-19",
-       "text": "Custom nodes — пользовательские ноды"
+       "text": "Label accuracy — точность этикетки и логотипа"
       },
       {
        "id": "s16-topics-20",
-       "text": "Workflow sharing — обмен воркфлоу (файлы JSON)"
-      }
-     ]
-    },
-    {
-     "id": "s16-tools",
-     "key": "tools",
-     "title": "Инструменты",
-     "items": [
-      {
-       "id": "s16-tools-01",
-       "text": "ComfyUI — локально или в облаке (Comfy Cloud, RunComfy, RunPod)"
-      },
-      {
-       "id": "s16-tools-02",
-       "text": "ComfyUI Manager — установка нод и моделей"
-      },
-      {
-       "id": "s16-tools-03",
-       "text": "Модели для изображений — FLUX, Qwen-Image, SDXL; для видео — Wan, LTX-Video, HunyuanVideo"
-      },
-      {
-       "id": "s16-tools-04",
-       "text": "Обучение LoRA — AI Toolkit (Ostris), kohya_ss, FluxGym; облачно — fal.ai, Replicate, Civitai"
-      },
-      {
-       "id": "s16-tools-05",
-       "text": "Civitai, Hugging Face — библиотеки моделей и LoRA (обязательно проверять лицензию)"
+       "text": "3D hybrid — гибрид с 3D для точной формы продукта"
       }
      ]
     },
@@ -2318,31 +2306,31 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s16-tasks-01",
-       "text": "Установить ComfyUI и собрать базовый воркфлоу text-to-image с нуля."
+       "text": "Сделать рекламу часов."
       },
       {
        "id": "s16-tasks-02",
-       "text": "Собрать воркфлоу image-to-image и inpainting."
+       "text": "Сделать рекламу духов."
       },
       {
        "id": "s16-tasks-03",
-       "text": "Сгенерировать 10 кадров с ControlNet: поза, глубина, контуры."
+       "text": "Сделать рекламу напитка."
       },
       {
        "id": "s16-tasks-04",
-       "text": "Собрать датасет из 20–30 изображений и обучить LoRA персонажа."
+       "text": "Сделать рекламу автомобиля."
       },
       {
        "id": "s16-tasks-05",
-       "text": "Обучить LoRA продукта (бутылка, часы или кроссовки) и сделать с ней 20 кадров."
+       "text": "Сделать рекламу косметики."
       },
       {
        "id": "s16-tasks-06",
-       "text": "Обучить LoRA стиля бренда."
+       "text": "Каждую рекламу сделать в двух вариантах: hero shot и lifestyle."
       },
       {
        "id": "s16-tasks-07",
-       "text": "Сохранить 5 собственных воркфлоу как шаблоны."
+       "text": "В каждой рекламе сохранять точную форму продукта и читаемую этикетку."
       }
      ]
     }
@@ -2351,9 +2339,10 @@ window.ROADMAP = {
   {
    "id": "s17",
    "num": 17,
-   "title": "Предметная реклама",
-   "isTool": false,
-   "term": "Неделя 22",
+   "extra": false,
+   "title": "3D для AI-продакшна — Blender и превиз",
+   "isTool": true,
+   "term": "Недели 21–22",
    "notes": [],
    "sections": [
     {
@@ -2363,83 +2352,90 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s17-topics-01",
-       "text": "Product photography — предметная фотосъёмка"
+       "text": "3D modeling basics — основы 3D-моделирования"
       },
       {
        "id": "s17-topics-02",
-       "text": "Hero shot — главный эффектный кадр продукта"
+       "text": "Mesh — полигональная сетка"
       },
       {
        "id": "s17-topics-03",
-       "text": "Packshot — чистый финальный кадр продукта"
+       "text": "Materials / Shaders, PBR — материалы и физически корректные шейдеры"
       },
       {
        "id": "s17-topics-04",
-       "text": "Product on white — продукт на белом фоне"
+       "text": "UV mapping — развёртка для наложения текстуры (этикетки)"
       },
       {
        "id": "s17-topics-05",
-       "text": "Tabletop — настольная предметная съёмка"
+       "text": "HDRI lighting — освещение картой окружения"
       },
       {
        "id": "s17-topics-06",
-       "text": "Lifestyle shot — продукт в контексте жизни"
+       "text": "3D camera — 3D-камера: фокусное расстояние, траектория движения"
       },
       {
        "id": "s17-topics-07",
-       "text": "Product macro — крупная съёмка продукта"
+       "text": "Camera blocking — черновая постановка камеры и объектов"
       },
       {
        "id": "s17-topics-08",
-       "text": "Floating product / Levitation — левитация продукта"
+       "text": "Render engines — движки рендера: Eevee (быстрый), Cycles (реалистичный)"
       },
       {
        "id": "s17-topics-09",
-       "text": "Ingredients shot — продукт с ингредиентами"
+       "text": "Render passes — проходы рендера: глубина, нормали, маски (для композитинга)"
       },
       {
        "id": "s17-topics-10",
-       "text": "Liquid photography — съёмка жидкостей"
+       "text": "3D-to-AI workflow — гибридный процесс: 3D-основа → AI-стилизация (image-to-image, video-to-video)"
       },
       {
        "id": "s17-topics-11",
-       "text": "Splash photography — съёмка брызг"
+       "text": "Image-to-3D — создание 3D-модели из картинки"
       },
       {
        "id": "s17-topics-12",
-       "text": "Condensation — конденсат и капли на холодной бутылке"
+       "text": "Gaussian splatting — 3D-сцена из фото или видео"
       },
       {
        "id": "s17-topics-13",
-       "text": "Glass — работа со стеклом"
+       "text": "Virtual production — виртуальное производство"
+      }
+     ]
+    },
+    {
+     "id": "s17-tools",
+     "key": "tools",
+     "title": "Инструменты",
+     "items": [
+      {
+       "id": "s17-tools-01",
+       "text": "Blender — бесплатный основной 3D-пакет"
       },
       {
-       "id": "s17-topics-14",
-       "text": "Metal — работа с металлом"
+       "id": "s17-tools-02",
+       "text": "Cinema 4D + Redshift / Octane — индустриальный стандарт предметной рекламы (обзор)"
       },
       {
-       "id": "s17-topics-15",
-       "text": "Chrome — работа с хромированными поверхностями"
+       "id": "s17-tools-03",
+       "text": "Unreal Engine — превиз и окружения в реальном времени (обзор)"
       },
       {
-       "id": "s17-topics-16",
-       "text": "Fabric — работа с тканями"
+       "id": "s17-tools-04",
+       "text": "Tripo, Meshy, Hunyuan3D, Rodin — генерация 3D-модели из изображения"
       },
       {
-       "id": "s17-topics-17",
-       "text": "Reflections — отражения"
+       "id": "s17-tools-05",
+       "text": "Luma, Polycam, Postshot — гауссовы сплаты и фотограмметрия"
       },
       {
-       "id": "s17-topics-18",
-       "text": "Turntable — вращение продукта на 360°"
+       "id": "s17-tools-06",
+       "text": "Mixamo — готовая анимация персонажей"
       },
       {
-       "id": "s17-topics-19",
-       "text": "Label accuracy — точность этикетки и логотипа"
-      },
-      {
-       "id": "s17-topics-20",
-       "text": "Product LoRA / 3D hybrid — LoRA продукта или гибрид с 3D для точной формы"
+       "id": "s17-tools-07",
+       "text": "Poly Haven — бесплатные HDRI, текстуры и модели"
       }
      ]
     },
@@ -2450,31 +2446,27 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s17-tasks-01",
-       "text": "Сделать рекламу часов."
+       "text": "Пройти базовый курс Blender: интерфейс, объекты, камера, свет, рендер."
       },
       {
        "id": "s17-tasks-02",
-       "text": "Сделать рекламу духов."
+       "text": "Смоделировать простой продукт (бутылка или банка) и наложить на него этикетку."
       },
       {
        "id": "s17-tasks-03",
-       "text": "Сделать рекламу напитка."
+       "text": "Сделать турнтейбл продукта и вывести проходы глубины и масок."
       },
       {
        "id": "s17-tasks-04",
-       "text": "Сделать рекламу автомобиля."
+       "text": "Использовать 3D-рендер как основу для AI-генерации через image-to-image или image-to-video."
       },
       {
        "id": "s17-tasks-05",
-       "text": "Сделать рекламу косметики."
+       "text": "Сделать 3D-превиз сцены с движением камеры и превратить его в AI-видео через video-to-video."
       },
       {
        "id": "s17-tasks-06",
-       "text": "Каждую рекламу сделать в двух вариантах: hero shot и lifestyle."
-      },
-      {
-       "id": "s17-tasks-07",
-       "text": "В каждой рекламе сохранять точную форму продукта и читаемую этикетку."
+       "text": "Сгенерировать 3D-модель из изображения и использовать её в сцене."
       }
      ]
     }
@@ -2483,8 +2475,9 @@ window.ROADMAP = {
   {
    "id": "s18",
    "num": 18,
-   "title": "3D для AI-продакшна — Blender и превиз",
-   "isTool": true,
+   "extra": false,
+   "title": "Генерация видео",
+   "isTool": false,
    "term": "Недели 23–24",
    "notes": [],
    "sections": [
@@ -2495,90 +2488,95 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s18-topics-01",
-       "text": "3D modeling basics — основы 3D-моделирования"
+       "text": "Text-to-video — генерация видео из текста"
       },
       {
        "id": "s18-topics-02",
-       "text": "Mesh — полигональная сетка"
+       "text": "Image-to-video — генерация видео из изображения"
       },
       {
        "id": "s18-topics-03",
-       "text": "Materials / Shaders, PBR — материалы и физически корректные шейдеры"
+       "text": "Video-to-video — преобразование одного видео в другое"
       },
       {
        "id": "s18-topics-04",
-       "text": "UV mapping — развёртка для наложения текстуры (этикетки)"
+       "text": "Start frame — начальный кадр"
       },
       {
        "id": "s18-topics-05",
-       "text": "HDRI lighting — освещение картой окружения"
+       "text": "End frame — конечный кадр"
       },
       {
        "id": "s18-topics-06",
-       "text": "3D camera — 3D-камера: фокусное расстояние, траектория движения"
+       "text": "Keyframes / Multi-frame — промежуточные ключевые кадры"
       },
       {
        "id": "s18-topics-07",
-       "text": "Camera blocking — черновая постановка камеры и объектов"
+       "text": "Shot duration — длительность генерации (обычно 4–10 секунд на кадр)"
       },
       {
        "id": "s18-topics-08",
-       "text": "Render engines — движки рендера: Eevee (быстрый), Cycles (реалистичный)"
+       "text": "Extend — продление клипа"
       },
       {
        "id": "s18-topics-09",
-       "text": "Render passes — проходы рендера: глубина, нормали, маски (для ControlNet и композитинга)"
+       "text": "Elements / Video references — референсы элементов: персонаж, объект, локация"
       },
       {
        "id": "s18-topics-10",
-       "text": "3D-to-AI workflow — гибридный процесс: 3D-основа → AI-стилизация (image-to-image, video-to-video)"
+       "text": "Motion control — управление движением"
       },
       {
        "id": "s18-topics-11",
-       "text": "Image-to-3D — создание 3D-модели из картинки"
+       "text": "Camera control — управление камерой"
       },
       {
        "id": "s18-topics-12",
-       "text": "Gaussian splatting — 3D-сцена из фото или видео"
+       "text": "Motion prompt — описание движения: что движется, как и с какой скоростью"
       },
       {
        "id": "s18-topics-13",
-       "text": "Virtual production — виртуальное производство"
-      }
-     ]
-    },
-    {
-     "id": "s18-tools",
-     "key": "tools",
-     "title": "Инструменты",
-     "items": [
-      {
-       "id": "s18-tools-01",
-       "text": "Blender — бесплатный основной 3D-пакет"
+       "text": "Subject movement — движение объекта"
       },
       {
-       "id": "s18-tools-02",
-       "text": "Cinema 4D + Redshift / Octane — индустриальный стандарт предметной рекламы (обзор)"
+       "id": "s18-topics-14",
+       "text": "Camera movement — движение камеры"
       },
       {
-       "id": "s18-tools-03",
-       "text": "Unreal Engine — превиз и окружения в реальном времени (обзор)"
+       "id": "s18-topics-15",
+       "text": "Environmental movement — движение окружения"
       },
       {
-       "id": "s18-tools-04",
-       "text": "Tripo, Meshy, Hunyuan3D, Rodin — генерация 3D-модели из изображения"
+       "id": "s18-topics-16",
+       "text": "Motion strength — интенсивность движения"
       },
       {
-       "id": "s18-tools-05",
-       "text": "Luma, Polycam, Postshot — гауссовы сплаты и фотограмметрия"
+       "id": "s18-topics-17",
+       "text": "Native audio — генерация видео сразу со звуком и речью"
       },
       {
-       "id": "s18-tools-06",
-       "text": "Mixamo — готовая анимация персонажей"
+       "id": "s18-topics-18",
+       "text": "Structured prompt — структурированный промпт (в том числе в формате JSON)"
       },
       {
-       "id": "s18-tools-07",
-       "text": "Poly Haven — бесплатные HDRI, текстуры и модели"
+       "id": "s18-topics-19",
+       "text": "Character consistency — постоянство внешности персонажа"
+      },
+      {
+       "id": "s18-topics-20",
+       "text": "Object consistency — постоянство объекта"
+      },
+      {
+       "id": "s18-topics-21",
+       "text": "Temporal consistency — стабильность во времени, без мерцания"
+      },
+      {
+       "id": "s18-topics-22",
+       "text": "Morphing — «плавление» объектов, типичный дефект"
+      },
+      {
+       "id": "s18-topics-23",
+       "text": "Success rate — процент удачных генераций и бюджет на брак"
       }
      ]
     },
@@ -2589,27 +2587,27 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s18-tasks-01",
-       "text": "Пройти базовый курс Blender: интерфейс, объекты, камера, свет, рендер."
+       "text": "Сделать 50 коротких видеокадров."
       },
       {
        "id": "s18-tasks-02",
-       "text": "Смоделировать простой продукт (бутылка или банка) и наложить на него этикетку."
+       "text": "Отдельно потренировать движение камеры."
       },
       {
        "id": "s18-tasks-03",
-       "text": "Сделать турнтейбл продукта и вывести проходы глубины и масок."
+       "text": "Отдельно потренировать движение персонажа."
       },
       {
        "id": "s18-tasks-04",
-       "text": "Использовать 3D-рендер как основу для AI-генерации через ControlNet или image-to-video."
+       "text": "Отдельно потренировать движение окружения."
       },
       {
        "id": "s18-tasks-05",
-       "text": "Сделать 3D-превиз сцены с движением камеры и превратить его в AI-видео через video-to-video."
+       "text": "Создать одну сцену из 5 связанных кадров."
       },
       {
        "id": "s18-tasks-06",
-       "text": "Сгенерировать 3D-модель из изображения и использовать её в сцене."
+       "text": "Вести таблицу удачных и неудачных генераций с причинами."
       }
      ]
     }
@@ -2618,8 +2616,9 @@ window.ROADMAP = {
   {
    "id": "s19",
    "num": 19,
-   "title": "Генерация видео",
-   "isTool": false,
+   "extra": false,
+   "title": "Платформы генерации видео",
+   "isTool": true,
    "term": "Недели 25–26",
    "notes": [],
    "sections": [
@@ -2630,95 +2629,82 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s19-topics-01",
-       "text": "Text-to-video — генерация видео из текста"
+       "text": "Model strengths — сильные стороны моделей: реализм, физика, люди, камера, стилизация, звук"
       },
       {
        "id": "s19-topics-02",
-       "text": "Image-to-video — генерация видео из изображения"
+       "text": "Image-first workflow — почему в рекламе чаще анимируют утверждённый кадр, а не генерируют из текста"
       },
       {
        "id": "s19-topics-03",
-       "text": "Video-to-video — преобразование одного видео в другое"
+       "text": "First / Last frame control — управление первым и последним кадром"
       },
       {
        "id": "s19-topics-04",
-       "text": "Start frame — начальный кадр"
+       "text": "Camera presets — пресеты движения камеры"
       },
       {
        "id": "s19-topics-05",
-       "text": "End frame — конечный кадр"
+       "text": "Video editing models — нейросетевое редактирование готового видео: замена объекта, фона, времени суток"
       },
       {
        "id": "s19-topics-06",
-       "text": "Keyframes / Multi-frame — промежуточные ключевые кадры"
+       "text": "Resolution & fps — разрешение и частота кадров разных моделей"
       },
       {
        "id": "s19-topics-07",
-       "text": "Shot duration — длительность генерации (обычно 4–10 секунд на кадр)"
+       "text": "Draft vs Final mode — черновой (быстрый и дешёвый) и финальный режим"
       },
       {
        "id": "s19-topics-08",
-       "text": "Extend — продление клипа"
+       "text": "Cost management — управление бюджетом кредитов"
+      }
+     ]
+    },
+    {
+     "id": "s19-tools",
+     "key": "tools",
+     "title": "Инструменты",
+     "items": [
+      {
+       "id": "s19-tools-01",
+       "text": "Google Veo + Flow — реализм, кинематографичность, встроенный звук и речь, сборка сцен"
       },
       {
-       "id": "s19-topics-09",
-       "text": "Elements / Video references — референсы элементов: персонаж, объект, локация"
+       "id": "s19-tools-02",
+       "text": "OpenAI Sora — физика, сложные сцены, звук, повторяющиеся персонажи"
       },
       {
-       "id": "s19-topics-10",
-       "text": "Motion control — управление движением"
+       "id": "s19-tools-03",
+       "text": "Kling — движение людей, image-to-video, элементы, первый / последний кадр, липсинк"
       },
       {
-       "id": "s19-topics-11",
-       "text": "Camera control — управление камерой"
+       "id": "s19-tools-04",
+       "text": "Runway — генерация по референсам, Aleph (редактирование видео), Act-Two (перенос игры актёра)"
       },
       {
-       "id": "s19-topics-12",
-       "text": "Motion prompt — описание движения: что движется, как и с какой скоростью"
+       "id": "s19-tools-05",
+       "text": "Luma (Ray, Dream Machine) — HDR, Modify Video (видео в видео), ключевые кадры"
       },
       {
-       "id": "s19-topics-13",
-       "text": "Subject movement — движение объекта"
+       "id": "s19-tools-06",
+       "text": "Hailuo (MiniMax) — динамика и физика, выгодная цена"
       },
       {
-       "id": "s19-topics-14",
-       "text": "Camera movement — движение камеры"
+       "id": "s19-tools-07",
+       "text": "Seedance (ByteDance) — мультикадровые сцены, стабильность"
       },
       {
-       "id": "s19-topics-15",
-       "text": "Environmental movement — движение окружения"
+       "id": "s19-tools-08",
+       "text": "Pika — эффекты и быстрые форматы для соцсетей"
       },
       {
-       "id": "s19-topics-16",
-       "text": "Motion strength — интенсивность движения"
+       "id": "s19-tools-09",
+       "text": "Midjourney Video — анимация кадров в эстетике Midjourney"
       },
       {
-       "id": "s19-topics-17",
-       "text": "Native audio — генерация видео сразу со звуком и речью"
-      },
-      {
-       "id": "s19-topics-18",
-       "text": "Structured prompt — структурированный промпт (в том числе в формате JSON)"
-      },
-      {
-       "id": "s19-topics-19",
-       "text": "Character consistency — постоянство внешности персонажа"
-      },
-      {
-       "id": "s19-topics-20",
-       "text": "Object consistency — постоянство объекта"
-      },
-      {
-       "id": "s19-topics-21",
-       "text": "Temporal consistency — стабильность во времени, без мерцания"
-      },
-      {
-       "id": "s19-topics-22",
-       "text": "Morphing — «плавление» объектов, типичный дефект"
-      },
-      {
-       "id": "s19-topics-23",
-       "text": "Success rate — процент удачных генераций и бюджет на брак"
+       "id": "s19-tools-10",
+       "text": "Higgsfield — пресеты движения камеры, доступ к разным моделям"
       }
      ]
     },
@@ -2729,27 +2715,23 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s19-tasks-01",
-       "text": "Сделать 50 коротких видеокадров."
+       "text": "Один и тот же стартовый кадр анимировать в 5 разных моделях и сравнить движение, физику, лицо, продукт, артефакты и цену."
       },
       {
        "id": "s19-tasks-02",
-       "text": "Отдельно потренировать движение камеры."
+       "text": "Составить таблицу «тип кадра → лучшая модель»: люди, продукт, жидкость, автомобиль, природа, диалог."
       },
       {
        "id": "s19-tasks-03",
-       "text": "Отдельно потренировать движение персонажа."
+       "text": "Сделать 10 переходов через первый и последний кадр."
       },
       {
        "id": "s19-tasks-04",
-       "text": "Отдельно потренировать движение окружения."
+       "text": "Сделать один ролик полностью со встроенным звуком (Veo, Sora или Kling)."
       },
       {
        "id": "s19-tasks-05",
-       "text": "Создать одну сцену из 5 связанных кадров."
-      },
-      {
-       "id": "s19-tasks-06",
-       "text": "Вести таблицу удачных и неудачных генераций с причинами."
+       "text": "Отредактировать готовое видео нейросетью: заменить фон, одежду или время суток."
       }
      ]
     }
@@ -2758,9 +2740,10 @@ window.ROADMAP = {
   {
    "id": "s20",
    "num": 20,
-   "title": "Платформы генерации видео",
-   "isTool": true,
-   "term": "Недели 27–28",
+   "extra": false,
+   "title": "Физика движения",
+   "isTool": false,
+   "term": "Неделя 27",
    "notes": [],
    "sections": [
     {
@@ -2770,86 +2753,75 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s20-topics-01",
-       "text": "Model strengths — сильные стороны моделей: реализм, физика, люди, камера, стилизация, звук"
+       "text": "Weight — вес"
       },
       {
        "id": "s20-topics-02",
-       "text": "Image-first workflow — почему в рекламе чаще анимируют утверждённый кадр, а не генерируют из текста"
+       "text": "Momentum — импульс движения"
       },
       {
        "id": "s20-topics-03",
-       "text": "First / Last frame control — управление первым и последним кадром"
+       "text": "Inertia — инерция"
       },
       {
        "id": "s20-topics-04",
-       "text": "Camera presets — пресеты движения камеры"
+       "text": "Acceleration — ускорение"
       },
       {
        "id": "s20-topics-05",
-       "text": "Video editing models — нейросетевое редактирование готового видео: замена объекта, фона, времени суток"
+       "text": "Deceleration — замедление"
       },
       {
        "id": "s20-topics-06",
-       "text": "Resolution & fps — разрешение и частота кадров разных моделей"
+       "text": "Gravity — гравитация"
       },
       {
        "id": "s20-topics-07",
-       "text": "Draft vs Final mode — черновой (быстрый и дешёвый) и финальный режим"
+       "text": "Collision — столкновение"
       },
       {
        "id": "s20-topics-08",
-       "text": "Cost management — управление бюджетом кредитов"
-      }
-     ]
-    },
-    {
-     "id": "s20-tools",
-     "key": "tools",
-     "title": "Инструменты",
-     "items": [
-      {
-       "id": "s20-tools-01",
-       "text": "Google Veo + Flow — реализм, кинематографичность, встроенный звук и речь, сборка сцен"
+       "text": "12 principles of animation — 12 принципов анимации"
       },
       {
-       "id": "s20-tools-02",
-       "text": "OpenAI Sora — физика, сложные сцены, звук, повторяющиеся персонажи"
+       "id": "s20-topics-09",
+       "text": "Anticipation — подготовка к движению"
       },
       {
-       "id": "s20-tools-03",
-       "text": "Kling — движение людей, image-to-video, элементы, первый / последний кадр, липсинк"
+       "id": "s20-topics-10",
+       "text": "Squash and stretch — сжатие и растяжение"
       },
       {
-       "id": "s20-tools-04",
-       "text": "Runway — генерация по референсам, Aleph (редактирование видео), Act-Two (перенос игры актёра)"
+       "id": "s20-topics-11",
+       "text": "Follow-through / Overlapping action — продолжение и наложение движения"
       },
       {
-       "id": "s20-tools-05",
-       "text": "Luma (Ray, Dream Machine) — HDR, Modify Video (видео в видео), ключевые кадры"
+       "id": "s20-topics-12",
+       "text": "Secondary motion — вторичное движение (волосы, одежда, украшения)"
       },
       {
-       "id": "s20-tools-06",
-       "text": "Hailuo (MiniMax) — динамика и физика, выгодная цена"
+       "id": "s20-topics-13",
+       "text": "Cloth physics — физика ткани"
       },
       {
-       "id": "s20-tools-07",
-       "text": "Seedance (ByteDance) — мультикадровые сцены, стабильность"
+       "id": "s20-topics-14",
+       "text": "Hair movement — движение волос"
       },
       {
-       "id": "s20-tools-08",
-       "text": "Pika — эффекты и быстрые форматы для соцсетей"
+       "id": "s20-topics-15",
+       "text": "Fluid dynamics — движение жидкостей"
       },
       {
-       "id": "s20-tools-09",
-       "text": "Midjourney Video — анимация кадров в эстетике Midjourney"
+       "id": "s20-topics-16",
+       "text": "Particles — частицы: дым, пыль, искры"
       },
       {
-       "id": "s20-tools-10",
-       "text": "Higgsfield — пресеты движения камеры, доступ к разным моделям"
+       "id": "s20-topics-17",
+       "text": "Smoke & fire — дым и огонь"
       },
       {
-       "id": "s20-tools-11",
-       "text": "Wan, LTX-Video, HunyuanVideo — открытые модели: локально через ComfyUI, с LoRA и ControlNet"
+       "id": "s20-topics-18",
+       "text": "Speed perception — восприятие скорости"
       }
      ]
     },
@@ -2860,27 +2832,23 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s20-tasks-01",
-       "text": "Один и тот же стартовый кадр анимировать в 5 разных моделях и сравнить движение, физику, лицо, продукт, артефакты и цену."
+       "text": "Сделать 20 сцен с человеком."
       },
       {
        "id": "s20-tasks-02",
-       "text": "Составить таблицу «тип кадра → лучшая модель»: люди, продукт, жидкость, автомобиль, природа, диалог."
+       "text": "Сделать 10 сцен с автомобилем."
       },
       {
        "id": "s20-tasks-03",
-       "text": "Сделать 10 переходов через первый и последний кадр."
+       "text": "Сделать 10 сцен с тканью."
       },
       {
        "id": "s20-tasks-04",
-       "text": "Сделать один ролик полностью со встроенным звуком (Veo, Sora или Kling)."
+       "text": "Сделать 10 сцен с водой или другой жидкостью."
       },
       {
        "id": "s20-tasks-05",
-       "text": "Отредактировать готовое видео нейросетью: заменить фон, одежду или время суток."
-      },
-      {
-       "id": "s20-tasks-06",
-       "text": "Запустить видеомодель локально в ComfyUI (Wan или LTX) и сделать 5 клипов."
+       "text": "Анализировать ошибки физики в каждой генерации."
       }
      ]
     }
@@ -2889,9 +2857,10 @@ window.ROADMAP = {
   {
    "id": "s21",
    "num": 21,
-   "title": "Физика движения",
-   "isTool": false,
-   "term": "Неделя 29",
+   "extra": false,
+   "title": "Цифровые персонажи, липсинк и перенос движения",
+   "isTool": true,
+   "term": "Неделя 28",
    "notes": [],
    "sections": [
     {
@@ -2901,75 +2870,82 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s21-topics-01",
-       "text": "Weight — вес"
+       "text": "Digital human / AI avatar — цифровой человек, аватар"
       },
       {
        "id": "s21-topics-02",
-       "text": "Momentum — импульс движения"
+       "text": "Talking head — «говорящая голова»"
       },
       {
        "id": "s21-topics-03",
-       "text": "Inertia — инерция"
+       "text": "Lip sync — синхронизация губ с речью"
       },
       {
        "id": "s21-topics-04",
-       "text": "Acceleration — ускорение"
+       "text": "Audio-driven animation — анимация лица по звуку"
       },
       {
        "id": "s21-topics-05",
-       "text": "Deceleration — замедление"
+       "text": "Performance transfer — перенос актёрской игры с видео на персонажа"
       },
       {
        "id": "s21-topics-06",
-       "text": "Gravity — гравитация"
+       "text": "Motion transfer — перенос движения тела"
       },
       {
        "id": "s21-topics-07",
-       "text": "Collision — столкновение"
+       "text": "Face swap — замена лица (только с согласия человека)"
       },
       {
        "id": "s21-topics-08",
-       "text": "12 principles of animation — 12 принципов анимации"
+       "text": "Character sheet — лист персонажа: вид спереди, сбоку, сзади, эмоции"
       },
       {
        "id": "s21-topics-09",
-       "text": "Anticipation — подготовка к движению"
+       "text": "Character bible — описание персонажа для постоянства"
       },
       {
        "id": "s21-topics-10",
-       "text": "Squash and stretch — сжатие и растяжение"
+       "text": "UGC-style ads — реклама в стиле пользовательского контента"
       },
       {
        "id": "s21-topics-11",
-       "text": "Follow-through / Overlapping action — продолжение и наложение движения"
+       "text": "Uncanny valley — «зловещая долина»"
       },
       {
        "id": "s21-topics-12",
-       "text": "Secondary motion — вторичное движение (волосы, одежда, украшения)"
+       "text": "Consent & likeness rights — согласие и права на внешность и голос"
+      }
+     ]
+    },
+    {
+     "id": "s21-tools",
+     "key": "tools",
+     "title": "Инструменты",
+     "items": [
+      {
+       "id": "s21-tools-01",
+       "text": "HeyGen, Synthesia — аватары, говорящие головы, локализация"
       },
       {
-       "id": "s21-topics-13",
-       "text": "Cloth physics — физика ткани"
+       "id": "s21-tools-02",
+       "text": "Hedra — выразительные говорящие персонажи"
       },
       {
-       "id": "s21-topics-14",
-       "text": "Hair movement — движение волос"
+       "id": "s21-tools-03",
+       "text": "Kling Lip Sync, Sync (sync.so) — липсинк на готовое видео"
       },
       {
-       "id": "s21-topics-15",
-       "text": "Fluid dynamics — движение жидкостей"
+       "id": "s21-tools-04",
+       "text": "Runway Act-Two — перенос игры актёра на персонажа"
       },
       {
-       "id": "s21-topics-16",
-       "text": "Particles — частицы: дым, пыль, искры"
+       "id": "s21-tools-05",
+       "text": "Viggle — перенос движения по видео-референсу"
       },
       {
-       "id": "s21-topics-17",
-       "text": "Smoke & fire — дым и огонь"
-      },
-      {
-       "id": "s21-topics-18",
-       "text": "Speed perception — восприятие скорости"
+       "id": "s21-tools-06",
+       "text": "Veo, Sora — диалоги со встроенной речью"
       }
      ]
     },
@@ -2980,23 +2956,23 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s21-tasks-01",
-       "text": "Сделать 20 сцен с человеком."
+       "text": "Создать лист персонажа (10+ ракурсов и эмоций) и использовать его во всех кадрах."
       },
       {
        "id": "s21-tasks-02",
-       "text": "Сделать 10 сцен с автомобилем."
+       "text": "Сделать 30-секундный ролик с говорящим персонажем на русском и английском."
       },
       {
        "id": "s21-tasks-03",
-       "text": "Сделать 10 сцен с тканью."
+       "text": "Снять себя на телефон и перенести игру на AI-персонажа."
       },
       {
        "id": "s21-tasks-04",
-       "text": "Сделать 10 сцен с водой или другой жидкостью."
+       "text": "Сделать UGC-рекламу продукта с AI-аватаром."
       },
       {
        "id": "s21-tasks-05",
-       "text": "Анализировать ошибки физики в каждой генерации."
+       "text": "Сравнить липсинк в 3 сервисах на одном аудио."
       }
      ]
     }
@@ -3005,9 +2981,10 @@ window.ROADMAP = {
   {
    "id": "s22",
    "num": 22,
-   "title": "Цифровые персонажи, липсинк и перенос движения",
-   "isTool": true,
-   "term": "Неделя 30",
+   "extra": false,
+   "title": "Постоянство между кадрами",
+   "isTool": false,
+   "term": "Неделя 29",
    "notes": [],
    "sections": [
     {
@@ -3017,86 +2994,63 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s22-topics-01",
-       "text": "Digital human / AI avatar — цифровой человек, аватар"
+       "text": "Continuity — непрерывность между кадрами"
       },
       {
        "id": "s22-topics-02",
-       "text": "Talking head — «говорящая голова»"
+       "text": "Screen direction — направление движения в кадре"
       },
       {
        "id": "s22-topics-03",
-       "text": "Lip sync — синхронизация губ с речью"
+       "text": "Eyeline — направление взгляда"
       },
       {
        "id": "s22-topics-04",
-       "text": "Audio-driven animation — анимация лица по звуку"
+       "text": "Match on action — монтажное совпадение по действию"
       },
       {
        "id": "s22-topics-05",
-       "text": "Performance transfer — перенос актёрской игры с видео на персонажа"
+       "text": "180-degree rule — правило 180 градусов"
       },
       {
        "id": "s22-topics-06",
-       "text": "Motion transfer — перенос движения тела"
+       "text": "Axis of action — линия действия (ось)"
       },
       {
        "id": "s22-topics-07",
-       "text": "Face swap — замена лица (только с согласия человека)"
+       "text": "Shot / Reverse shot — кадр и обратный кадр («восьмёрка»)"
       },
       {
        "id": "s22-topics-08",
-       "text": "Character sheet — лист персонажа: вид спереди, сбоку, сзади, эмоции"
+       "text": "Spatial continuity — пространственная непрерывность"
       },
       {
        "id": "s22-topics-09",
-       "text": "Character bible — описание персонажа для постоянства"
+       "text": "Temporal continuity — временная непрерывность"
       },
       {
        "id": "s22-topics-10",
-       "text": "UGC-style ads — реклама в стиле пользовательского контента"
+       "text": "Lighting continuity — постоянство освещения"
       },
       {
        "id": "s22-topics-11",
-       "text": "Uncanny valley — «зловещая долина»"
+       "text": "Location consistency — постоянство локации"
       },
       {
        "id": "s22-topics-12",
-       "text": "Consent & likeness rights — согласие и права на внешность и голос"
-      }
-     ]
-    },
-    {
-     "id": "s22-tools",
-     "key": "tools",
-     "title": "Инструменты",
-     "items": [
-      {
-       "id": "s22-tools-01",
-       "text": "HeyGen, Synthesia — аватары, говорящие головы, локализация"
+       "text": "Costume continuity — постоянство одежды"
       },
       {
-       "id": "s22-tools-02",
-       "text": "Hedra — выразительные говорящие персонажи"
+       "id": "s22-topics-13",
+       "text": "Prop continuity — постоянство предметов"
       },
       {
-       "id": "s22-tools-03",
-       "text": "Kling Lip Sync, Sync (sync.so) — липсинк на готовое видео"
+       "id": "s22-topics-14",
+       "text": "Reference pack — пакет референсов сцены: персонаж, локация, свет, продукт"
       },
       {
-       "id": "s22-tools-04",
-       "text": "Runway Act-Two — перенос игры актёра на персонажа"
-      },
-      {
-       "id": "s22-tools-05",
-       "text": "Wan Animate — перенос движения и замена персонажа (open source)"
-      },
-      {
-       "id": "s22-tools-06",
-       "text": "Viggle — перенос движения по видео-референсу"
-      },
-      {
-       "id": "s22-tools-07",
-       "text": "Veo, Sora — диалоги со встроенной речью"
+       "id": "s22-topics-15",
+       "text": "Continuity sheet — лист непрерывности: что должно совпадать между кадрами"
       }
      ]
     },
@@ -3107,23 +3061,23 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s22-tasks-01",
-       "text": "Создать лист персонажа (10+ ракурсов и эмоций) и использовать его во всех кадрах."
+       "text": "Создать диалог из 6 кадров."
       },
       {
        "id": "s22-tasks-02",
-       "text": "Сделать 30-секундный ролик с говорящим персонажем на русском и английском."
+       "text": "Создать движение персонажа через 5 кадров."
       },
       {
        "id": "s22-tasks-03",
-       "text": "Снять себя на телефон и перенести игру на AI-персонажа."
+       "text": "Создать автомобильную сцену из 8 кадров."
       },
       {
        "id": "s22-tasks-04",
-       "text": "Сделать UGC-рекламу продукта с AI-аватаром."
+       "text": "Проверять направление движения и расположение объектов."
       },
       {
        "id": "s22-tasks-05",
-       "text": "Сравнить липсинк в 3 сервисах на одном аудио."
+       "text": "Перед генерацией каждой сцены готовить reference pack и использовать его во всех кадрах."
       }
      ]
     }
@@ -3132,9 +3086,10 @@ window.ROADMAP = {
   {
    "id": "s23",
    "num": 23,
-   "title": "Постоянство между кадрами",
-   "isTool": false,
-   "term": "Неделя 31",
+   "extra": false,
+   "title": "Монтажная программа — DaVinci Resolve / Premiere Pro",
+   "isTool": true,
+   "term": "Неделя 30",
    "notes": [],
    "sections": [
     {
@@ -3144,63 +3099,82 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s23-topics-01",
-       "text": "Continuity — непрерывность между кадрами"
+       "text": "NLE, Non-Linear Editor — программа нелинейного монтажа"
       },
       {
        "id": "s23-topics-02",
-       "text": "Screen direction — направление движения в кадре"
+       "text": "Project settings — настройки проекта: разрешение, частота кадров, цветовое пространство"
       },
       {
        "id": "s23-topics-03",
-       "text": "Eyeline — направление взгляда"
+       "text": "Media Pool / Bins — медиатека и папки (бины)"
       },
       {
        "id": "s23-topics-04",
-       "text": "Match on action — монтажное совпадение по действию"
+       "text": "Media management — организация материалов"
       },
       {
        "id": "s23-topics-05",
-       "text": "180-degree rule — правило 180 градусов"
+       "text": "Proxy — облегчённые копии для быстрого монтажа"
       },
       {
        "id": "s23-topics-06",
-       "text": "Axis of action — линия действия (ось)"
+       "text": "Timeline resolution & fps — разрешение и частота таймлайна (AI-клипы приходят в разных fps — их нужно приводить к одной)"
       },
       {
        "id": "s23-topics-07",
-       "text": "Shot / Reverse shot — кадр и обратный кадр («восьмёрка»)"
+       "text": "Tracks — видео- и аудиодорожки"
       },
       {
        "id": "s23-topics-08",
-       "text": "Spatial continuity — пространственная непрерывность"
+       "text": "Markers — маркеры"
       },
       {
        "id": "s23-topics-09",
-       "text": "Temporal continuity — временная непрерывность"
+       "text": "Keyboard shortcuts — горячие клавиши (J, K, L, I, O, B, A)"
       },
       {
        "id": "s23-topics-10",
-       "text": "Lighting continuity — постоянство освещения"
+       "text": "Adjustment clip — корректирующий слой"
       },
       {
        "id": "s23-topics-11",
-       "text": "Location consistency — постоянство локации"
+       "text": "Compound / Nested clip — вложенный клип"
       },
       {
        "id": "s23-topics-12",
-       "text": "Costume continuity — постоянство одежды"
+       "text": "Render cache — кэш рендера"
       },
       {
        "id": "s23-topics-13",
-       "text": "Prop continuity — постоянство предметов"
+       "text": "Export presets — пресеты экспорта"
       },
       {
        "id": "s23-topics-14",
-       "text": "Reference pack — пакет референсов сцены: персонаж, локация, свет, продукт"
+       "text": "Project archive — архивирование проекта"
+      }
+     ]
+    },
+    {
+     "id": "s23-tools",
+     "key": "tools",
+     "title": "Инструменты",
+     "items": [
+      {
+       "id": "s23-tools-01",
+       "text": "DaVinci Resolve — рекомендуется как основная программа: монтаж, цвет, Fusion (VFX) и Fairlight (звук) в одном приложении, есть бесплатная версия"
       },
       {
-       "id": "s23-topics-15",
-       "text": "Continuity sheet — лист непрерывности: что должно совпадать между кадрами"
+       "id": "s23-tools-02",
+       "text": "Adobe Premiere Pro — стандарт многих агентств, связка с After Effects и Photoshop, Generative Extend"
+      },
+      {
+       "id": "s23-tools-03",
+       "text": "CapCut — быстрые вертикальные ролики, автосубтитры, тренды соцсетей"
+      },
+      {
+       "id": "s23-tools-04",
+       "text": "Final Cut Pro — альтернатива для macOS"
       }
      ]
     },
@@ -3211,23 +3185,23 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s23-tasks-01",
-       "text": "Создать диалог из 6 кадров."
+       "text": "Пройти официальный бесплатный курс Blackmagic Design по монтажу в DaVinci Resolve."
       },
       {
        "id": "s23-tasks-02",
-       "text": "Создать движение персонажа через 5 кадров."
+       "text": "Настроить шаблоны проектов под 16:9 и 9:16."
       },
       {
        "id": "s23-tasks-03",
-       "text": "Создать автомобильную сцену из 8 кадров."
+       "text": "Выучить 20 главных горячих клавиш и делать подрезку без мыши."
       },
       {
        "id": "s23-tasks-04",
-       "text": "Проверять направление движения и расположение объектов."
+       "text": "Импортировать 30 AI-клипов с разной частотой кадров и привести их к одному таймлайну."
       },
       {
        "id": "s23-tasks-05",
-       "text": "Перед генерацией каждой сцены готовить reference pack и использовать его во всех кадрах."
+       "text": "Взять аниматик из этапа препродакшна и заменить в нём эскизы на сгенерированные кадры."
       }
      ]
     }
@@ -3236,9 +3210,10 @@ window.ROADMAP = {
   {
    "id": "s24",
    "num": 24,
-   "title": "Монтажная программа — DaVinci Resolve / Premiere Pro",
-   "isTool": true,
-   "term": "Неделя 32",
+   "extra": false,
+   "title": "Монтаж",
+   "isTool": false,
+   "term": "Недели 31–32",
    "notes": [],
    "sections": [
     {
@@ -3248,82 +3223,119 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s24-topics-01",
-       "text": "NLE, Non-Linear Editor — программа нелинейного монтажа"
+       "text": "Editing — монтаж"
       },
       {
        "id": "s24-topics-02",
-       "text": "Project settings — настройки проекта: разрешение, частота кадров, цветовое пространство"
+       "text": "Timeline — монтажная линия"
       },
       {
        "id": "s24-topics-03",
-       "text": "Media Pool / Bins — медиатека и папки (бины)"
+       "text": "Selects — отбор лучших дублей и генераций"
       },
       {
        "id": "s24-topics-04",
-       "text": "Media management — организация материалов"
+       "text": "Rough cut — черновая сборка"
       },
       {
        "id": "s24-topics-05",
-       "text": "Proxy — облегчённые копии для быстрого монтажа"
+       "text": "Fine cut — чистовая сборка"
       },
       {
        "id": "s24-topics-06",
-       "text": "Timeline resolution & fps — разрешение и частота таймлайна (AI-клипы приходят в разных fps — их нужно приводить к одной)"
+       "text": "Picture lock — утверждённый монтаж"
       },
       {
        "id": "s24-topics-07",
-       "text": "Tracks — видео- и аудиодорожки"
+       "text": "Trimming — подрезка клипов"
       },
       {
        "id": "s24-topics-08",
-       "text": "Markers — маркеры"
+       "text": "Ripple edit — монтаж со сдвигом следующих клипов"
       },
       {
        "id": "s24-topics-09",
-       "text": "Keyboard shortcuts — горячие клавиши (J, K, L, I, O, B, A)"
+       "text": "Keyframe — ключевой кадр параметра"
       },
       {
        "id": "s24-topics-10",
-       "text": "Adjustment clip — корректирующий слой"
+       "text": "Speed ramp — плавное изменение скорости"
       },
       {
        "id": "s24-topics-11",
-       "text": "Compound / Nested clip — вложенный клип"
+       "text": "Optical flow — создание промежуточных кадров"
       },
       {
        "id": "s24-topics-12",
-       "text": "Render cache — кэш рендера"
+       "text": "Stabilization — стабилизация"
       },
       {
        "id": "s24-topics-13",
-       "text": "Export presets — пресеты экспорта"
+       "text": "Tracking — отслеживание движения"
       },
       {
        "id": "s24-topics-14",
-       "text": "Project archive — архивирование проекта"
-      }
-     ]
-    },
-    {
-     "id": "s24-tools",
-     "key": "tools",
-     "title": "Инструменты",
-     "items": [
-      {
-       "id": "s24-tools-01",
-       "text": "DaVinci Resolve — рекомендуется как основная программа: монтаж, цвет, Fusion (VFX) и Fairlight (звук) в одном приложении, есть бесплатная версия"
+       "text": "Hard cut — обычная жёсткая склейка"
       },
       {
-       "id": "s24-tools-02",
-       "text": "Adobe Premiere Pro — стандарт многих агентств, связка с After Effects и Photoshop, Generative Extend"
+       "id": "s24-topics-15",
+       "text": "Jump cut — скачкообразная склейка"
       },
       {
-       "id": "s24-tools-03",
-       "text": "CapCut — быстрые вертикальные ролики, автосубтитры, тренды соцсетей"
+       "id": "s24-topics-16",
+       "text": "Match cut — смысловая или визуальная склейка"
       },
       {
-       "id": "s24-tools-04",
-       "text": "Final Cut Pro — альтернатива для macOS"
+       "id": "s24-topics-17",
+       "text": "Smash cut — резкий контрастный переход"
+      },
+      {
+       "id": "s24-topics-18",
+       "text": "Invisible cut — незаметная склейка"
+      },
+      {
+       "id": "s24-topics-19",
+       "text": "Cross-cut — параллельный монтаж"
+      },
+      {
+       "id": "s24-topics-20",
+       "text": "Montage sequence — монтажная последовательность"
+      },
+      {
+       "id": "s24-topics-21",
+       "text": "J-cut — звук следующего кадра начинается раньше изображения"
+      },
+      {
+       "id": "s24-topics-22",
+       "text": "L-cut — звук предыдущего кадра продолжается после смены изображения"
+      },
+      {
+       "id": "s24-topics-23",
+       "text": "Cutting on action — склейка на движении"
+      },
+      {
+       "id": "s24-topics-24",
+       "text": "Cut on beat — склейка в такт музыке"
+      },
+      {
+       "id": "s24-topics-25",
+       "text": "Transitions — переходы: наплыв, затемнение, whip-переход"
+      },
+      {
+       "id": "s24-topics-26",
+       "text": "Kuleshov effect — эффект Кулешова"
+      },
+      {
+       "id": "s24-topics-27",
+       "text": "Rhythm — ритм"
+      },
+      {
+       "id": "s24-topics-28",
+       "text": "Pacing — темп"
+      },
+      {
+       "id": "s24-topics-29",
+       "text": "Hiding AI flaws — маскировка AI-дефектов монтажом: подрезка, перебивки, изменение скорости"
       }
      ]
     },
@@ -3334,23 +3346,23 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s24-tasks-01",
-       "text": "Пройти официальный бесплатный курс Blackmagic Design по монтажу в DaVinci Resolve."
+       "text": "Смонтировать 10 роликов по 10–15 секунд."
       },
       {
        "id": "s24-tasks-02",
-       "text": "Настроить шаблоны проектов под 16:9 и 9:16."
+       "text": "Один материал смонтировать в медленном стиле."
       },
       {
        "id": "s24-tasks-03",
-       "text": "Выучить 20 главных горячих клавиш и делать подрезку без мыши."
+       "text": "Тот же материал смонтировать динамично."
       },
       {
        "id": "s24-tasks-04",
-       "text": "Импортировать 30 AI-клипов с разной частотой кадров и привести их к одному таймлайну."
+       "text": "Сделать ролик без декоративных переходов, используя только монтажные склейки."
       },
       {
        "id": "s24-tasks-05",
-       "text": "Взять аниматик из этапа препродакшна и заменить в нём эскизы на сгенерированные кадры."
+       "text": "Провести один ролик через rough cut → fine cut → picture lock и сохранить все версии."
       }
      ]
     }
@@ -3359,9 +3371,10 @@ window.ROADMAP = {
   {
    "id": "s25",
    "num": 25,
-   "title": "Монтаж",
-   "isTool": false,
-   "term": "Недели 33–34",
+   "extra": false,
+   "title": "Апскейл, интерполяция и финишинг видео",
+   "isTool": true,
+   "term": "Неделя 33",
    "notes": [],
    "sections": [
     {
@@ -3371,119 +3384,74 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s25-topics-01",
-       "text": "Editing — монтаж"
+       "text": "Offline / Online editing — черновой и чистовой монтаж (апскейлятся только утверждённые кадры)"
       },
       {
        "id": "s25-topics-02",
-       "text": "Timeline — монтажная линия"
+       "text": "Conform — сборка чистовой версии из исходников высокого качества"
       },
       {
        "id": "s25-topics-03",
-       "text": "Selects — отбор лучших дублей и генераций"
+       "text": "Video upscaling — увеличение разрешения видео (1080p → 4K)"
       },
       {
        "id": "s25-topics-04",
-       "text": "Rough cut — черновая сборка"
+       "text": "Generative video upscale — апскейл с дорисовкой деталей"
       },
       {
        "id": "s25-topics-05",
-       "text": "Fine cut — чистовая сборка"
+       "text": "Frame interpolation — интерполяция кадров (24 → 60 fps, плавное замедление)"
       },
       {
        "id": "s25-topics-06",
-       "text": "Picture lock — утверждённый монтаж"
+       "text": "Retiming — изменение скорости клипа"
       },
       {
        "id": "s25-topics-07",
-       "text": "Trimming — подрезка клипов"
+       "text": "Denoise — шумоподавление"
       },
       {
        "id": "s25-topics-08",
-       "text": "Ripple edit — монтаж со сдвигом следующих клипов"
+       "text": "Deflicker — устранение мерцания"
       },
       {
        "id": "s25-topics-09",
-       "text": "Keyframe — ключевой кадр параметра"
+       "text": "Sharpening — повышение резкости"
       },
       {
        "id": "s25-topics-10",
-       "text": "Speed ramp — плавное изменение скорости"
+       "text": "Compression artifacts — артефакты сжатия"
       },
       {
        "id": "s25-topics-11",
-       "text": "Optical flow — создание промежуточных кадров"
+       "text": "Frame rate conversion — конвертация частоты кадров"
       },
       {
        "id": "s25-topics-12",
-       "text": "Stabilization — стабилизация"
+       "text": "Intermediate codecs — промежуточные кодеки для обработки (ProRes, DNxHR)"
+      }
+     ]
+    },
+    {
+     "id": "s25-tools",
+     "key": "tools",
+     "title": "Инструменты",
+     "items": [
+      {
+       "id": "s25-tools-01",
+       "text": "Topaz Video AI — модели апскейла и восстановления, интерполяция кадров"
       },
       {
-       "id": "s25-topics-13",
-       "text": "Tracking — отслеживание движения"
+       "id": "s25-tools-02",
+       "text": "Magnific, Krea — креативный апскейл видео"
       },
       {
-       "id": "s25-topics-14",
-       "text": "Hard cut — обычная жёсткая склейка"
+       "id": "s25-tools-03",
+       "text": "Встроенные апскейлеры видеосервисов (Runway, Kling, Luma и др.)"
       },
       {
-       "id": "s25-topics-15",
-       "text": "Jump cut — скачкообразная склейка"
-      },
-      {
-       "id": "s25-topics-16",
-       "text": "Match cut — смысловая или визуальная склейка"
-      },
-      {
-       "id": "s25-topics-17",
-       "text": "Smash cut — резкий контрастный переход"
-      },
-      {
-       "id": "s25-topics-18",
-       "text": "Invisible cut — незаметная склейка"
-      },
-      {
-       "id": "s25-topics-19",
-       "text": "Cross-cut — параллельный монтаж"
-      },
-      {
-       "id": "s25-topics-20",
-       "text": "Montage sequence — монтажная последовательность"
-      },
-      {
-       "id": "s25-topics-21",
-       "text": "J-cut — звук следующего кадра начинается раньше изображения"
-      },
-      {
-       "id": "s25-topics-22",
-       "text": "L-cut — звук предыдущего кадра продолжается после смены изображения"
-      },
-      {
-       "id": "s25-topics-23",
-       "text": "Cutting on action — склейка на движении"
-      },
-      {
-       "id": "s25-topics-24",
-       "text": "Cut on beat — склейка в такт музыке"
-      },
-      {
-       "id": "s25-topics-25",
-       "text": "Transitions — переходы: наплыв, затемнение, whip-переход"
-      },
-      {
-       "id": "s25-topics-26",
-       "text": "Kuleshov effect — эффект Кулешова"
-      },
-      {
-       "id": "s25-topics-27",
-       "text": "Rhythm — ритм"
-      },
-      {
-       "id": "s25-topics-28",
-       "text": "Pacing — темп"
-      },
-      {
-       "id": "s25-topics-29",
-       "text": "Hiding AI flaws — маскировка AI-дефектов монтажом: подрезка, перебивки, изменение скорости"
+       "id": "s25-tools-04",
+       "text": "DaVinci Resolve — Super Scale, Speed Warp, Deflicker"
       }
      ]
     },
@@ -3494,23 +3462,19 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s25-tasks-01",
-       "text": "Смонтировать 10 роликов по 10–15 секунд."
+       "text": "Апскейлить 10 AI-клипов до 4K тремя разными инструментами и сравнить."
       },
       {
        "id": "s25-tasks-02",
-       "text": "Один материал смонтировать в медленном стиле."
+       "text": "Сделать замедление клипа в 2 и 4 раза с интерполяцией."
       },
       {
        "id": "s25-tasks-03",
-       "text": "Тот же материал смонтировать динамично."
+       "text": "Исправить мерцание и шум в 5 клипах."
       },
       {
        "id": "s25-tasks-04",
-       "text": "Сделать ролик без декоративных переходов, используя только монтажные склейки."
-      },
-      {
-       "id": "s25-tasks-05",
-       "text": "Провести один ролик через rough cut → fine cut → picture lock и сохранить все версии."
+       "text": "Отработать процесс: offline-монтаж → picture lock → апскейл утверждённых кадров → conform."
       }
      ]
     }
@@ -3519,9 +3483,10 @@ window.ROADMAP = {
   {
    "id": "s26",
    "num": 26,
-   "title": "Апскейл, интерполяция и финишинг видео",
-   "isTool": true,
-   "term": "Неделя 35",
+   "extra": false,
+   "title": "Звук",
+   "isTool": false,
+   "term": "Неделя 34",
    "notes": [],
    "sections": [
     {
@@ -3531,51 +3496,71 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s26-topics-01",
-       "text": "Offline / Online editing — черновой и чистовой монтаж (апскейлятся только утверждённые кадры)"
+       "text": "Sound design — звуковое оформление"
       },
       {
        "id": "s26-topics-02",
-       "text": "Conform — сборка чистовой версии из исходников высокого качества"
+       "text": "Diegetic / Non-diegetic sound — звук внутри мира кадра и закадровый"
       },
       {
        "id": "s26-topics-03",
-       "text": "Video upscaling — увеличение разрешения видео (1080p → 4K)"
+       "text": "Foley — записанные бытовые звуки действий"
       },
       {
        "id": "s26-topics-04",
-       "text": "Generative video upscale — апскейл с дорисовкой деталей"
+       "text": "Ambience — фон окружения"
       },
       {
        "id": "s26-topics-05",
-       "text": "Frame interpolation — интерполяция кадров (24 → 60 fps, плавное замедление)"
+       "text": "Room tone — фоновый звук помещения"
       },
       {
        "id": "s26-topics-06",
-       "text": "Retiming — изменение скорости клипа"
+       "text": "Layering — наслоение нескольких звуков в один"
       },
       {
        "id": "s26-topics-07",
-       "text": "Denoise — шумоподавление"
+       "text": "Spot effects — точечные эффекты"
       },
       {
        "id": "s26-topics-08",
-       "text": "Deflicker — устранение мерцания"
+       "text": "Impact — ударный звук"
       },
       {
        "id": "s26-topics-09",
-       "text": "Sharpening — повышение резкости"
+       "text": "Whoosh — звук быстрого движения"
       },
       {
        "id": "s26-topics-10",
-       "text": "Compression artifacts — артефакты сжатия"
+       "text": "Riser — нарастающий звук"
       },
       {
        "id": "s26-topics-11",
-       "text": "Frame rate conversion — конвертация частоты кадров"
+       "text": "Hit — акцентирующий удар"
       },
       {
        "id": "s26-topics-12",
-       "text": "Intermediate codecs — промежуточные кодеки для обработки (ProRes, DNxHR)"
+       "text": "Sub bass — очень низкий бас"
+      },
+      {
+       "id": "s26-topics-13",
+       "text": "Sound perspective — звуковая перспектива (далеко / близко)"
+      },
+      {
+       "id": "s26-topics-14",
+       "text": "Sound transition — звуковой переход"
+      },
+      {
+       "id": "s26-topics-15",
+       "text": "ASMR — крупные «вкусные» звуки продукта"
+      },
+      {
+       "id": "s26-topics-16",
+       "text": "Sonic branding / Sound logo — звуковой логотип бренда"
+      },
+      {
+       "id": "s26-topics-17",
+       "text": "Silence — тишина"
       }
      ]
     },
@@ -3586,23 +3571,7 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s26-tools-01",
-       "text": "Topaz Video AI — модели апскейла и восстановления, интерполяция кадров"
-      },
-      {
-       "id": "s26-tools-02",
-       "text": "Magnific, Krea — креативный апскейл видео"
-      },
-      {
-       "id": "s26-tools-03",
-       "text": "Встроенные апскейлеры видеосервисов (Runway, Kling, Luma и др.)"
-      },
-      {
-       "id": "s26-tools-04",
-       "text": "SeedVR2, RIFE — open-source апскейл и интерполяция в ComfyUI"
-      },
-      {
-       "id": "s26-tools-05",
-       "text": "DaVinci Resolve — Super Scale, Speed Warp, Deflicker"
+       "text": "Epidemic Sound, Artlist, Soundly, Freesound — библиотеки звуков"
       }
      ]
     },
@@ -3613,19 +3582,19 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s26-tasks-01",
-       "text": "Апскейлить 10 AI-клипов до 4K тремя разными инструментами и сравнить."
+       "text": "Полностью переозвучить 5 реклам."
       },
       {
        "id": "s26-tasks-02",
-       "text": "Сделать замедление клипа в 2 и 4 раза с интерполяцией."
+       "text": "Сделать ролик без музыки только со звуковыми эффектами."
       },
       {
        "id": "s26-tasks-03",
-       "text": "Исправить мерцание и шум в 5 клипах."
+       "text": "Сделать один ролик с сильным использованием тишины."
       },
       {
        "id": "s26-tasks-04",
-       "text": "Отработать процесс: offline-монтаж → picture lock → апскейл утверждённых кадров → conform."
+       "text": "Собрать собственную библиотеку звуков."
       }
      ]
     }
@@ -3634,9 +3603,10 @@ window.ROADMAP = {
   {
    "id": "s27",
    "num": 27,
-   "title": "Звук",
+   "extra": false,
+   "title": "Музыка и голос",
    "isTool": false,
-   "term": "Неделя 36",
+   "term": "Неделя 35",
    "notes": [],
    "sections": [
     {
@@ -3646,82 +3616,75 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s27-topics-01",
-       "text": "Sound design — звуковое оформление"
+       "text": "Voice-over — закадровый голос"
       },
       {
        "id": "s27-topics-02",
-       "text": "Diegetic / Non-diegetic sound — звук внутри мира кадра и закадровый"
+       "text": "Voice casting — подбор голоса под бренд"
       },
       {
        "id": "s27-topics-03",
-       "text": "Foley — записанные бытовые звуки действий"
+       "text": "Brand voice — голос бренда"
       },
       {
        "id": "s27-topics-04",
-       "text": "Ambience — фон окружения"
+       "text": "Tone — тон голоса"
       },
       {
        "id": "s27-topics-05",
-       "text": "Room tone — фоновый звук помещения"
+       "text": "Pace — скорость речи"
       },
       {
        "id": "s27-topics-06",
-       "text": "Layering — наслоение нескольких звуков в один"
+       "text": "Intonation — интонация"
       },
       {
        "id": "s27-topics-07",
-       "text": "Spot effects — точечные эффекты"
+       "text": "Pause — пауза"
       },
       {
        "id": "s27-topics-08",
-       "text": "Impact — ударный звук"
+       "text": "Emphasis — смысловое выделение"
       },
       {
        "id": "s27-topics-09",
-       "text": "Whoosh — звук быстрого движения"
+       "text": "BPM, Beats Per Minute — количество музыкальных ударов в минуту"
       },
       {
        "id": "s27-topics-10",
-       "text": "Riser — нарастающий звук"
+       "text": "Build-up — музыкальное нарастание"
       },
       {
        "id": "s27-topics-11",
-       "text": "Hit — акцентирующий удар"
+       "text": "Drop — резкий музыкальный переход"
       },
       {
        "id": "s27-topics-12",
-       "text": "Sub bass — очень низкий бас"
+       "text": "Tension — напряжение"
       },
       {
        "id": "s27-topics-13",
-       "text": "Sound perspective — звуковая перспектива (далеко / близко)"
+       "text": "Release — разрядка"
       },
       {
        "id": "s27-topics-14",
-       "text": "Sound transition — звуковой переход"
+       "text": "Crescendo — постепенное усиление громкости"
       },
       {
        "id": "s27-topics-15",
-       "text": "ASMR — крупные «вкусные» звуки продукта"
+       "text": "Hit point — точка синхронизации музыки и изображения"
       },
       {
        "id": "s27-topics-16",
-       "text": "Sonic branding / Sound logo — звуковой логотип бренда"
+       "text": "Music edit — монтаж музыки: сокращение трека под хронометраж"
       },
       {
        "id": "s27-topics-17",
-       "text": "Silence — тишина"
-      }
-     ]
-    },
-    {
-     "id": "s27-tools",
-     "key": "tools",
-     "title": "Инструменты",
-     "items": [
+       "text": "Stems — раздельные дорожки трека"
+      },
       {
-       "id": "s27-tools-01",
-       "text": "Epidemic Sound, Artlist, Soundly, Freesound — библиотеки звуков"
+       "id": "s27-topics-18",
+       "text": "Music licensing — лицензирование музыки"
       }
      ]
     },
@@ -3732,19 +3695,23 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s27-tasks-01",
-       "text": "Полностью переозвучить 5 реклам."
+       "text": "Сделать 5 вариантов озвучки одной рекламы."
       },
       {
        "id": "s27-tasks-02",
-       "text": "Сделать ролик без музыки только со звуковыми эффектами."
+       "text": "Смонтировать один ролик под 3 разные композиции."
       },
       {
        "id": "s27-tasks-03",
-       "text": "Сделать один ролик с сильным использованием тишины."
+       "text": "Сделать монтаж под музыкальные акценты."
       },
       {
        "id": "s27-tasks-04",
-       "text": "Собрать собственную библиотеку звуков."
+       "text": "Сделать ролик, где музыка постепенно создаёт напряжение."
+      },
+      {
+       "id": "s27-tasks-05",
+       "text": "Сократить музыкальный трек до 15 и 6 секунд без заметных склеек."
       }
      ]
     }
@@ -3753,9 +3720,10 @@ window.ROADMAP = {
   {
    "id": "s28",
    "num": 28,
-   "title": "Музыка и голос",
-   "isTool": false,
-   "term": "Неделя 37",
+   "extra": false,
+   "title": "AI-аудио, сведение и мастеринг звука",
+   "isTool": true,
+   "term": "Неделя 36",
    "notes": [],
    "sections": [
     {
@@ -3765,75 +3733,110 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s28-topics-01",
-       "text": "Voice-over — закадровый голос"
+       "text": "TTS, Text-to-Speech — синтез речи"
       },
       {
        "id": "s28-topics-02",
-       "text": "Voice casting — подбор голоса под бренд"
+       "text": "Voice design — создание голоса по описанию"
       },
       {
        "id": "s28-topics-03",
-       "text": "Brand voice — голос бренда"
+       "text": "Voice cloning — клонирование голоса (только с согласия владельца)"
       },
       {
        "id": "s28-topics-04",
-       "text": "Tone — тон голоса"
+       "text": "Speech-to-speech — замена голоса с сохранением интонации"
       },
       {
        "id": "s28-topics-05",
-       "text": "Pace — скорость речи"
+       "text": "AI dubbing — автоматический дубляж на другие языки"
       },
       {
        "id": "s28-topics-06",
-       "text": "Intonation — интонация"
+       "text": "Text-to-music — генерация музыки"
       },
       {
        "id": "s28-topics-07",
-       "text": "Pause — пауза"
+       "text": "Text-to-SFX / Video-to-audio — генерация звуковых эффектов по описанию или по видео"
       },
       {
        "id": "s28-topics-08",
-       "text": "Emphasis — смысловое выделение"
+       "text": "Stem separation — разделение трека на голос, барабаны, бас и прочее"
       },
       {
        "id": "s28-topics-09",
-       "text": "BPM, Beats Per Minute — количество музыкальных ударов в минуту"
+       "text": "Audio cleanup — очистка звука от шумов"
       },
       {
        "id": "s28-topics-10",
-       "text": "Build-up — музыкальное нарастание"
+       "text": "Mixing — сведение"
       },
       {
        "id": "s28-topics-11",
-       "text": "Drop — резкий музыкальный переход"
+       "text": "EQ — эквализация"
       },
       {
        "id": "s28-topics-12",
-       "text": "Tension — напряжение"
+       "text": "Compression — компрессия"
       },
       {
        "id": "s28-topics-13",
-       "text": "Release — разрядка"
+       "text": "Ducking / Sidechain — приглушение музыки под голос"
       },
       {
        "id": "s28-topics-14",
-       "text": "Crescendo — постепенное усиление громкости"
+       "text": "Panning — панорама (лево / право)"
       },
       {
        "id": "s28-topics-15",
-       "text": "Hit point — точка синхронизации музыки и изображения"
+       "text": "Reverb — реверберация"
       },
       {
        "id": "s28-topics-16",
-       "text": "Music edit — монтаж музыки: сокращение трека под хронометраж"
+       "text": "Loudness, LUFS — громкость: около −14 LUFS для соцсетей и стриминга, −23 LUFS для ТВ (EBU R128)"
       },
       {
        "id": "s28-topics-17",
-       "text": "Stems — раздельные дорожки трека"
+       "text": "True peak — пиковый уровень (не выше −1 dBTP)"
+      }
+     ]
+    },
+    {
+     "id": "s28-tools",
+     "key": "tools",
+     "title": "Инструменты",
+     "items": [
+      {
+       "id": "s28-tools-01",
+       "text": "ElevenLabs — озвучка, дизайн и клонирование голоса, дубляж, звуковые эффекты, музыка"
       },
       {
-       "id": "s28-topics-18",
-       "text": "Music licensing — лицензирование музыки"
+       "id": "s28-tools-02",
+       "text": "Suno, Udio — генерация песен и инструментальной музыки (права на коммерческое использование зависят от тарифа)"
+      },
+      {
+       "id": "s28-tools-03",
+       "text": "ElevenLabs Music, Stable Audio — музыка с понятной коммерческой лицензией"
+      },
+      {
+       "id": "s28-tools-04",
+       "text": "MMAudio, Veo, Sora, Kling — звук по видео"
+      },
+      {
+       "id": "s28-tools-05",
+       "text": "Adobe Podcast Enhance, iZotope RX — очистка голоса"
+      },
+      {
+       "id": "s28-tools-06",
+       "text": "Разделение на стемы — Demucs, встроенные инструменты DaVinci Resolve и других программ"
+      },
+      {
+       "id": "s28-tools-07",
+       "text": "DaVinci Resolve Fairlight, Adobe Audition — сведение"
+      },
+      {
+       "id": "s28-tools-08",
+       "text": "Youlean Loudness Meter — контроль громкости"
       }
      ]
     },
@@ -3844,23 +3847,27 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s28-tasks-01",
-       "text": "Сделать 5 вариантов озвучки одной рекламы."
+       "text": "Озвучить один ролик 5 разными AI-голосами и выбрать голос бренда."
       },
       {
        "id": "s28-tasks-02",
-       "text": "Смонтировать один ролик под 3 разные композиции."
+       "text": "Создать фирменный голос через voice design."
       },
       {
        "id": "s28-tasks-03",
-       "text": "Сделать монтаж под музыкальные акценты."
+       "text": "Сгенерировать 3 музыкальных трека под один ролик и смонтировать под каждый."
       },
       {
        "id": "s28-tasks-04",
-       "text": "Сделать ролик, где музыка постепенно создаёт напряжение."
+       "text": "Сделать полное звуковое оформление ролика AI-эффектами."
       },
       {
        "id": "s28-tasks-05",
-       "text": "Сократить музыкальный трек до 15 и 6 секунд без заметных склеек."
+       "text": "Свести ролик: голос, музыка, эффекты, ducking, громкость −14 LUFS."
+      },
+      {
+       "id": "s28-tasks-06",
+       "text": "Сделать дубляж ролика на английский язык с липсинком."
       }
      ]
     }
@@ -3869,9 +3876,10 @@ window.ROADMAP = {
   {
    "id": "s29",
    "num": 29,
-   "title": "AI-аудио, сведение и мастеринг звука",
-   "isTool": true,
-   "term": "Неделя 38",
+   "extra": false,
+   "title": "Цветокоррекция",
+   "isTool": false,
+   "term": "Неделя 37",
    "notes": [],
    "sections": [
     {
@@ -3881,110 +3889,87 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s29-topics-01",
-       "text": "TTS, Text-to-Speech — синтез речи"
+       "text": "Color correction — техническая цветокоррекция"
       },
       {
        "id": "s29-topics-02",
-       "text": "Voice design — создание голоса по описанию"
+       "text": "Color grading — художественная работа с цветом"
       },
       {
        "id": "s29-topics-03",
-       "text": "Voice cloning — клонирование голоса (только с согласия владельца)"
+       "text": "Primary / Secondary correction — первичная и вторичная коррекция"
       },
       {
        "id": "s29-topics-04",
-       "text": "Speech-to-speech — замена голоса с сохранением интонации"
+       "text": "Exposure — экспозиция"
       },
       {
        "id": "s29-topics-05",
-       "text": "AI dubbing — автоматический дубляж на другие языки"
+       "text": "White balance — баланс белого"
       },
       {
        "id": "s29-topics-06",
-       "text": "Text-to-music — генерация музыки"
+       "text": "Saturation — насыщенность"
       },
       {
        "id": "s29-topics-07",
-       "text": "Text-to-SFX / Video-to-audio — генерация звуковых эффектов по описанию или по видео"
+       "text": "Curves — кривые"
       },
       {
        "id": "s29-topics-08",
-       "text": "Stem separation — разделение трека на голос, барабаны, бас и прочее"
+       "text": "Highlights — светлые области"
       },
       {
        "id": "s29-topics-09",
-       "text": "Audio cleanup — очистка звука от шумов"
+       "text": "Shadows — тени"
       },
       {
        "id": "s29-topics-10",
-       "text": "Mixing — сведение"
+       "text": "Skin tones — оттенки кожи"
       },
       {
        "id": "s29-topics-11",
-       "text": "EQ — эквализация"
+       "text": "Waveform — график яркости"
       },
       {
        "id": "s29-topics-12",
-       "text": "Compression — компрессия"
+       "text": "Vectorscope — график цвета"
       },
       {
        "id": "s29-topics-13",
-       "text": "Ducking / Sidechain — приглушение музыки под голос"
+       "text": "Color space — цветовое пространство (Rec.709, sRGB, Display P3, Rec.2020)"
       },
       {
        "id": "s29-topics-14",
-       "text": "Panning — панорама (лево / право)"
+       "text": "Gamma — гамма"
       },
       {
        "id": "s29-topics-15",
-       "text": "Reverb — реверберация"
+       "text": "Log footage — логарифмический материал (при смешивании с реальной съёмкой)"
       },
       {
        "id": "s29-topics-16",
-       "text": "Loudness, LUFS — громкость: около −14 LUFS для соцсетей и стриминга, −23 LUFS для ТВ (EBU R128)"
+       "text": "LUT, Look-Up Table — таблица преобразования цвета"
       },
       {
        "id": "s29-topics-17",
-       "text": "True peak — пиковый уровень (не выше −1 dBTP)"
-      }
-     ]
-    },
-    {
-     "id": "s29-tools",
-     "key": "tools",
-     "title": "Инструменты",
-     "items": [
-      {
-       "id": "s29-tools-01",
-       "text": "ElevenLabs — озвучка, дизайн и клонирование голоса, дубляж, звуковые эффекты, музыка"
+       "text": "Look development — разработка «лука»"
       },
       {
-       "id": "s29-tools-02",
-       "text": "Suno, Udio — генерация песен и инструментальной музыки (права на коммерческое использование зависят от тарифа)"
+       "id": "s29-topics-18",
+       "text": "Film emulation — имитация плёночного изображения"
       },
       {
-       "id": "s29-tools-03",
-       "text": "ElevenLabs Music, Stable Audio — музыка с понятной коммерческой лицензией"
+       "id": "s29-topics-19",
+       "text": "Halation / Bloom — ореол и свечение светов"
       },
       {
-       "id": "s29-tools-04",
-       "text": "MMAudio, Veo, Sora, Kling — звук по видео"
+       "id": "s29-topics-20",
+       "text": "Banding — полосы на градиентах (частая проблема AI-видео)"
       },
       {
-       "id": "s29-tools-05",
-       "text": "Adobe Podcast Enhance, iZotope RX — очистка голоса"
-      },
-      {
-       "id": "s29-tools-06",
-       "text": "Разделение на стемы — Demucs, встроенные инструменты DaVinci Resolve и других программ"
-      },
-      {
-       "id": "s29-tools-07",
-       "text": "DaVinci Resolve Fairlight, Adobe Audition — сведение"
-      },
-      {
-       "id": "s29-tools-08",
-       "text": "Youlean Loudness Meter — контроль громкости"
+       "id": "s29-topics-21",
+       "text": "Shot matching — выравнивание цвета разных кадров"
       }
      ]
     },
@@ -3995,27 +3980,15 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s29-tasks-01",
-       "text": "Озвучить один ролик 5 разными AI-голосами и выбрать голос бренда."
+       "text": "Покрасить 10 коротких роликов."
       },
       {
        "id": "s29-tasks-02",
-       "text": "Создать фирменный голос через voice design."
+       "text": "Выравнивать разные AI-генерации между собой."
       },
       {
        "id": "s29-tasks-03",
-       "text": "Сгенерировать 3 музыкальных трека под один ролик и смонтировать под каждый."
-      },
-      {
-       "id": "s29-tasks-04",
-       "text": "Сделать полное звуковое оформление ролика AI-эффектами."
-      },
-      {
-       "id": "s29-tasks-05",
-       "text": "Свести ролик: голос, музыка, эффекты, ducking, громкость −14 LUFS."
-      },
-      {
-       "id": "s29-tasks-06",
-       "text": "Сделать дубляж ролика на английский язык с липсинком."
+       "text": "Сделать один ролик в 3 разных цветовых стилях."
       }
      ]
     }
@@ -4024,9 +3997,10 @@ window.ROADMAP = {
   {
    "id": "s30",
    "num": 30,
-   "title": "Цветокоррекция",
-   "isTool": false,
-   "term": "Неделя 39",
+   "extra": false,
+   "title": "Цветокоррекция в DaVinci Resolve",
+   "isTool": true,
+   "term": "Неделя 38",
    "notes": [],
    "sections": [
     {
@@ -4036,87 +4010,90 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s30-topics-01",
-       "text": "Color correction — техническая цветокоррекция"
+       "text": "Color page — страница Color"
       },
       {
        "id": "s30-topics-02",
-       "text": "Color grading — художественная работа с цветом"
+       "text": "Node tree — дерево нод"
       },
       {
        "id": "s30-topics-03",
-       "text": "Primary / Secondary correction — первичная и вторичная коррекция"
+       "text": "Serial / Parallel / Layer nodes — последовательные, параллельные и слоевые ноды"
       },
       {
        "id": "s30-topics-04",
-       "text": "Exposure — экспозиция"
+       "text": "Lift / Gamma / Gain — коррекция теней, средних тонов и светов"
       },
       {
        "id": "s30-topics-05",
-       "text": "White balance — баланс белого"
+       "text": "Color wheels & Primaries bars — цветовые круги"
       },
       {
        "id": "s30-topics-06",
-       "text": "Saturation — насыщенность"
+       "text": "HSL curves — кривые по оттенку, насыщенности и яркости"
       },
       {
        "id": "s30-topics-07",
-       "text": "Curves — кривые"
+       "text": "Qualifier — выделение по цвету"
       },
       {
        "id": "s30-topics-08",
-       "text": "Highlights — светлые области"
+       "text": "Power windows & Tracking — маски областей с трекингом"
       },
       {
        "id": "s30-topics-09",
-       "text": "Shadows — тени"
+       "text": "Magic Mask — нейросетевое выделение человека или объекта"
       },
       {
        "id": "s30-topics-10",
-       "text": "Skin tones — оттенки кожи"
+       "text": "Color Warper — деформация цветовой сетки"
       },
       {
        "id": "s30-topics-11",
-       "text": "Waveform — график яркости"
+       "text": "CST, Color Space Transform — преобразование цветового пространства"
       },
       {
        "id": "s30-topics-12",
-       "text": "Vectorscope — график цвета"
+       "text": "Color management — управление цветом (DaVinci Wide Gamut, ACES)"
       },
       {
        "id": "s30-topics-13",
-       "text": "Color space — цветовое пространство (Rec.709, sRGB, Display P3, Rec.2020)"
+       "text": "Gallery & Stills — галерея референсных кадров"
       },
       {
        "id": "s30-topics-14",
-       "text": "Gamma — гамма"
+       "text": "Shot match — автоматическое выравнивание кадров"
       },
       {
        "id": "s30-topics-15",
-       "text": "Log footage — логарифмический материал (при смешивании с реальной съёмкой)"
+       "text": "Group grading — групповая коррекция"
       },
       {
        "id": "s30-topics-16",
-       "text": "LUT, Look-Up Table — таблица преобразования цвета"
+       "text": "Scopes — индикаторы: waveform, parade, vectorscope"
+      }
+     ]
+    },
+    {
+     "id": "s30-tools",
+     "key": "tools",
+     "title": "Инструменты",
+     "items": [
+      {
+       "id": "s30-tools-01",
+       "text": "DaVinci Resolve Color — основной инструмент"
       },
       {
-       "id": "s30-topics-17",
-       "text": "Look development — разработка «лука»"
+       "id": "s30-tools-02",
+       "text": "Dehancer, FilmConvert — плёночная эмуляция"
       },
       {
-       "id": "s30-topics-18",
-       "text": "Film emulation — имитация плёночного изображения"
+       "id": "s30-tools-03",
+       "text": "Lumetri Color (Premiere Pro) — альтернатива"
       },
       {
-       "id": "s30-topics-19",
-       "text": "Halation / Bloom — ореол и свечение светов"
-      },
-      {
-       "id": "s30-topics-20",
-       "text": "Banding — полосы на градиентах (частая проблема AI-видео)"
-      },
-      {
-       "id": "s30-topics-21",
-       "text": "Shot matching — выравнивание цвета разных кадров"
+       "id": "s30-tools-04",
+       "text": "Калиброванный монитор и калибратор (Calibrite, Datacolor) — основа корректного цвета"
       }
      ]
     },
@@ -4127,15 +4104,23 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s30-tasks-01",
-       "text": "Покрасить 10 коротких роликов."
+       "text": "Пройти базовые главы официального курса Blackmagic по цветокоррекции."
       },
       {
        "id": "s30-tasks-02",
-       "text": "Выравнивать разные AI-генерации между собой."
+       "text": "Собрать свой шаблон дерева нод: баланс → экспозиция → вторичная коррекция → лук → зерно."
       },
       {
        "id": "s30-tasks-03",
-       "text": "Сделать один ролик в 3 разных цветовых стилях."
+       "text": "Выровнять 15 кадров из разных AI-моделей в одну сцену."
+      },
+      {
+       "id": "s30-tasks-04",
+       "text": "Сделать 3 собственных лука и сохранить их как LUT."
+      },
+      {
+       "id": "s30-tasks-05",
+       "text": "Исправить кожу и цвет продукта с помощью Magic Mask и квалификатора."
       }
      ]
     }
@@ -4144,9 +4129,10 @@ window.ROADMAP = {
   {
    "id": "s31",
    "num": 31,
-   "title": "Цветокоррекция в DaVinci Resolve",
-   "isTool": true,
-   "term": "Неделя 40",
+   "extra": false,
+   "title": "Визуальные эффекты",
+   "isTool": false,
+   "term": "Неделя 39",
    "notes": [],
    "sections": [
     {
@@ -4156,90 +4142,91 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s31-topics-01",
-       "text": "Color page — страница Color"
+       "text": "VFX, Visual Effects — визуальные эффекты"
       },
       {
        "id": "s31-topics-02",
-       "text": "Node tree — дерево нод"
+       "text": "Masking — работа с масками"
       },
       {
        "id": "s31-topics-03",
-       "text": "Serial / Parallel / Layer nodes — последовательные, параллельные и слоевые ноды"
+       "text": "Matte — альфа-маска"
       },
       {
        "id": "s31-topics-04",
-       "text": "Lift / Gamma / Gain — коррекция теней, средних тонов и светов"
+       "text": "Rotoscoping — покадровое выделение объекта"
       },
       {
        "id": "s31-topics-05",
-       "text": "Color wheels & Primaries bars — цветовые круги"
+       "text": "Keying / Chroma key — кеинг, хромакей"
       },
       {
        "id": "s31-topics-06",
-       "text": "HSL curves — кривые по оттенку, насыщенности и яркости"
+       "text": "Tracking — отслеживание объекта"
       },
       {
        "id": "s31-topics-07",
-       "text": "Qualifier — выделение по цвету"
+       "text": "Planar tracking — отслеживание плоской поверхности"
       },
       {
        "id": "s31-topics-08",
-       "text": "Power windows & Tracking — маски областей с трекингом"
+       "text": "3D camera tracking / Match move — трекинг 3D-камеры и совмещение 3D с видео"
       },
       {
        "id": "s31-topics-09",
-       "text": "Magic Mask — нейросетевое выделение человека или объекта"
+       "text": "Object removal — удаление объекта"
       },
       {
        "id": "s31-topics-10",
-       "text": "Color Warper — деформация цветовой сетки"
+       "text": "Clean plate — чистый фон без объекта"
       },
       {
        "id": "s31-topics-11",
-       "text": "CST, Color Space Transform — преобразование цветового пространства"
+       "text": "Paint out — закраска дефектов"
       },
       {
        "id": "s31-topics-12",
-       "text": "Color management — управление цветом (DaVinci Wide Gamut, ACES)"
+       "text": "Screen replacement — замена изображения на экране"
       },
       {
        "id": "s31-topics-13",
-       "text": "Gallery & Stills — галерея референсных кадров"
+       "text": "Compositing — объединение нескольких визуальных слоёв"
       },
       {
        "id": "s31-topics-14",
-       "text": "Shot match — автоматическое выравнивание кадров"
+       "text": "Light wrap — обтекание светом краёв объекта при композитинге"
       },
       {
        "id": "s31-topics-15",
-       "text": "Group grading — групповая коррекция"
+       "text": "Edge blending — сведение краёв"
       },
       {
        "id": "s31-topics-16",
-       "text": "Scopes — индикаторы: waveform, parade, vectorscope"
-      }
-     ]
-    },
-    {
-     "id": "s31-tools",
-     "key": "tools",
-     "title": "Инструменты",
-     "items": [
-      {
-       "id": "s31-tools-01",
-       "text": "DaVinci Resolve Color — основной инструмент"
+       "text": "Depth compositing — композитинг по глубине"
       },
       {
-       "id": "s31-tools-02",
-       "text": "Dehancer, FilmConvert — плёночная эмуляция"
+       "id": "s31-topics-17",
+       "text": "Cleanup — исправление дефектов"
       },
       {
-       "id": "s31-tools-03",
-       "text": "Lumetri Color (Premiere Pro) — альтернатива"
+       "id": "s31-topics-18",
+       "text": "AI video inpainting — нейросетевое удаление и замена объектов в видео"
       },
       {
-       "id": "s31-tools-04",
-       "text": "Калиброванный монитор и калибратор (Calibrite, Datacolor) — основа корректного цвета"
+       "id": "s31-topics-19",
+       "text": "Motion blur — размытие движения"
+      },
+      {
+       "id": "s31-topics-20",
+       "text": "Glow — свечение"
+      },
+      {
+       "id": "s31-topics-21",
+       "text": "Grain — плёночное зерно"
+      },
+      {
+       "id": "s31-topics-22",
+       "text": "Grain matching — совпадение зерна между слоями"
       }
      ]
     },
@@ -4250,23 +4237,23 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s31-tasks-01",
-       "text": "Пройти базовые главы официального курса Blackmagic по цветокоррекции."
+       "text": "Исправить 20 AI-артефактов."
       },
       {
        "id": "s31-tasks-02",
-       "text": "Собрать свой шаблон дерева нод: баланс → экспозиция → вторичная коррекция → лук → зерно."
+       "text": "Заменить логотип на продукте."
       },
       {
        "id": "s31-tasks-03",
-       "text": "Выровнять 15 кадров из разных AI-моделей в одну сцену."
+       "text": "Заменить экран телефона."
       },
       {
        "id": "s31-tasks-04",
-       "text": "Сделать 3 собственных лука и сохранить их как LUT."
+       "text": "Удалить лишний объект."
       },
       {
        "id": "s31-tasks-05",
-       "text": "Исправить кожу и цвет продукта с помощью Magic Mask и квалификатора."
+       "text": "Сделать простую композицию из нескольких слоёв."
       }
      ]
     }
@@ -4275,9 +4262,10 @@ window.ROADMAP = {
   {
    "id": "s32",
    "num": 32,
-   "title": "Визуальные эффекты",
-   "isTool": false,
-   "term": "Неделя 41",
+   "extra": false,
+   "title": "Композитинг — After Effects, Fusion и нейросетевые видеоредакторы",
+   "isTool": true,
+   "term": "Недели 40–41",
    "notes": [],
    "sections": [
     {
@@ -4287,91 +4275,90 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s32-topics-01",
-       "text": "VFX, Visual Effects — визуальные эффекты"
+       "text": "Layer-based vs Node-based compositing — слоевой и нодовый композитинг"
       },
       {
        "id": "s32-topics-02",
-       "text": "Masking — работа с масками"
+       "text": "Composition / Precomp — композиция и прекомпозиция в After Effects"
       },
       {
        "id": "s32-topics-03",
-       "text": "Matte — альфа-маска"
+       "text": "Blending modes — режимы наложения"
       },
       {
        "id": "s32-topics-04",
-       "text": "Rotoscoping — покадровое выделение объекта"
+       "text": "Track mattes — трековые маски"
       },
       {
        "id": "s32-topics-05",
-       "text": "Keying / Chroma key — кеинг, хромакей"
+       "text": "Roto Brush — нейросетевая ротоскопия"
       },
       {
        "id": "s32-topics-06",
-       "text": "Tracking — отслеживание объекта"
+       "text": "Content-Aware Fill — заливка с учётом содержимого (удаление объектов из видео)"
       },
       {
        "id": "s32-topics-07",
-       "text": "Planar tracking — отслеживание плоской поверхности"
+       "text": "Mocha — планарный трекинг"
       },
       {
        "id": "s32-topics-08",
-       "text": "3D camera tracking / Match move — трекинг 3D-камеры и совмещение 3D с видео"
+       "text": "3D Camera Tracker — трекер 3D-камеры"
       },
       {
        "id": "s32-topics-09",
-       "text": "Object removal — удаление объекта"
+       "text": "Fusion nodes — основные ноды Fusion: Merge, Transform, Tracker, Mask"
       },
       {
        "id": "s32-topics-10",
-       "text": "Clean plate — чистый фон без объекта"
+       "text": "Segmentation — нейросетевая сегментация объектов"
       },
       {
        "id": "s32-topics-11",
-       "text": "Paint out — закраска дефектов"
+       "text": "Video relighting — изменение освещения на видео"
       },
       {
        "id": "s32-topics-12",
-       "text": "Screen replacement — замена изображения на экране"
+       "text": "AI object replacement — замена объекта в видео нейросетью"
+      }
+     ]
+    },
+    {
+     "id": "s32-tools",
+     "key": "tools",
+     "title": "Инструменты",
+     "items": [
+      {
+       "id": "s32-tools-01",
+       "text": "Adobe After Effects — стандарт композитинга и моушн-дизайна в рекламе"
       },
       {
-       "id": "s32-topics-13",
-       "text": "Compositing — объединение нескольких визуальных слоёв"
+       "id": "s32-tools-02",
+       "text": "Fusion (внутри DaVinci Resolve) — нодовый композитинг"
       },
       {
-       "id": "s32-topics-14",
-       "text": "Light wrap — обтекание светом краёв объекта при композитинге"
+       "id": "s32-tools-03",
+       "text": "Nuke (Foundry) — стандарт крупных VFX-студий (обзор; есть некоммерческая версия)"
       },
       {
-       "id": "s32-topics-15",
-       "text": "Edge blending — сведение краёв"
+       "id": "s32-tools-04",
+       "text": "Mocha Pro / Mocha AE — планарный трекинг"
       },
       {
-       "id": "s32-topics-16",
-       "text": "Depth compositing — композитинг по глубине"
+       "id": "s32-tools-05",
+       "text": "Runway Aleph, Luma Modify Video, Kling — правка видео текстовой командой"
       },
       {
-       "id": "s32-topics-17",
-       "text": "Cleanup — исправление дефектов"
+       "id": "s32-tools-06",
+       "text": "Beeble (SwitchLight) — переосвещение видео"
       },
       {
-       "id": "s32-topics-18",
-       "text": "AI video inpainting — нейросетевое удаление и замена объектов в видео"
+       "id": "s32-tools-07",
+       "text": "SAM 2 (Segment Anything) — маски объектов"
       },
       {
-       "id": "s32-topics-19",
-       "text": "Motion blur — размытие движения"
-      },
-      {
-       "id": "s32-topics-20",
-       "text": "Glow — свечение"
-      },
-      {
-       "id": "s32-topics-21",
-       "text": "Grain — плёночное зерно"
-      },
-      {
-       "id": "s32-topics-22",
-       "text": "Grain matching — совпадение зерна между слоями"
+       "id": "s32-tools-08",
+       "text": "Boris FX Sapphire / Continuum, Red Giant — пакеты эффектов"
       }
      ]
     },
@@ -4382,23 +4369,27 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s32-tasks-01",
-       "text": "Исправить 20 AI-артефактов."
+       "text": "Удалить объект из видео в After Effects (Content-Aware Fill) и через AI-редактор, сравнить результат."
       },
       {
        "id": "s32-tasks-02",
-       "text": "Заменить логотип на продукте."
+       "text": "Заменить экран телефона с планарным трекингом в Mocha."
       },
       {
        "id": "s32-tasks-03",
-       "text": "Заменить экран телефона."
+       "text": "Вставить реальный логотип на продукт в движущемся AI-кадре."
       },
       {
        "id": "s32-tasks-04",
-       "text": "Удалить лишний объект."
+       "text": "Сделать хромакей и совместить человека с AI-фоном (обтекание светом, зерно, цвет)."
       },
       {
        "id": "s32-tasks-05",
-       "text": "Сделать простую композицию из нескольких слоёв."
+       "text": "Повторить одну из задач в Fusion на нодах."
+      },
+      {
+       "id": "s32-tasks-06",
+       "text": "Собрать кадр из 5+ слоёв: фон, продукт, частицы, свет, атмосфера."
       }
      ]
     }
@@ -4407,9 +4398,10 @@ window.ROADMAP = {
   {
    "id": "s33",
    "num": 33,
-   "title": "Композитинг — After Effects, Fusion и нейросетевые видеоредакторы",
-   "isTool": true,
-   "term": "Недели 42–43",
+   "extra": false,
+   "title": "Типографика",
+   "isTool": false,
+   "term": "Неделя 42",
    "notes": [],
    "sections": [
     {
@@ -4419,94 +4411,75 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s33-topics-01",
-       "text": "Layer-based vs Node-based compositing — слоевой и нодовый композитинг"
+       "text": "Typography — типографика"
       },
       {
        "id": "s33-topics-02",
-       "text": "Composition / Precomp — композиция и прекомпозиция в After Effects"
+       "text": "Typeface / Font — гарнитура и шрифт"
       },
       {
        "id": "s33-topics-03",
-       "text": "Blending modes — режимы наложения"
+       "text": "Serif / Sans serif — шрифты с засечками и без"
       },
       {
        "id": "s33-topics-04",
-       "text": "Track mattes — трековые маски"
+       "text": "Font hierarchy — иерархия шрифтов"
       },
       {
        "id": "s33-topics-05",
-       "text": "Roto Brush — нейросетевая ротоскопия"
+       "text": "Kerning — расстояние между отдельными буквами"
       },
       {
        "id": "s33-topics-06",
-       "text": "Content-Aware Fill — заливка с учётом содержимого (удаление объектов из видео)"
+       "text": "Tracking — общее расстояние между буквами"
       },
       {
        "id": "s33-topics-07",
-       "text": "Mocha — планарный трекинг"
+       "text": "Leading — расстояние между строками"
       },
       {
        "id": "s33-topics-08",
-       "text": "3D Camera Tracker — трекер 3D-камеры"
+       "text": "Alignment — выравнивание"
       },
       {
        "id": "s33-topics-09",
-       "text": "Fusion nodes — основные ноды Fusion: Merge, Transform, Tracker, Mask"
+       "text": "Grid — сетка"
       },
       {
        "id": "s33-topics-10",
-       "text": "Segmentation — нейросетевая сегментация объектов"
+       "text": "Readability — читаемость"
       },
       {
        "id": "s33-topics-11",
-       "text": "Video relighting — изменение освещения на видео"
+       "text": "Safe zones — безопасные зоны (интерфейс соцсетей перекрывает часть кадра)"
       },
       {
        "id": "s33-topics-12",
-       "text": "AI object replacement — замена объекта в видео нейросетью"
-      }
-     ]
-    },
-    {
-     "id": "s33-tools",
-     "key": "tools",
-     "title": "Инструменты",
-     "items": [
-      {
-       "id": "s33-tools-01",
-       "text": "Adobe After Effects — стандарт композитинга и моушн-дизайна в рекламе"
+       "text": "Captions / Subtitles — субтитры (большая часть аудитории смотрит без звука)"
       },
       {
-       "id": "s33-tools-02",
-       "text": "Fusion (внутри DaVinci Resolve) — нодовый композитинг"
+       "id": "s33-topics-13",
+       "text": "Lower third — плашка в нижней трети кадра"
       },
       {
-       "id": "s33-tools-03",
-       "text": "Nuke (Foundry) — стандарт крупных VFX-студий (обзор; есть некоммерческая версия)"
+       "id": "s33-topics-14",
+       "text": "Kinetic typography — анимированная типографика"
       },
       {
-       "id": "s33-tools-04",
-       "text": "Mocha Pro / Mocha AE — планарный трекинг"
+       "id": "s33-topics-15",
+       "text": "Logo reveal — появление логотипа"
       },
       {
-       "id": "s33-tools-05",
-       "text": "Runway Aleph, Luma Modify Video, Kling — правка видео текстовой командой"
+       "id": "s33-topics-16",
+       "text": "End card — финальный экран"
       },
       {
-       "id": "s33-tools-06",
-       "text": "Wan VACE — open-source редактирование видео в ComfyUI"
+       "id": "s33-topics-17",
+       "text": "CTA, Call to Action — призыв к действию"
       },
       {
-       "id": "s33-tools-07",
-       "text": "Beeble (SwitchLight) — переосвещение видео"
-      },
-      {
-       "id": "s33-tools-08",
-       "text": "SAM 2 (Segment Anything) — маски объектов"
-      },
-      {
-       "id": "s33-tools-09",
-       "text": "Boris FX Sapphire / Continuum, Red Giant — пакеты эффектов"
+       "id": "s33-topics-18",
+       "text": "Font licensing — лицензии на шрифты"
       }
      ]
     },
@@ -4517,27 +4490,19 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s33-tasks-01",
-       "text": "Удалить объект из видео в After Effects (Content-Aware Fill) и через AI-редактор, сравнить результат."
+       "text": "Сделать 10 рекламных титров."
       },
       {
        "id": "s33-tasks-02",
-       "text": "Заменить экран телефона с планарным трекингом в Mocha."
+       "text": "Сделать 5 вариантов финального экрана."
       },
       {
        "id": "s33-tasks-03",
-       "text": "Вставить реальный логотип на продукт в движущемся AI-кадре."
+       "text": "Сделать 5 анимаций логотипа."
       },
       {
        "id": "s33-tasks-04",
-       "text": "Сделать хромакей и совместить человека с AI-фоном (обтекание светом, зерно, цвет)."
-      },
-      {
-       "id": "s33-tasks-05",
-       "text": "Повторить одну из задач в Fusion на нодах."
-      },
-      {
-       "id": "s33-tasks-06",
-       "text": "Собрать кадр из 5+ слоёв: фон, продукт, частицы, свет, атмосфера."
+       "text": "Сделать один ролик с анимированным текстом."
       }
      ]
     }
@@ -4546,9 +4511,10 @@ window.ROADMAP = {
   {
    "id": "s34",
    "num": 34,
-   "title": "Типографика",
-   "isTool": false,
-   "term": "Неделя 44",
+   "extra": false,
+   "title": "Моушн-дизайн в After Effects",
+   "isTool": true,
+   "term": "Неделя 43",
    "notes": [],
    "sections": [
     {
@@ -4558,75 +4524,74 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s34-topics-01",
-       "text": "Typography — типографика"
+       "text": "Motion design — моушн-дизайн"
       },
       {
        "id": "s34-topics-02",
-       "text": "Typeface / Font — гарнитура и шрифт"
+       "text": "Keyframe interpolation — интерполяция ключевых кадров"
       },
       {
        "id": "s34-topics-03",
-       "text": "Serif / Sans serif — шрифты с засечками и без"
+       "text": "Easing — сглаживание движения (ease in / ease out)"
       },
       {
        "id": "s34-topics-04",
-       "text": "Font hierarchy — иерархия шрифтов"
+       "text": "Graph editor — редактор графиков скорости и значений"
       },
       {
        "id": "s34-topics-05",
-       "text": "Kerning — расстояние между отдельными буквами"
+       "text": "Shape layers — шейповые слои"
       },
       {
        "id": "s34-topics-06",
-       "text": "Tracking — общее расстояние между буквами"
+       "text": "Text animators — аниматоры текста"
       },
       {
        "id": "s34-topics-07",
-       "text": "Leading — расстояние между строками"
+       "text": "Parenting & Null objects — привязка слоёв и нулевые объекты"
       },
       {
        "id": "s34-topics-08",
-       "text": "Alignment — выравнивание"
+       "text": "3D layers — 3D-слои"
       },
       {
        "id": "s34-topics-09",
-       "text": "Grid — сетка"
+       "text": "Expressions — выражения (wiggle, loopOut, time)"
       },
       {
        "id": "s34-topics-10",
-       "text": "Readability — читаемость"
+       "text": "Essential Graphics / MOGRT — шаблоны графики для Premiere Pro"
       },
       {
        "id": "s34-topics-11",
-       "text": "Safe zones — безопасные зоны (интерфейс соцсетей перекрывает часть кадра)"
+       "text": "Templates — шаблоны для повторного использования"
       },
       {
        "id": "s34-topics-12",
-       "text": "Captions / Subtitles — субтитры (большая часть аудитории смотрит без звука)"
+       "text": "Lottie — экспорт анимации для веба и приложений"
+      }
+     ]
+    },
+    {
+     "id": "s34-tools",
+     "key": "tools",
+     "title": "Инструменты",
+     "items": [
+      {
+       "id": "s34-tools-01",
+       "text": "Adobe After Effects — основной инструмент; плагины Motion Tools, Animation Composer, Overlord"
       },
       {
-       "id": "s34-topics-13",
-       "text": "Lower third — плашка в нижней трети кадра"
+       "id": "s34-tools-02",
+       "text": "DaVinci Resolve (Fusion, Text+) — альтернатива"
       },
       {
-       "id": "s34-topics-14",
-       "text": "Kinetic typography — анимированная типографика"
+       "id": "s34-tools-03",
+       "text": "Figma — подготовка графики; Cavalry — процедурная анимация"
       },
       {
-       "id": "s34-topics-15",
-       "text": "Logo reveal — появление логотипа"
-      },
-      {
-       "id": "s34-topics-16",
-       "text": "End card — финальный экран"
-      },
-      {
-       "id": "s34-topics-17",
-       "text": "CTA, Call to Action — призыв к действию"
-      },
-      {
-       "id": "s34-topics-18",
-       "text": "Font licensing — лицензии на шрифты"
+       "id": "s34-tools-04",
+       "text": "Google Fonts, Adobe Fonts — шрифты с понятной лицензией"
       }
      ]
     },
@@ -4637,19 +4602,23 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s34-tasks-01",
-       "text": "Сделать 10 рекламных титров."
+       "text": "Повторить 10 анимаций текста из реальных рекламных роликов."
       },
       {
        "id": "s34-tasks-02",
-       "text": "Сделать 5 вариантов финального экрана."
+       "text": "Сделать 5 логотип-ревилов с правильным easing."
       },
       {
        "id": "s34-tasks-03",
-       "text": "Сделать 5 анимаций логотипа."
+       "text": "Создать шаблон финального экрана (packshot + логотип + CTA) и экспортировать его как MOGRT."
       },
       {
        "id": "s34-tasks-04",
-       "text": "Сделать один ролик с анимированным текстом."
+       "text": "Сделать анимированные субтитры для вертикального ролика."
+      },
+      {
+       "id": "s34-tasks-05",
+       "text": "Собрать библиотеку своих пресетов анимации."
       }
      ]
     }
@@ -4658,9 +4627,10 @@ window.ROADMAP = {
   {
    "id": "s35",
    "num": 35,
-   "title": "Моушн-дизайн в After Effects",
-   "isTool": true,
-   "term": "Неделя 45",
+   "extra": false,
+   "title": "Реклама для социальных сетей",
+   "isTool": false,
+   "term": "Неделя 44",
    "notes": [],
    "sections": [
     {
@@ -4670,74 +4640,83 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s35-topics-01",
-       "text": "Motion design — моушн-дизайн"
+       "text": "Social media advertising — реклама в социальных сетях"
       },
       {
        "id": "s35-topics-02",
-       "text": "Keyframe interpolation — интерполяция ключевых кадров"
+       "text": "Vertical video — вертикальное видео"
       },
       {
        "id": "s35-topics-03",
-       "text": "Easing — сглаживание движения (ease in / ease out)"
+       "text": "Horizontal video — горизонтальное видео"
       },
       {
        "id": "s35-topics-04",
-       "text": "Graph editor — редактор графиков скорости и значений"
+       "text": "Platform specs — требования площадок: TikTok, Reels, YouTube Shorts, VK Клипы, Яндекс Директ"
       },
       {
        "id": "s35-topics-05",
-       "text": "Shape layers — шейповые слои"
+       "text": "Safe zones — безопасные зоны интерфейса"
       },
       {
        "id": "s35-topics-06",
-       "text": "Text animators — аниматоры текста"
+       "text": "Sound-off viewing — просмотр без звука"
       },
       {
        "id": "s35-topics-07",
-       "text": "Parenting & Null objects — привязка слоёв и нулевые объекты"
+       "text": "Native look — «нативный» вид, не похожий на рекламу"
       },
       {
        "id": "s35-topics-08",
-       "text": "3D layers — 3D-слои"
+       "text": "UGC, User-Generated Content — пользовательский контент"
       },
       {
        "id": "s35-topics-09",
-       "text": "Expressions — выражения (wiggle, loopOut, time)"
+       "text": "Paid social — платная реклама в социальных сетях"
       },
       {
        "id": "s35-topics-10",
-       "text": "Essential Graphics / MOGRT — шаблоны графики для Premiere Pro"
+       "text": "Creative testing — тестирование рекламных креативов"
       },
       {
        "id": "s35-topics-11",
-       "text": "Templates — шаблоны для повторного использования"
+       "text": "A/B testing — сплит-тест"
       },
       {
        "id": "s35-topics-12",
-       "text": "Lottie — экспорт анимации для веба и приложений"
-      }
-     ]
-    },
-    {
-     "id": "s35-tools",
-     "key": "tools",
-     "title": "Инструменты",
-     "items": [
-      {
-       "id": "s35-tools-01",
-       "text": "Adobe After Effects — основной инструмент; плагины Motion Tools, Animation Composer, Overlord"
+       "text": "Retention — удержание зрителя"
       },
       {
-       "id": "s35-tools-02",
-       "text": "DaVinci Resolve (Fusion, Text+) — альтернатива"
+       "id": "s35-topics-13",
+       "text": "Hook rate / Hold rate — доля зацепленных и досмотревших зрителей"
       },
       {
-       "id": "s35-tools-03",
-       "text": "Figma — подготовка графики; Cavalry — процедурная анимация"
+       "id": "s35-topics-14",
+       "text": "Click-through rate — доля зрителей, перешедших по рекламе"
       },
       {
-       "id": "s35-tools-04",
-       "text": "Google Fonts, Adobe Fonts — шрифты с понятной лицензией"
+       "id": "s35-topics-15",
+       "text": "Conversion — целевое действие пользователя"
+      },
+      {
+       "id": "s35-topics-16",
+       "text": "CPM, CPC, CPA — стоимость тысячи показов, клика и целевого действия"
+      },
+      {
+       "id": "s35-topics-17",
+       "text": "ROAS — окупаемость рекламных расходов"
+      },
+      {
+       "id": "s35-topics-18",
+       "text": "Creative fatigue — выгорание креатива"
+      },
+      {
+       "id": "s35-topics-19",
+       "text": "Iteration — доработка креатива по данным"
+      },
+      {
+       "id": "s35-topics-20",
+       "text": "Ad library — библиотеки рекламы конкурентов (Meta Ad Library, TikTok Creative Center)"
       }
      ]
     },
@@ -4748,23 +4727,27 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s35-tasks-01",
-       "text": "Повторить 10 анимаций текста из реальных рекламных роликов."
+       "text": "Для одного продукта сделать версии 9:16, 16:9 и 1:1."
       },
       {
        "id": "s35-tasks-02",
-       "text": "Сделать 5 логотип-ревилов с правильным easing."
+       "text": "Сделать 5 разных первых двух секунд."
       },
       {
        "id": "s35-tasks-03",
-       "text": "Создать шаблон финального экрана (packshot + логотип + CTA) и экспортировать его как MOGRT."
+       "text": "Сделать 3 разных призыва к действию."
       },
       {
        "id": "s35-tasks-04",
-       "text": "Сделать анимированные субтитры для вертикального ролика."
+       "text": "Сделать версии на 6, 15 и 30 секунд."
       },
       {
        "id": "s35-tasks-05",
-       "text": "Собрать библиотеку своих пресетов анимации."
+       "text": "Разобрать 20 реклам конкурентов в библиотеках рекламы."
+      },
+      {
+       "id": "s35-tasks-06",
+       "text": "Сделать 10 вариаций одного креатива для A/B-теста: разные зацепки, CTA, голос."
       }
      ]
     }
@@ -4773,9 +4756,10 @@ window.ROADMAP = {
   {
    "id": "s36",
    "num": 36,
-   "title": "Реклама для социальных сетей",
-   "isTool": false,
-   "term": "Неделя 46",
+   "extra": false,
+   "title": "Масштабирование — API, автоматизация и нодовые платформы",
+   "isTool": true,
+   "term": "Неделя 45",
    "notes": [],
    "sections": [
     {
@@ -4785,83 +4769,70 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s36-topics-01",
-       "text": "Social media advertising — реклама в социальных сетях"
+       "text": "API — программный интерфейс для запуска генераций без сайта"
       },
       {
        "id": "s36-topics-02",
-       "text": "Vertical video — вертикальное видео"
+       "text": "Batch generation — пакетная генерация"
       },
       {
        "id": "s36-topics-03",
-       "text": "Horizontal video — горизонтальное видео"
+       "text": "Variations at scale — массовое производство вариаций креативов"
       },
       {
        "id": "s36-topics-04",
-       "text": "Platform specs — требования площадок: TikTok, Reels, YouTube Shorts, VK Клипы, Яндекс Директ"
+       "text": "Prompt templating — шаблоны промптов с переменными"
       },
       {
        "id": "s36-topics-05",
-       "text": "Safe zones — безопасные зоны интерфейса"
+       "text": "Automation workflow — автоматизированный рабочий процесс"
       },
       {
        "id": "s36-topics-06",
-       "text": "Sound-off viewing — просмотр без звука"
+       "text": "Node-based canvas — визуальные нодовые холсты для командной работы"
       },
       {
        "id": "s36-topics-07",
-       "text": "Native look — «нативный» вид, не похожий на рекламу"
+       "text": "Webhooks — уведомления о готовности генерации"
       },
       {
        "id": "s36-topics-08",
-       "text": "UGC, User-Generated Content — пользовательский контент"
+       "text": "Cost tracking — учёт расходов"
       },
       {
        "id": "s36-topics-09",
-       "text": "Paid social — платная реклама в социальных сетях"
+       "text": "Localization — локализация креативов под разные рынки и языки"
+      }
+     ]
+    },
+    {
+     "id": "s36-tools",
+     "key": "tools",
+     "title": "Инструменты",
+     "items": [
+      {
+       "id": "s36-tools-01",
+       "text": "fal.ai, Replicate — API к десяткам моделей изображений и видео"
       },
       {
-       "id": "s36-topics-10",
-       "text": "Creative testing — тестирование рекламных креативов"
+       "id": "s36-tools-02",
+       "text": "API Google (Veo, Gemini), OpenAI, Runway, Kling, ElevenLabs"
       },
       {
-       "id": "s36-topics-11",
-       "text": "A/B testing — сплит-тест"
+       "id": "s36-tools-03",
+       "text": "Python — базовые скрипты для пакетной генерации"
       },
       {
-       "id": "s36-topics-12",
-       "text": "Retention — удержание зрителя"
+       "id": "s36-tools-04",
+       "text": "n8n, Make — автоматизация без программирования"
       },
       {
-       "id": "s36-topics-13",
-       "text": "Hook rate / Hold rate — доля зацепленных и досмотревших зрителей"
+       "id": "s36-tools-05",
+       "text": "Figma Weave (Weavy), Flora, Krea Nodes, Freepik Spaces — нодовые холсты"
       },
       {
-       "id": "s36-topics-14",
-       "text": "Click-through rate — доля зрителей, перешедших по рекламе"
-      },
-      {
-       "id": "s36-topics-15",
-       "text": "Conversion — целевое действие пользователя"
-      },
-      {
-       "id": "s36-topics-16",
-       "text": "CPM, CPC, CPA — стоимость тысячи показов, клика и целевого действия"
-      },
-      {
-       "id": "s36-topics-17",
-       "text": "ROAS — окупаемость рекламных расходов"
-      },
-      {
-       "id": "s36-topics-18",
-       "text": "Creative fatigue — выгорание креатива"
-      },
-      {
-       "id": "s36-topics-19",
-       "text": "Iteration — доработка креатива по данным"
-      },
-      {
-       "id": "s36-topics-20",
-       "text": "Ad library — библиотеки рекламы конкурентов (Meta Ad Library, TikTok Creative Center)"
+       "id": "s36-tools-06",
+       "text": "Claude, ChatGPT — генерация и проверка промптов, написание скриптов"
       }
      ]
     },
@@ -4872,27 +4843,23 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s36-tasks-01",
-       "text": "Для одного продукта сделать версии 9:16, 16:9 и 1:1."
+       "text": "Запустить генерацию изображения и видео через API (fal.ai или Replicate) простым Python-скриптом."
       },
       {
        "id": "s36-tasks-02",
-       "text": "Сделать 5 разных первых двух секунд."
+       "text": "Сделать таблицу из 20 промптов и сгенерировать их пакетно."
       },
       {
        "id": "s36-tasks-03",
-       "text": "Сделать 3 разных призыва к действию."
+       "text": "Собрать в n8n или Make цепочку: сценарий → промпты от LLM → генерация кадров → сохранение в папку."
       },
       {
        "id": "s36-tasks-04",
-       "text": "Сделать версии на 6, 15 и 30 секунд."
+       "text": "Собрать нодовый холст рекламной кампании: продукт → 10 сцен → 10 видео → 3 формата."
       },
       {
        "id": "s36-tasks-05",
-       "text": "Разобрать 20 реклам конкурентов в библиотеках рекламы."
-      },
-      {
-       "id": "s36-tasks-06",
-       "text": "Сделать 10 вариаций одного креатива для A/B-теста: разные зацепки, CTA, голос."
+       "text": "Сделать 30 вариаций одного креатива для тестирования."
       }
      ]
     }
@@ -4901,9 +4868,10 @@ window.ROADMAP = {
   {
    "id": "s37",
    "num": 37,
-   "title": "Масштабирование — API, автоматизация и нодовые платформы",
+   "extra": false,
+   "title": "Экспорт, мастеринг и контроль качества",
    "isTool": true,
-   "term": "Неделя 47",
+   "term": "Неделя 46",
    "notes": [],
    "sections": [
     {
@@ -4913,39 +4881,59 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s37-topics-01",
-       "text": "API — программный интерфейс для запуска генераций без сайта"
+       "text": "Codec — кодек (H.264, H.265/HEVC, ProRes, DNxHR, AV1)"
       },
       {
        "id": "s37-topics-02",
-       "text": "Batch generation — пакетная генерация"
+       "text": "Container — контейнер (MP4, MOV)"
       },
       {
        "id": "s37-topics-03",
-       "text": "Variations at scale — массовое производство вариаций креативов"
+       "text": "Bitrate — битрейт (CBR / VBR)"
       },
       {
        "id": "s37-topics-04",
-       "text": "Prompt templating — шаблоны промптов с переменными"
+       "text": "Resolution — разрешение (1080×1920, 1920×1080, 3840×2160)"
       },
       {
        "id": "s37-topics-05",
-       "text": "Automation workflow — автоматизированный рабочий процесс"
+       "text": "Frame rate — частота кадров"
       },
       {
        "id": "s37-topics-06",
-       "text": "Node-based canvas — визуальные нодовые холсты для командной работы"
+       "text": "Color tags — цветовые метки (Rec.709, gamma 2.4 / 2.2) и «сдвиг гаммы» в браузерах и плеерах"
       },
       {
        "id": "s37-topics-07",
-       "text": "Webhooks — уведомления о готовности генерации"
+       "text": "Audio specs — параметры звука: 48 кГц, AAC / PCM, громкость"
       },
       {
        "id": "s37-topics-08",
-       "text": "Cost tracking — учёт расходов"
+       "text": "Master file — мастер-файл в максимальном качестве"
       },
       {
        "id": "s37-topics-09",
-       "text": "Localization — локализация креативов под разные рынки и языки"
+       "text": "Deliverables — комплект сдаваемых материалов"
+      },
+      {
+       "id": "s37-topics-10",
+       "text": "Platform compression — пережатие видео соцсетями"
+      },
+      {
+       "id": "s37-topics-11",
+       "text": "Subtitles — субтитры файлом (SRT) и вшитые в изображение"
+      },
+      {
+       "id": "s37-topics-12",
+       "text": "QC, Quality Control — финальная проверка качества"
+      },
+      {
+       "id": "s37-topics-13",
+       "text": "AI QC checklist — проверка AI-дефектов: руки, лица, текст, логотипы, мерцание, морфинг, физика"
+      },
+      {
+       "id": "s37-topics-14",
+       "text": "Archiving — архивация проекта"
       }
      ]
     },
@@ -4956,31 +4944,23 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s37-tools-01",
-       "text": "fal.ai, Replicate — API к десяткам моделей изображений и видео"
+       "text": "DaVinci Resolve (Deliver), Adobe Media Encoder — экспорт"
       },
       {
        "id": "s37-tools-02",
-       "text": "API Google (Veo, Gemini), OpenAI, Runway, Kling, ElevenLabs"
+       "text": "HandBrake, FFmpeg — конвертация и пакетное сжатие"
       },
       {
        "id": "s37-tools-03",
-       "text": "Python — базовые скрипты для пакетной генерации"
+       "text": "MediaInfo — проверка параметров файла"
       },
       {
        "id": "s37-tools-04",
-       "text": "n8n, Make — автоматизация без программирования"
+       "text": "Youlean Loudness Meter — проверка громкости"
       },
       {
        "id": "s37-tools-05",
-       "text": "ComfyUI API — пакетный запуск собственных воркфлоу"
-      },
-      {
-       "id": "s37-tools-06",
-       "text": "Figma Weave (Weavy), Flora, Krea Nodes, Freepik Spaces — нодовые холсты"
-      },
-      {
-       "id": "s37-tools-07",
-       "text": "Claude, ChatGPT — генерация и проверка промптов, написание скриптов"
+       "text": "Frame.io — финальное согласование"
       }
      ]
     },
@@ -4991,23 +4971,23 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s37-tasks-01",
-       "text": "Запустить генерацию изображения и видео через API (fal.ai или Replicate) простым Python-скриптом."
+       "text": "Создать пресеты экспорта под TikTok / Reels, YouTube, ТВ-мастер и веб."
       },
       {
        "id": "s37-tasks-02",
-       "text": "Сделать таблицу из 20 промптов и сгенерировать их пакетно."
+       "text": "Экспортировать один ролик в 6 форматах и проверить параметры через MediaInfo."
       },
       {
        "id": "s37-tasks-03",
-       "text": "Собрать в n8n или Make цепочку: сценарий → промпты от LLM → генерация кадров → сохранение в папку."
+       "text": "Сравнить, как площадки пережимают видео при разных битрейтах."
       },
       {
        "id": "s37-tasks-04",
-       "text": "Собрать нодовый холст рекламной кампании: продукт → 10 сцен → 10 видео → 3 формата."
+       "text": "Составить свой чек-лист QC и проверить по нему 5 готовых роликов."
       },
       {
        "id": "s37-tasks-05",
-       "text": "Сделать 30 вариаций одного креатива для тестирования."
+       "text": "Подготовить полный пакет сдачи: мастер, версии форматов, субтитры, стемы звука, превью."
       }
      ]
     }
@@ -5016,10 +4996,13 @@ window.ROADMAP = {
   {
    "id": "s38",
    "num": 38,
-   "title": "Экспорт, мастеринг и контроль качества",
-   "isTool": true,
-   "term": "Неделя 48",
-   "notes": [],
+   "extra": false,
+   "title": "Право, этика и коммерческая безопасность",
+   "isTool": false,
+   "term": "Неделя 47",
+   "notes": [
+    "Законы в этой области быстро меняются. Для крупных коммерческих проектов юридические вопросы согласовываются с юристом клиента."
+   ],
    "sections": [
     {
      "id": "s38-topics",
@@ -5028,86 +5011,67 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s38-topics-01",
-       "text": "Codec — кодек (H.264, H.265/HEVC, ProRes, DNxHR, AV1)"
+       "text": "Copyright — авторское право на AI-контент (во многих странах охраняется только творческий вклад человека)"
       },
       {
        "id": "s38-topics-02",
-       "text": "Container — контейнер (MP4, MOV)"
+       "text": "Terms of service — условия сервисов: кому принадлежит результат и разрешено ли коммерческое использование на вашем тарифе"
       },
       {
        "id": "s38-topics-03",
-       "text": "Bitrate — битрейт (CBR / VBR)"
+       "text": "Commercially safe models — модели, обученные на лицензированных данных (Adobe Firefly и аналоги)"
       },
       {
        "id": "s38-topics-04",
-       "text": "Resolution — разрешение (1080×1920, 1920×1080, 3840×2160)"
+       "text": "Likeness rights — права на внешность и голос реальных людей"
       },
       {
        "id": "s38-topics-05",
-       "text": "Frame rate — частота кадров"
+       "text": "Model release — письменное согласие на использование внешности и голоса"
       },
       {
        "id": "s38-topics-06",
-       "text": "Color tags — цветовые метки (Rec.709, gamma 2.4 / 2.2) и «сдвиг гаммы» в браузерах и плеерах"
+       "text": "Trademarks — товарные знаки и чужие логотипы в кадре"
       },
       {
        "id": "s38-topics-07",
-       "text": "Audio specs — параметры звука: 48 кГц, AAC / PCM, громкость"
+       "text": "Celebrity & style imitation — риски имитации знаменитостей и узнаваемых авторских стилей"
       },
       {
        "id": "s38-topics-08",
-       "text": "Master file — мастер-файл в максимальном качестве"
+       "text": "Deepfake — дипфейк и правовые риски"
       },
       {
        "id": "s38-topics-09",
-       "text": "Deliverables — комплект сдаваемых материалов"
+       "text": "Music & font licensing — лицензии на музыку и шрифты"
       },
       {
        "id": "s38-topics-10",
-       "text": "Platform compression — пережатие видео соцсетями"
+       "text": "AI labeling — маркировка AI-контента на площадках (Meta, TikTok, YouTube)"
       },
       {
        "id": "s38-topics-11",
-       "text": "Subtitles — субтитры файлом (SRT) и вшитые в изображение"
+       "text": "C2PA, Content Credentials — метаданные о происхождении контента"
       },
       {
        "id": "s38-topics-12",
-       "text": "QC, Quality Control — финальная проверка качества"
+       "text": "EU AI Act — европейские требования прозрачности для синтетического контента"
       },
       {
        "id": "s38-topics-13",
-       "text": "AI QC checklist — проверка AI-дефектов: руки, лица, текст, логотипы, мерцание, морфинг, физика"
+       "text": "Advertising law — закон «О рекламе» (РФ): достоверность, ограничения для отдельных категорий товаров"
       },
       {
        "id": "s38-topics-14",
-       "text": "Archiving — архивация проекта"
-      }
-     ]
-    },
-    {
-     "id": "s38-tools",
-     "key": "tools",
-     "title": "Инструменты",
-     "items": [
-      {
-       "id": "s38-tools-01",
-       "text": "DaVinci Resolve (Deliver), Adobe Media Encoder — экспорт"
+       "text": "Ad labeling in Russia — маркировка интернет-рекламы в РФ (токен erid, операторы рекламных данных)"
       },
       {
-       "id": "s38-tools-02",
-       "text": "HandBrake, FFmpeg — конвертация и пакетное сжатие"
+       "id": "s38-topics-15",
+       "text": "NDA — соглашение о неразглашении"
       },
       {
-       "id": "s38-tools-03",
-       "text": "MediaInfo — проверка параметров файла"
-      },
-      {
-       "id": "s38-tools-04",
-       "text": "Youlean Loudness Meter — проверка громкости"
-      },
-      {
-       "id": "s38-tools-05",
-       "text": "Frame.io — финальное согласование"
+       "id": "s38-topics-16",
+       "text": "Data privacy — запрет загружать конфиденциальные материалы клиента в сервисы без разрешения"
       }
      ]
     },
@@ -5118,23 +5082,23 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s38-tasks-01",
-       "text": "Создать пресеты экспорта под TikTok / Reels, YouTube, ТВ-мастер и веб."
+       "text": "Изучить условия использования 5 основных сервисов: права на результат, коммерческое использование, обучение на ваших данных."
       },
       {
        "id": "s38-tasks-02",
-       "text": "Экспортировать один ролик в 6 форматах и проверить параметры через MediaInfo."
+       "text": "Составить таблицу «сервис → можно ли использовать в коммерческой рекламе и на каком тарифе»."
       },
       {
        "id": "s38-tasks-03",
-       "text": "Сравнить, как площадки пережимают видео при разных битрейтах."
+       "text": "Подготовить шаблон согласия на использование внешности и голоса."
       },
       {
        "id": "s38-tasks-04",
-       "text": "Составить свой чек-лист QC и проверить по нему 5 готовых роликов."
+       "text": "Составить чек-лист юридических рисков перед сдачей ролика."
       },
       {
        "id": "s38-tasks-05",
-       "text": "Подготовить полный пакет сдачи: мастер, версии форматов, субтитры, стемы звука, превью."
+       "text": "Разобрать 3 случая общественной критики AI-рекламы и сделать выводы."
       }
      ]
     }
@@ -5143,12 +5107,11 @@ window.ROADMAP = {
   {
    "id": "s39",
    "num": 39,
-   "title": "Право, этика и коммерческая безопасность",
+   "extra": false,
+   "title": "Продюсирование, работа с клиентом и портфолио",
    "isTool": false,
-   "term": "Неделя 49",
-   "notes": [
-    "Законы в этой области быстро меняются. Для крупных коммерческих проектов юридические вопросы согласовываются с юристом клиента."
-   ],
+   "term": "Неделя 48",
+   "notes": [],
    "sections": [
     {
      "id": "s39-topics",
@@ -5157,67 +5120,86 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s39-topics-01",
-       "text": "Copyright — авторское право на AI-контент (во многих странах охраняется только творческий вклад человека)"
+       "text": "Creative brief — креативный бриф"
       },
       {
        "id": "s39-topics-02",
-       "text": "Terms of service — условия сервисов: кому принадлежит результат и разрешено ли коммерческое использование на вашем тарифе"
+       "text": "Briefing questions — вопросы к брифу: цель, аудитория, площадки, хронометраж, бюджет, сроки, обязательные элементы"
       },
       {
        "id": "s39-topics-03",
-       "text": "Commercially safe models — модели, обученные на лицензированных данных (Adobe Firefly и аналоги)"
+       "text": "Pitch / Treatment deck — презентация идеи клиенту"
       },
       {
        "id": "s39-topics-04",
-       "text": "Likeness rights — права на внешность и голос реальных людей"
+       "text": "Estimate — смета: часы, кредиты, подписки, музыка, голос, правки"
       },
       {
        "id": "s39-topics-05",
-       "text": "Model release — письменное согласие на использование внешности и голоса"
+       "text": "Pricing models — модели ценообразования: за проект, за секунду ролика, ретейнер"
       },
       {
        "id": "s39-topics-06",
-       "text": "Trademarks — товарные знаки и чужие логотипы в кадре"
+       "text": "Scope of work — объём работ"
       },
       {
        "id": "s39-topics-07",
-       "text": "Celebrity & style imitation — риски имитации знаменитостей и узнаваемых авторских стилей"
+       "text": "Revision rounds — количество раундов правок (фиксируется в договоре)"
       },
       {
        "id": "s39-topics-08",
-       "text": "Deepfake — дипфейк и правовые риски"
+       "text": "Milestones — контрольные точки: идея → аниматик → черновик → финал"
       },
       {
        "id": "s39-topics-09",
-       "text": "Music & font licensing — лицензии на музыку и шрифты"
+       "text": "Client feedback — работа с обратной связью"
       },
       {
        "id": "s39-topics-10",
-       "text": "AI labeling — маркировка AI-контента на площадках (Meta, TikTok, YouTube)"
+       "text": "Production roles — роли в команде: AI-режиссёр, генеративный художник, монтажёр, композитор, колорист, звукорежиссёр, продюсер"
       },
       {
        "id": "s39-topics-11",
-       "text": "C2PA, Content Credentials — метаданные о происхождении контента"
+       "text": "Delegation — делегирование и контроль качества работы команды"
       },
       {
        "id": "s39-topics-12",
-       "text": "EU AI Act — европейские требования прозрачности для синтетического контента"
+       "text": "Showreel — шоурил"
       },
       {
        "id": "s39-topics-13",
-       "text": "Advertising law — закон «О рекламе» (РФ): достоверность, ограничения для отдельных категорий товаров"
+       "text": "Case study / Breakdown — кейс и разбор процесса (до / после, этапы)"
       },
       {
        "id": "s39-topics-14",
-       "text": "Ad labeling in Russia — маркировка интернет-рекламы в РФ (токен erid, операторы рекламных данных)"
+       "text": "Personal brand — личный бренд"
       },
       {
        "id": "s39-topics-15",
-       "text": "NDA — соглашение о неразглашении"
+       "text": "Staying up to date — отслеживание новых моделей и инструментов"
+      }
+     ]
+    },
+    {
+     "id": "s39-tools",
+     "key": "tools",
+     "title": "Инструменты",
+     "items": [
+      {
+       "id": "s39-tools-01",
+       "text": "Google Slides, Figma, Pitch — презентации"
       },
       {
-       "id": "s39-topics-16",
-       "text": "Data privacy — запрет загружать конфиденциальные материалы клиента в сервисы без разрешения"
+       "id": "s39-tools-02",
+       "text": "Notion, Trello, Asana — управление проектами"
+      },
+      {
+       "id": "s39-tools-03",
+       "text": "Frame.io — правки и согласование"
+      },
+      {
+       "id": "s39-tools-04",
+       "text": "Behance, Vimeo, личный сайт, Telegram-канал — портфолио"
       }
      ]
     },
@@ -5228,23 +5210,23 @@ window.ROADMAP = {
      "items": [
       {
        "id": "s39-tasks-01",
-       "text": "Изучить условия использования 5 основных сервисов: права на результат, коммерческое использование, обучение на ваших данных."
+       "text": "Составить шаблон брифа из 20 вопросов."
       },
       {
        "id": "s39-tasks-02",
-       "text": "Составить таблицу «сервис → можно ли использовать в коммерческой рекламе и на каком тарифе»."
+       "text": "Подготовить шаблон сметы и рассчитать 3 проекта разного масштаба (6, 15 и 30 секунд)."
       },
       {
        "id": "s39-tasks-03",
-       "text": "Подготовить шаблон согласия на использование внешности и голоса."
+       "text": "Сделать презентацию-питч для одной идеи."
       },
       {
        "id": "s39-tasks-04",
-       "text": "Составить чек-лист юридических рисков перед сдачей ролика."
+       "text": "Собрать шоурил на 60–90 секунд из лучших работ."
       },
       {
        "id": "s39-tasks-05",
-       "text": "Разобрать 3 случая общественной критики AI-рекламы и сделать выводы."
+       "text": "Оформить 3 кейса с разбором процесса."
       }
      ]
     }
@@ -5253,297 +5235,446 @@ window.ROADMAP = {
   {
    "id": "s40",
    "num": 40,
-   "title": "Продюсирование, работа с клиентом и портфолио",
+   "extra": false,
+   "title": "Полный рекламный проект",
    "isTool": false,
-   "term": "Неделя 50",
+   "term": "Недели 49–51",
    "notes": [],
    "sections": [
     {
-     "id": "s40-topics",
-     "key": "topics",
-     "title": "Темы",
+     "id": "s40-cycle",
+     "key": "cycle",
+     "title": "Полный цикл проекта",
      "items": [
       {
-       "id": "s40-topics-01",
-       "text": "Creative brief — креативный бриф"
+       "id": "s40-cycle-01",
+       "text": "Brief — техническое задание."
       },
       {
-       "id": "s40-topics-02",
-       "text": "Briefing questions — вопросы к брифу: цель, аудитория, площадки, хронометраж, бюджет, сроки, обязательные элементы"
+       "id": "s40-cycle-02",
+       "text": "Estimate — смета и план производства."
       },
       {
-       "id": "s40-topics-03",
-       "text": "Pitch / Treatment deck — презентация идеи клиенту"
+       "id": "s40-cycle-03",
+       "text": "Research — исследование."
       },
       {
-       "id": "s40-topics-04",
-       "text": "Estimate — смета: часы, кредиты, подписки, музыка, голос, правки"
+       "id": "s40-cycle-04",
+       "text": "Target audience — целевая аудитория."
       },
       {
-       "id": "s40-topics-05",
-       "text": "Pricing models — модели ценообразования: за проект, за секунду ролика, ретейнер"
+       "id": "s40-cycle-05",
+       "text": "Insight — ключевое наблюдение о потребителе."
       },
       {
-       "id": "s40-topics-06",
-       "text": "Scope of work — объём работ"
+       "id": "s40-cycle-06",
+       "text": "Big idea — главная рекламная идея."
       },
       {
-       "id": "s40-topics-07",
-       "text": "Revision rounds — количество раундов правок (фиксируется в договоре)"
+       "id": "s40-cycle-07",
+       "text": "Concept — концепция."
       },
       {
-       "id": "s40-topics-08",
-       "text": "Milestones — контрольные точки: идея → аниматик → черновик → финал"
+       "id": "s40-cycle-08",
+       "text": "Script — сценарий."
       },
       {
-       "id": "s40-topics-09",
-       "text": "Client feedback — работа с обратной связью"
+       "id": "s40-cycle-09",
+       "text": "Treatment — режиссёрское описание."
       },
       {
-       "id": "s40-topics-10",
-       "text": "Production roles — роли в команде: AI-режиссёр, генеративный художник, монтажёр, композитор, колорист, звукорежиссёр, продюсер"
+       "id": "s40-cycle-10",
+       "text": "Moodboard — доска визуального настроения."
       },
       {
-       "id": "s40-topics-11",
-       "text": "Delegation — делегирование и контроль качества работы команды"
+       "id": "s40-cycle-11",
+       "text": "Storyboard — раскадровка."
       },
       {
-       "id": "s40-topics-12",
-       "text": "Showreel — шоурил"
+       "id": "s40-cycle-12",
+       "text": "Animatic — аниматик."
       },
       {
-       "id": "s40-topics-13",
-       "text": "Case study / Breakdown — кейс и разбор процесса (до / после, этапы)"
+       "id": "s40-cycle-13",
+       "text": "Shot list — список кадров."
       },
       {
-       "id": "s40-topics-14",
-       "text": "Personal brand — личный бренд"
+       "id": "s40-cycle-14",
+       "text": "Styleframes — ключевые стилистические кадры."
       },
       {
-       "id": "s40-topics-15",
-       "text": "Staying up to date — отслеживание новых моделей и инструментов"
-      }
-     ]
-    },
-    {
-     "id": "s40-tools",
-     "key": "tools",
-     "title": "Инструменты",
-     "items": [
-      {
-       "id": "s40-tools-01",
-       "text": "Google Slides, Figma, Pitch — презентации"
+       "id": "s40-cycle-15",
+       "text": "Asset preparation — подготовка ассетов: листы персонажей, референсы, 3D-модель продукта."
       },
       {
-       "id": "s40-tools-02",
-       "text": "Notion, Trello, Asana — управление проектами"
+       "id": "s40-cycle-16",
+       "text": "Image generation — генерация ключевых кадров."
       },
       {
-       "id": "s40-tools-03",
-       "text": "Frame.io — правки и согласование"
+       "id": "s40-cycle-17",
+       "text": "Video generation — анимация кадров."
       },
       {
-       "id": "s40-tools-04",
-       "text": "Behance, Vimeo, личный сайт, Telegram-канал — портфолио"
+       "id": "s40-cycle-18",
+       "text": "Selects — отбор лучших материалов."
+      },
+      {
+       "id": "s40-cycle-19",
+       "text": "Editing — монтаж."
+      },
+      {
+       "id": "s40-cycle-20",
+       "text": "Client review — согласование с клиентом."
+      },
+      {
+       "id": "s40-cycle-21",
+       "text": "Upscale & Conform — апскейл и чистовая сборка."
+      },
+      {
+       "id": "s40-cycle-22",
+       "text": "VFX, Visual Effects — визуальные эффекты."
+      },
+      {
+       "id": "s40-cycle-23",
+       "text": "Sound design — звуковое оформление."
+      },
+      {
+       "id": "s40-cycle-24",
+       "text": "Voice & Music — голос и музыка."
+      },
+      {
+       "id": "s40-cycle-25",
+       "text": "Mixing — сведение звука."
+      },
+      {
+       "id": "s40-cycle-26",
+       "text": "Color grading — художественная работа с цветом."
+      },
+      {
+       "id": "s40-cycle-27",
+       "text": "Typography & Motion graphics — типографика и графика."
+      },
+      {
+       "id": "s40-cycle-28",
+       "text": "Versions — адаптация под форматы и хронометражи."
+      },
+      {
+       "id": "s40-cycle-29",
+       "text": "QC — контроль качества."
+      },
+      {
+       "id": "s40-cycle-30",
+       "text": "Legal check — юридическая проверка."
+      },
+      {
+       "id": "s40-cycle-31",
+       "text": "Export & Delivery — финальный вывод и передача материалов."
+      },
+      {
+       "id": "s40-cycle-32",
+       "text": "Case study — разбор проекта для портфолио."
       }
      ]
     },
     {
      "id": "s40-tasks",
      "key": "tasks",
-     "title": "Задания",
+     "title": "Задание",
      "items": [
       {
        "id": "s40-tasks-01",
-       "text": "Составить шаблон брифа из 20 вопросов."
+       "text": "Сделать минимум 6 законченных реклам: парфюм, автомобиль, часы, спортивный бренд, напиток, технологический продукт."
       },
       {
        "id": "s40-tasks-02",
-       "text": "Подготовить шаблон сметы и рассчитать 3 проекта разного масштаба (6, 15 и 30 секунд)."
+       "text": "Для каждой рекламы подготовить версии 9:16, 16:9 и 4:5 и хронометражи 6, 15 и 30 секунд."
       },
       {
        "id": "s40-tasks-03",
-       "text": "Сделать презентацию-питч для одной идеи."
+       "text": "Минимум один проект выполнить в гибридном пайплайне: 3D + платформы генерации изображений и видео."
       },
       {
        "id": "s40-tasks-04",
-       "text": "Собрать шоурил на 60–90 секунд из лучших работ."
+       "text": "По каждому проекту вести учёт времени и расходов на кредиты."
       },
       {
        "id": "s40-tasks-05",
-       "text": "Оформить 3 кейса с разбором процесса."
+       "text": "По каждому проекту подготовить полный пакет сдачи и кейс для портфолио."
       }
      ]
     }
    ]
   },
   {
-   "id": "s41",
-   "num": 41,
-   "title": "Полный рекламный проект",
-   "isTool": false,
-   "term": "Недели 51–53",
-   "notes": [],
+   "id": "x01",
+   "num": 1,
+   "extra": true,
+   "title": "Основы локальной генерации — железо, открытые модели и ComfyUI",
+   "isTool": true,
+   "term": "≈ 1–2 недели (по желанию)",
+   "notes": [
+    "Этот блок не входит в основную программу. Возвращайтесь к нему, когда появится видеокарта NVIDIA с 12–24 ГБ видеопамяти или бюджет на аренду облачного GPU. Всё, что нужно для работы, основная программа закрывает облачными сервисами."
+   ],
    "sections": [
     {
-     "id": "s41-cycle",
-     "key": "cycle",
-     "title": "Полный цикл проекта",
+     "id": "x01-topics",
+     "key": "topics",
+     "title": "Темы",
      "items": [
       {
-       "id": "s41-cycle-01",
-       "text": "Brief — техническое задание."
+       "id": "x01-topics-01",
+       "text": "Open-source / Open-weight models — открытые модели, которые можно запускать на своём компьютере"
       },
       {
-       "id": "s41-cycle-02",
-       "text": "Estimate — смета и план производства."
+       "id": "x01-topics-02",
+       "text": "Local vs Cloud generation — локальная и облачная генерация"
       },
       {
-       "id": "s41-cycle-03",
-       "text": "Research — исследование."
+       "id": "x01-topics-03",
+       "text": "GPU, VRAM — видеокарта и её видеопамять (главный ресурс для локальной генерации)"
       },
       {
-       "id": "s41-cycle-04",
-       "text": "Target audience — целевая аудитория."
+       "id": "x01-topics-04",
+       "text": "Diffusion basics — как работает диффузия: шум → изображение"
       },
       {
-       "id": "s41-cycle-05",
-       "text": "Insight — ключевое наблюдение о потребителе."
+       "id": "x01-topics-05",
+       "text": "Node-based workflow — нодовый рабочий процесс"
       },
       {
-       "id": "s41-cycle-06",
-       "text": "Big idea — главная рекламная идея."
+       "id": "x01-topics-06",
+       "text": "Checkpoint / Base model — базовая модель"
       },
       {
-       "id": "s41-cycle-07",
-       "text": "Concept — концепция."
+       "id": "x01-topics-07",
+       "text": "Sampler / Scheduler — сэмплер и планировщик шума"
       },
       {
-       "id": "s41-cycle-08",
-       "text": "Script — сценарий."
+       "id": "x01-topics-08",
+       "text": "Steps — шаги генерации"
       },
       {
-       "id": "s41-cycle-09",
-       "text": "Treatment — режиссёрское описание."
+       "id": "x01-topics-09",
+       "text": "CFG / Guidance — сила следования промпту"
       },
       {
-       "id": "s41-cycle-10",
-       "text": "Moodboard — доска визуального настроения."
+       "id": "x01-topics-10",
+       "text": "Image-to-image — генерация на основе изображения"
       },
       {
-       "id": "s41-cycle-11",
-       "text": "Storyboard — раскадровка."
+       "id": "x01-topics-11",
+       "text": "Denoise strength — сила изменения исходника"
       },
       {
-       "id": "s41-cycle-12",
-       "text": "Animatic — аниматик."
+       "id": "x01-topics-12",
+       "text": "Custom nodes — пользовательские ноды"
       },
       {
-       "id": "s41-cycle-13",
-       "text": "Shot list — список кадров."
-      },
-      {
-       "id": "s41-cycle-14",
-       "text": "Styleframes — ключевые стилистические кадры."
-      },
-      {
-       "id": "s41-cycle-15",
-       "text": "Asset preparation — подготовка ассетов: листы персонажей, LoRA, 3D-модель продукта."
-      },
-      {
-       "id": "s41-cycle-16",
-       "text": "Image generation — генерация ключевых кадров."
-      },
-      {
-       "id": "s41-cycle-17",
-       "text": "Video generation — анимация кадров."
-      },
-      {
-       "id": "s41-cycle-18",
-       "text": "Selects — отбор лучших материалов."
-      },
-      {
-       "id": "s41-cycle-19",
-       "text": "Editing — монтаж."
-      },
-      {
-       "id": "s41-cycle-20",
-       "text": "Client review — согласование с клиентом."
-      },
-      {
-       "id": "s41-cycle-21",
-       "text": "Upscale & Conform — апскейл и чистовая сборка."
-      },
-      {
-       "id": "s41-cycle-22",
-       "text": "VFX, Visual Effects — визуальные эффекты."
-      },
-      {
-       "id": "s41-cycle-23",
-       "text": "Sound design — звуковое оформление."
-      },
-      {
-       "id": "s41-cycle-24",
-       "text": "Voice & Music — голос и музыка."
-      },
-      {
-       "id": "s41-cycle-25",
-       "text": "Mixing — сведение звука."
-      },
-      {
-       "id": "s41-cycle-26",
-       "text": "Color grading — художественная работа с цветом."
-      },
-      {
-       "id": "s41-cycle-27",
-       "text": "Typography & Motion graphics — типографика и графика."
-      },
-      {
-       "id": "s41-cycle-28",
-       "text": "Versions — адаптация под форматы и хронометражи."
-      },
-      {
-       "id": "s41-cycle-29",
-       "text": "QC — контроль качества."
-      },
-      {
-       "id": "s41-cycle-30",
-       "text": "Legal check — юридическая проверка."
-      },
-      {
-       "id": "s41-cycle-31",
-       "text": "Export & Delivery — финальный вывод и передача материалов."
-      },
-      {
-       "id": "s41-cycle-32",
-       "text": "Case study — разбор проекта для портфолио."
+       "id": "x01-topics-13",
+       "text": "Workflow sharing — обмен воркфлоу (файлы JSON)"
       }
      ]
     },
     {
-     "id": "s41-tasks",
-     "key": "tasks",
-     "title": "Задание",
+     "id": "x01-tools",
+     "key": "tools",
+     "title": "Инструменты",
      "items": [
       {
-       "id": "s41-tasks-01",
-       "text": "Сделать минимум 6 законченных реклам: парфюм, автомобиль, часы, спортивный бренд, напиток, технологический продукт."
+       "id": "x01-tools-01",
+       "text": "Железо — видеокарта NVIDIA с 12–24 ГБ видеопамяти или аренда облачного GPU (RunPod и аналоги)"
       },
       {
-       "id": "s41-tasks-02",
-       "text": "Для каждой рекламы подготовить версии 9:16, 16:9 и 4:5 и хронометражи 6, 15 и 30 секунд."
+       "id": "x01-tools-02",
+       "text": "ComfyUI — локально или в облаке (Comfy Cloud, RunComfy, RunPod)"
       },
       {
-       "id": "s41-tasks-03",
-       "text": "Минимум один проект выполнить в гибридном пайплайне: 3D + ComfyUI / LoRA + платформы генерации."
+       "id": "x01-tools-03",
+       "text": "ComfyUI Manager — установка нод и моделей"
       },
       {
-       "id": "s41-tasks-04",
-       "text": "По каждому проекту вести учёт времени и расходов на кредиты."
+       "id": "x01-tools-04",
+       "text": "Модели для изображений — FLUX, Qwen-Image, SDXL"
       },
       {
-       "id": "s41-tasks-05",
-       "text": "По каждому проекту подготовить полный пакет сдачи и кейс для портфолио."
+       "id": "x01-tools-05",
+       "text": "Civitai, Hugging Face — библиотеки моделей и LoRA (обязательно проверять лицензию)"
+      }
+     ]
+    },
+    {
+     "id": "x01-tasks",
+     "key": "tasks",
+     "title": "Задания",
+     "items": [
+      {
+       "id": "x01-tasks-01",
+       "text": "Установить ComfyUI и собрать базовый воркфлоу text-to-image с нуля."
+      },
+      {
+       "id": "x01-tasks-02",
+       "text": "Собрать воркфлоу image-to-image и inpainting."
+      },
+      {
+       "id": "x01-tasks-03",
+       "text": "Сохранить 5 собственных воркфлоу как шаблоны."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "x02",
+   "num": 2,
+   "extra": true,
+   "title": "ControlNet и обучение LoRA",
+   "isTool": true,
+   "term": "≈ 1–2 недели (по желанию)",
+   "notes": [],
+   "sections": [
+    {
+     "id": "x02-topics",
+     "key": "topics",
+     "title": "Темы",
+     "items": [
+      {
+       "id": "x02-topics-01",
+       "text": "ControlNet — управление генерацией через карты (поза, глубина, контуры)"
+      },
+      {
+       "id": "x02-topics-02",
+       "text": "Depth map — карта глубины"
+      },
+      {
+       "id": "x02-topics-03",
+       "text": "Canny / Lineart — карта контуров"
+      },
+      {
+       "id": "x02-topics-04",
+       "text": "OpenPose — скелет позы"
+      },
+      {
+       "id": "x02-topics-05",
+       "text": "IP-Adapter — передача стиля и внешности по изображению"
+      },
+      {
+       "id": "x02-topics-06",
+       "text": "LoRA — дообучение модели под персонажа, продукт или стиль"
+      },
+      {
+       "id": "x02-topics-07",
+       "text": "Product LoRA — LoRA продукта для точной формы и этикетки"
+      },
+      {
+       "id": "x02-topics-08",
+       "text": "Dataset — датасет для обучения"
+      },
+      {
+       "id": "x02-topics-09",
+       "text": "Captioning — подписи к изображениям датасета"
+      },
+      {
+       "id": "x02-topics-10",
+       "text": "Trigger word — слово-активатор LoRA"
+      },
+      {
+       "id": "x02-topics-11",
+       "text": "Overfitting — переобучение"
+      }
+     ]
+    },
+    {
+     "id": "x02-tools",
+     "key": "tools",
+     "title": "Инструменты",
+     "items": [
+      {
+       "id": "x02-tools-01",
+       "text": "Обучение LoRA — AI Toolkit (Ostris), kohya_ss, FluxGym; облачно — fal.ai, Replicate, Civitai"
+      }
+     ]
+    },
+    {
+     "id": "x02-tasks",
+     "key": "tasks",
+     "title": "Задания",
+     "items": [
+      {
+       "id": "x02-tasks-01",
+       "text": "Сгенерировать 10 кадров с ControlNet: поза, глубина, контуры."
+      },
+      {
+       "id": "x02-tasks-02",
+       "text": "Собрать датасет из 20–30 изображений и обучить LoRA персонажа."
+      },
+      {
+       "id": "x02-tasks-03",
+       "text": "Обучить LoRA продукта (бутылка, часы или кроссовки) и сделать с ней 20 кадров."
+      },
+      {
+       "id": "x02-tasks-04",
+       "text": "Обучить LoRA стиля бренда."
+      },
+      {
+       "id": "x02-tasks-05",
+       "text": "Вывести из Blender проходы глубины и контуров и использовать их как карты ControlNet."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "x03",
+   "num": 3,
+   "extra": true,
+   "title": "Открытые видеомодели и локальный пайплайн",
+   "isTool": true,
+   "term": "≈ 1–2 недели (по желанию)",
+   "notes": [],
+   "sections": [
+    {
+     "id": "x03-tools",
+     "key": "tools",
+     "title": "Инструменты",
+     "items": [
+      {
+       "id": "x03-tools-01",
+       "text": "Wan, LTX-Video, HunyuanVideo — открытые видеомодели: локально через ComfyUI, с LoRA и ControlNet"
+      },
+      {
+       "id": "x03-tools-02",
+       "text": "Wan Animate — перенос движения и замена персонажа (open source)"
+      },
+      {
+       "id": "x03-tools-03",
+       "text": "Wan VACE — open-source редактирование видео в ComfyUI"
+      },
+      {
+       "id": "x03-tools-04",
+       "text": "SeedVR2, RIFE — open-source апскейл и интерполяция в ComfyUI"
+      },
+      {
+       "id": "x03-tools-05",
+       "text": "ComfyUI API — пакетный запуск собственных воркфлоу"
+      }
+     ]
+    },
+    {
+     "id": "x03-tasks",
+     "key": "tasks",
+     "title": "Задания",
+     "items": [
+      {
+       "id": "x03-tasks-01",
+       "text": "Запустить видеомодель локально в ComfyUI (Wan или LTX) и сделать 5 клипов."
+      },
+      {
+       "id": "x03-tasks-02",
+       "text": "Заменить персонажа на видео через Wan Animate и отредактировать клип через Wan VACE."
+      },
+      {
+       "id": "x03-tasks-03",
+       "text": "Сделать один проект в гибридном пайплайне: 3D + ComfyUI / LoRA + платформы генерации."
       }
      ]
     }
@@ -5649,7 +5780,6 @@ window.ROADMAP = {
   "Художественное руководство.",
   "Препродакшн: раскадровка, аниматик, шот-лист, смета.",
   "Генерация изображений и выбор модели под задачу.",
-  "ComfyUI, ControlNet и обучение LoRA.",
   "3D-основа и гибридные пайплайны.",
   "Генерация видео и работа с видеоплатформами.",
   "Цифровые персонажи, липсинк и перенос движения.",

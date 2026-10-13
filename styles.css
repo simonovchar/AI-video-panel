@@ -360,3 +360,8 @@ h2 { font-size: 18px; margin: 0; }
   .sec-head { padding: 12px 14px; }
   .sec-head .mini { display: none; }
 }
+
+/* ---------- Дополнительный блок (по желанию) ---------- */
+.block-group.extra { margin-top: 22px; padding-top: 14px; border-top: 1px dashed var(--border); }
+.block.extra { border-style: dashed; box-shadow: none; background: transparent; }
+.tag.extra { background: var(--accent-soft); color: var(--accent); }

@@ -1,6 +1,6 @@
 """Собирает roadmap.js из .docx файла roadmap.
 
-Запуск:  python3 tools/build_roadmap.py "../AI_video_roadmap_RU_v2.docx"
+Запуск:  python3 tools/build_roadmap.py "../AI_video_roadmap_RU_v3.docx"
 """
 import html
 import json
@@ -40,17 +40,19 @@ def build(docx_path):
             data["title"] = text
         elif style == "Heading1":
             h1, section, stage = text, None, None
-            m = re.match(r"Этап (\d+)\. (.+)", text)
+            m = re.match(r"(Доп\. )?[Ээ]тап (\d+)\. (.+)", text)
             if m:
-                num = int(m.group(1))
-                title = m.group(2)
+                extra = bool(m.group(1))
+                num = int(m.group(2))
+                title = m.group(3)
                 is_tool = title.startswith("Инструменты:")
                 if is_tool:
                     title = title.removeprefix("Инструменты:").strip()
                     title = title[0].upper() + title[1:]
                 stage = {
-                    "id": f"s{num:02d}",
+                    "id": f"{'x' if extra else 's'}{num:02d}",
                     "num": num,
+                    "extra": extra,
                     "title": title,
                     "isTool": is_tool,
                     "term": "",
@@ -82,6 +84,17 @@ def build(docx_path):
                         "from": first,
                         "to": int(m.group(4) or first),
                         "weeks": m.group(5),
+                        "extra": False,
+                    })
+                m = re.match(r"Дополнительный блок\. (.+?) — доп\. этапы (\d+)–(\d+) \((.+?)\)", text)
+                if m:
+                    data["blocks"].append({
+                        "num": 0,
+                        "title": m.group(1),
+                        "from": int(m.group(2)),
+                        "to": int(m.group(3)),
+                        "weeks": m.group(4),
+                        "extra": True,
                     })
             elif h1 == "Итоговые навыки":
                 data["skills"].append(text)
@@ -103,7 +116,7 @@ def build(docx_path):
 
 
 if __name__ == "__main__":
-    src = Path(sys.argv[1] if len(sys.argv) > 1 else "../AI_video_roadmap_RU_v2.docx")
+    src = Path(sys.argv[1] if len(sys.argv) > 1 else "../AI_video_roadmap_RU_v3.docx")
     out = Path(__file__).resolve().parent.parent / "roadmap.js"
     data = build(src)
     out.write_text("// Сгенерировано tools/build_roadmap.py — не редактировать вручную.\nwindow.ROADMAP = "

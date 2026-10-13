@@ -20,8 +20,15 @@
   }
   const stageById = new Map(R.stages.map((s) => [s.id, s]));
   const stageItems = (stage) => stage.sections.flatMap((s) => s.items);
-  const blockOf = (stage) => R.blocks.find((b) => stage.num >= b.from && stage.num <= b.to);
-  const allTaskItems = R.stages.flatMap((st) => st.sections.filter((s) => s.key === "tasks").flatMap((s) => s.items));
+  // Доп. блок (локальная генерация) идёт по желанию и не входит в общий прогресс программы
+  const mainStages = R.stages.filter((s) => !s.extra);
+  const mainItems = mainStages.flatMap(stageItems);
+  const stagesOf = (b) => R.stages.filter((s) => Boolean(s.extra) === Boolean(b.extra) && s.num >= b.from && s.num <= b.to);
+  const blockOf = (stage) => R.blocks.find((b) => stagesOf(b).includes(stage));
+  const blockLabel = (b) => (b.extra ? "Доп. блок" : `Блок ${b.num}`);
+  const stageLabel = (s) => (s.extra ? `Доп. этап ${s.num}` : `Этап ${s.num}`);
+  const stageShort = (s) => (s.extra ? `Д${s.num}` : String(s.num));
+  const allTaskItems = mainStages.flatMap((st) => st.sections.filter((s) => s.key === "tasks").flatMap((s) => s.items));
 
   // ---------- Даты ----------
   const pad = (n) => String(n).padStart(2, "0");
@@ -159,12 +166,11 @@
   }
 
   function renderOverall() {
-    const items = [...itemIndex.values()];
-    const done = Object.keys(state.items).filter((id) => itemIndex.has(id)).length;
-    const pct = Math.round((done / items.length) * 100);
-    const stagesDone = R.stages.filter((s) => stageStats(s).complete).length;
+    const done = countDone(mainItems);
+    const pct = Math.round((done / mainItems.length) * 100);
+    const stagesDone = mainStages.filter((s) => stageStats(s).complete).length;
     $("#overall").innerHTML = `${bar(pct, pct === 100)}
-      <span class="overall-text"><b>${pct}%</b> · этапов <b>${stagesDone}/${R.stages.length}</b></span>`;
+      <span class="overall-text"><b>${pct}%</b> · этапов <b>${stagesDone}/${mainStages.length}</b></span>`;
   }
 
   function renderSidebar() {
@@ -180,14 +186,14 @@
     ).join("");
 
     $("#stage-nav").innerHTML = R.blocks.map((b) => {
-      const stages = R.stages.filter((s) => s.num >= b.from && s.num <= b.to);
+      const stages = stagesOf(b);
       const doneStages = stages.filter((s) => stageStats(s).complete).length;
-      return `<div class="block-group">
-        <div class="block-title"><span>Блок ${b.num}. ${esc(b.title)}</span><span>${doneStages}/${stages.length}</span></div>
+      return `<div class="block-group ${b.extra ? "extra" : ""}">
+        <div class="block-title"><span>${blockLabel(b)}. ${esc(b.title)}</span><span>${doneStages}/${stages.length}</span></div>
         ${stages.map((s) => {
           const st = stageStats(s);
           return `<a href="#/${s.id}" class="stage-link ${route.name === s.id ? "active" : ""}" title="${esc(s.title)}">
-            <span class="num ${stageClass(st)}">${st.complete ? "✓" : s.num}</span>
+            <span class="num ${stageClass(st)}">${st.complete ? "✓" : stageShort(s)}</span>
             <span class="label">${esc(s.title)}</span>
             <span class="pct">${st.done ? st.pct + "%" : ""}</span>
           </a>`;
@@ -198,12 +204,12 @@
 
   // ---------- Страницы ----------
   function pageOverview() {
-    const total = itemIndex.size;
-    const done = Object.keys(state.items).filter((id) => itemIndex.has(id)).length;
-    const stagesDone = R.stages.filter((s) => stageStats(s).complete).length;
+    const total = mainItems.length;
+    const done = countDone(mainItems);
+    const stagesDone = mainStages.filter((s) => stageStats(s).complete).length;
     const tasksDone = countDone(allTaskItems);
     const today = checkedOn(dateKey(new Date())).length;
-    const current = R.stages.find((s) => !stageStats(s).complete);
+    const current = mainStages.find((s) => !stageStats(s).complete);
 
     let currentHtml = "";
     if (current) {
@@ -211,7 +217,7 @@
       currentHtml = `<div class="card current">
         <div class="info">
           <div class="eyebrow">Текущий этап · ${esc(current.term)}</div>
-          <h2>Этап ${current.num}. ${esc(current.title)}</h2>
+          <h2>${stageLabel(current)}. ${esc(current.title)}</h2>
           ${bar(st.pct)}
           <div class="muted" style="font-size:13px;margin-top:6px">${st.done} из ${st.total} пунктов</div>
         </div>
@@ -245,7 +251,7 @@
       <div class="eyebrow">${esc(R.subtitle)}</div>
       <h1>${esc(R.title.replace(/^ROADMAP:\s*/, ""))}</h1>
       <div class="stats">
-        <div class="card stat"><div class="value">${stagesDone}<small> / ${R.stages.length}</small></div><div class="label">этапов пройдено</div></div>
+        <div class="card stat"><div class="value">${stagesDone}<small> / ${mainStages.length}</small></div><div class="label">этапов пройдено</div></div>
         <div class="card stat"><div class="value">${tasksDone}<small> / ${allTaskItems.length}</small></div><div class="label">заданий выполнено</div></div>
         <div class="card stat"><div class="value">${done}<small> / ${total}</small></div><div class="label">всего пунктов отмечено</div></div>
         <div class="card stat"><div class="value">${today}</div><div class="label">отмечено сегодня</div></div>
@@ -258,19 +264,19 @@
       <div class="section-title"><h2>Блоки программы</h2></div>
       <div class="blocks">
         ${R.blocks.map((b) => {
-          const stages = R.stages.filter((s) => s.num >= b.from && s.num <= b.to);
+          const stages = stagesOf(b);
           const items = stages.flatMap(stageItems);
           const d = countDone(items);
           const pct = Math.round((d / items.length) * 100);
-          return `<div class="card block">
+          return `<div class="card block ${b.extra ? "extra" : ""}">
             <div class="block-head">
-              <div><div class="eyebrow">Блок ${b.num} · ${esc(b.weeks)}</div><h3>${esc(b.title)}</h3></div>
+              <div><div class="eyebrow">${blockLabel(b)} · ${esc(b.weeks)}</div><h3>${esc(b.title)}</h3></div>
               <div class="pct-big">${pct}%</div>
             </div>
             ${bar(pct, pct === 100)}
             <div class="chips">${stages.map((s) => {
               const st = stageStats(s);
-              return `<a class="chip ${stageClass(st)}" href="#/${s.id}" title="Этап ${s.num}. ${esc(s.title)} — ${st.pct}%">${s.num}</a>`;
+              return `<a class="chip ${stageClass(st)}" href="#/${s.id}" title="${stageLabel(s)}. ${esc(s.title)} — ${st.pct}%">${stageShort(s)}</a>`;
             }).join("")}</div>
           </div>`;
         }).join("")}
@@ -307,12 +313,13 @@
     return `
       <div class="stage-head">
         <div class="tags">
-          <span class="tag">Блок ${block.num}. ${esc(block.title)}</span>
+          <span class="tag">${blockLabel(block)}. ${esc(block.title)}</span>
+          ${stage.extra ? `<span class="tag extra">По желанию · не входит в общий прогресс</span>` : ""}
           <span class="tag">${esc(stage.term)}</span>
           ${stage.isTool ? `<span class="tag tool">Инструменты</span>` : ""}
           ${st.complete ? `<span class="tag done">Этап пройден</span>` : ""}
         </div>
-        <h1>Этап ${stage.num}. ${esc(stage.title)}</h1>
+        <h1>${stageLabel(stage)}. ${esc(stage.title)}</h1>
         <div class="stage-progress">
           ${bar(st.pct, st.complete)}
           <span class="txt">${st.done} из ${st.total} · ${st.pct}%</span>
@@ -331,8 +338,8 @@
         <textarea id="stage-notes" data-stage="${stage.id}" placeholder="Ссылки на работы, выводы, что получилось и что нет…">${esc(state.notes[stage.id] || "")}</textarea>
       </div>
       <div class="pager">
-        ${prev ? `<a href="#/${prev.id}"><span class="btn">← ${prev.num}. ${esc(prev.title)}</span></a>` : "<span></span>"}
-        ${next ? `<a href="#/${next.id}"><span class="btn">${next.num}. ${esc(next.title)} →</span></a>` : "<span></span>"}
+        ${prev ? `<a href="#/${prev.id}"><span class="btn">← ${stageShort(prev)}. ${esc(prev.title)}</span></a>` : "<span></span>"}
+        ${next ? `<a href="#/${next.id}"><span class="btn">${stageShort(next)}. ${esc(next.title)} →</span></a>` : "<span></span>"}
       </div>`;
   }
 
@@ -350,7 +357,7 @@
     const list = ids.length
       ? [...byStage.entries()].sort((a, b) => a[0].localeCompare(b[0])).map(([sid, entries]) => {
           const stage = stageById.get(sid);
-          return `<div class="group-title"><a href="#/${sid}">Этап ${stage.num}. ${esc(stage.title)}</a></div>
+          return `<div class="group-title"><a href="#/${sid}">${stageLabel(stage)}. ${esc(stage.title)}</a></div>
             <ul class="items">${entries.map((e) => itemHtml(e.item, { where: e.section.title })).join("")}</ul>`;
         }).join("")
       : `<div class="empty">${isToday ? "Сегодня пока ничего не отмечено. Откройте текущий этап и отметьте, что сделали." : "В этот день ничего не отмечено."}</div>`;
@@ -421,7 +428,7 @@
       <h1>«${esc(q)}»</h1>
       <p class="muted">Найдено: ${hits.length}${hits.length === 300 ? "+" : ""}</p>
       <section class="card sec"><div class="sec-body">${hits.length
-        ? `<ul class="items">${hits.map((e) => itemHtml(e.item, { where: `Этап ${e.stage.num}. ${e.stage.title} · ${e.section.title}` })).join("")}</ul>`
+        ? `<ul class="items">${hits.map((e) => itemHtml(e.item, { where: `${stageLabel(e.stage)}. ${e.stage.title} · ${e.section.title}` })).join("")}</ul>`
         : `<div class="empty">Ничего не найдено</div>`}</div></section>`;
   }
 
@@ -490,7 +497,7 @@
       const stage = stageById.get(stageToggle.dataset.stageToggle);
       const st = stageStats(stage);
       if (st.complete) {
-        if (!confirm(`Снять все отметки с этапа ${stage.num}?`)) return;
+        if (!confirm(`Снять все отметки: ${stageLabel(stage)}?`)) return;
         setChecked(stageItems(stage).map((it) => it.id), false);
       } else {
         setChecked(stageItems(stage).map((it) => it.id), true);
