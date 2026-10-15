@@ -60,7 +60,7 @@
   // ---------- Состояние ----------
   let state = { version: 1, items: {}, periodic: {}, notes: {} };
   let mode = "server";
-  let ui = { hideChecked: false, collapsed: {}, theme: "" };
+  let ui = { hideChecked: false, collapsed: {} };
   let searchQuery = "";
 
   try { Object.assign(ui, JSON.parse(localStorage.getItem(LS_UI) || "{}")); } catch { /* приватный режим */ }
@@ -75,7 +75,7 @@
 
   async function load() {
     try {
-      const r = await fetch("/api/progress", { cache: "no-store" });
+      const r = await fetch("/api/store/progress", { cache: "no-store" });
       if (!r.ok) throw new Error(r.status);
       state = normalize(await r.json());
       setStatus("Сохранено в data/progress.json");
@@ -101,7 +101,7 @@
     try { localStorage.setItem(LS_PROGRESS, JSON.stringify(state)); } catch { /* ignore */ }
     if (mode === "local") return setStatus("Сохранено в браузере");
     try {
-      const r = await fetch("/api/progress", {
+      const r = await fetch("/api/store/progress", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(state),
@@ -555,17 +555,8 @@
 
   $("#menu-btn").addEventListener("click", () => $("#sidebar").classList.toggle("open"));
 
-  // Тема
-  function applyTheme() {
-    if (ui.theme) document.documentElement.dataset.theme = ui.theme;
-    else delete document.documentElement.dataset.theme;
-  }
-  $("#theme-btn").addEventListener("click", () => {
-    const dark = ui.theme ? ui.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
-    ui.theme = dark ? "light" : "dark";
-    saveUi();
-    applyTheme();
-  });
+  // Тема общая для всех панелей — shared/theme.js
+  $("#theme-btn").addEventListener("click", () => window.PanelTheme.toggle());
 
   // Экспорт / импорт
   $("#export-btn").addEventListener("click", () => {
@@ -592,6 +583,5 @@
     }
   });
 
-  applyTheme();
   load().then(render);
 })();

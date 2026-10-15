@@ -1,0 +1,5 @@
+.panel-head { display: flex; align-items: center; gap: 16px; padding: 30px 0 24px; }
+.panel-head h1 { margin: 2px 0 0; }
+.empty-state { padding: 48px 28px; text-align: center; border-style: dashed; box-shadow: none; }
+.empty-state h2 { margin: 0 0 6px; font-size: 18px; }
+.empty-state p { margin: 0 auto; max-width: 460px; color: var(--muted); }

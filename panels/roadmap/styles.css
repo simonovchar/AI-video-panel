@@ -365,3 +365,12 @@ h2 { font-size: 18px; margin: 0; }
 .block-group.extra { margin-top: 22px; padding-top: 14px; border-top: 1px dashed var(--border); }
 .block.extra { border-style: dashed; box-shadow: none; background: transparent; }
 .tag.extra { background: var(--accent-soft); color: var(--accent); }
+
+/* ---------- Возврат на главный экран ---------- */
+.back-link {
+  display: inline-block;
+  margin: 0 6px 14px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.back-link:hover { color: var(--accent); }

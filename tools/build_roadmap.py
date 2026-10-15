@@ -117,7 +117,7 @@ def build(docx_path):
 
 if __name__ == "__main__":
     src = Path(sys.argv[1] if len(sys.argv) > 1 else "../AI_video_roadmap_RU_v3.docx")
-    out = Path(__file__).resolve().parent.parent / "roadmap.js"
+    out = Path(__file__).resolve().parent.parent / "panels" / "roadmap" / "roadmap.js"
     data = build(src)
     out.write_text("// Сгенерировано tools/build_roadmap.py — не редактировать вручную.\nwindow.ROADMAP = "
                    + json.dumps(data, ensure_ascii=False, indent=1) + ";\n", encoding="utf-8")
