@@ -52,6 +52,47 @@
           <span>Сегодня отмечено: <b>${today}</b></span>
         </div>`;
     },
+    async university() {
+      const D = await fetch("/api/store/university", { cache: "no-store" }).then((r) => r.json());
+      const { toDate, shortDate, relative, plural } = window.U;
+      const open = (D.tasks || []).filter((t) => !t.done);
+      if (!D.subjects?.length) return null;
+      const due = (t) => toDate(t.deadline, t.deadlineTime || "23:59");
+      const withDeadline = open.filter((t) => t.deadline).sort((a, b) => due(a) - due(b));
+      const overdue = withDeadline.filter((t) => due(t) < now).length;
+      const PRIO = { high: "высокий", medium: "средний", low: "низкий" };
+      const next = withDeadline.filter((t) => due(t) >= now).slice(0, 2);
+      return `
+        <div class="tile-stat"><b>${open.length}</b><span>${plural(open.length, "открытое задание", "открытых задания", "открытых заданий")}</span>
+          ${overdue ? `<span class="tile-alert">просрочено: ${overdue}</span>` : ""}</div>
+        <div class="tile-list">${next.length ? next.map((t) => `
+          <div class="tile-item prio-${t.priority}"><span>${esc(t.title)}</span><small>${shortDate(t.deadline)} · ${relative(t.deadline)} · ${PRIO[t.priority]}</small></div>`).join("")
+          : `<div class="tile-item"><small>Ближайших дедлайнов нет</small></div>`}</div>`;
+    },
+    async tutoring() {
+      const D = await fetch("/api/store/tutoring", { cache: "no-store" }).then((r) => r.json());
+      const { toDate, shortDate, relative, plural } = window.U;
+      if (!D.schools?.length) return null;
+      const end = (l) => new Date(+toDate(l.date, l.time) + (Number(l.duration) || 60) * 60_000);
+      const pending = (D.lessons || []).filter((l) => !l.conducted);
+      const up = pending.filter((l) => end(l) >= now).sort((a, b) => toDate(a.date, a.time) - toDate(b.date, b.time));
+      const late = pending.length - up.length;
+      const week = up.filter((l) => window.U.daysFromToday(l.date) <= 7).length;
+      const next = up[0];
+      let nextHtml = `<div class="tile-item"><small>Предстоящих занятий нет</small></div>`;
+      if (next) {
+        const subject = D.subjects.find((s) => s.id === next.subjectId);
+        const school = D.schools.find((s) => s.id === subject.schoolId);
+        const done = next.tasks.filter((t) => t.done).length;
+        const ready = done === next.tasks.length ? "готов к проведению" : `подготовка ${done}/${next.tasks.length}`;
+        nextHtml = `<div class="tile-item"><span>${esc(school.name)} · ${esc(subject.name)}</span>
+          <small>${shortDate(next.date)}, ${next.time} · ${relative(next.date)} · ${next.tasks.length ? ready : "заданий нет"}</small></div>`;
+      }
+      return `
+        <div class="tile-stat"><b>${week}</b><span>${plural(week, "занятие", "занятия", "занятий")} за 7 дней</span>
+          ${late ? `<span class="tile-alert">не отмечено: ${late}</span>` : ""}</div>
+        <div class="tile-list"><div class="tile-label">Ближайшее занятие</div>${nextHtml}</div>`;
+    },
   };
 
   function loadScript(src) {
@@ -66,7 +107,7 @@
 
   for (const [id, fn] of Object.entries(summaries)) {
     const el = document.querySelector(`[data-panel="${id}"] [data-summary]`);
-    fn().then((html) => { el.innerHTML = html; }).catch(() => { /* оставляем описание */ });
+    fn().then((html) => { if (html) el.innerHTML = html; }).catch(() => { /* оставляем описание */ });
   }
 
   $("#theme-btn").addEventListener("click", () => window.PanelTheme.toggle());

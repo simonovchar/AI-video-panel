@@ -1,0 +1,60 @@
+/* ---------- Карточка занятия ---------- */
+.lessons { display: grid; gap: 12px; }
+.lesson { display: flex; gap: 18px; padding: 16px 18px; border-left: 4px solid var(--school, var(--border)); }
+.lesson.status-done { opacity: .75; }
+.lesson-time { width: 64px; flex-shrink: 0; display: flex; flex-direction: column; }
+.lesson-time b { font-size: 20px; letter-spacing: -.02em; }
+.lesson-time span { font-size: 13px; color: var(--muted); }
+.lesson-time .now { color: var(--c); font-weight: 700; font-size: 12px; margin-top: 4px; }
+.lesson-body { flex: 1; min-width: 0; }
+.lesson-head { display: flex; align-items: flex-start; gap: 10px; }
+.lesson-head > div { flex: 1; min-width: 0; }
+.lesson-title { font-weight: 600; font-size: 15.5px; }
+.lesson-title .school-name { color: var(--muted); font-weight: 500; }
+.lesson-topic { font-size: 14px; color: var(--muted); margin-top: 2px; overflow-wrap: anywhere; }
+
+.badge {
+  font-size: 12px; font-weight: 700;
+  padding: 3px 10px; border-radius: 99px; white-space: nowrap;
+  background: var(--panel-2); color: var(--muted);
+}
+.badge.is-prep { background: color-mix(in srgb, var(--warn) 16%, transparent); color: var(--warn); }
+.badge.is-ready { background: color-mix(in srgb, var(--ok) 16%, transparent); color: var(--ok); }
+.badge.is-done { background: var(--ok); color: #fff; }
+.badge.is-late { background: color-mix(in srgb, var(--danger) 14%, transparent); color: var(--danger); }
+
+.prep { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 2px; }
+.prep-item { display: flex; align-items: flex-start; gap: 10px; padding: 5px 6px; border-radius: 8px; cursor: pointer; font-size: 14.5px; }
+.prep-item:hover { background: var(--panel-2); }
+.prep-item.done span { color: var(--muted); text-decoration: line-through; }
+.prep-item span { flex: 1; overflow-wrap: anywhere; }
+.prep-item .x {
+  border: 0; background: none; color: var(--muted); cursor: pointer;
+  font-size: 16px; line-height: 1; padding: 2px 4px; border-radius: 6px; opacity: 0;
+}
+.prep-item:hover .x { opacity: 1; }
+.prep-item .x:hover { color: var(--danger); background: var(--panel); }
+@media (hover: none) { .prep-item .x { opacity: 1; } }
+
+.prep-add { margin-top: 6px; }
+.prep-add .inline-input { padding: 6px 10px; font-size: 14px; background: transparent; border-style: dashed; }
+
+.lesson-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+
+/* ---------- Школы ---------- */
+.schools { display: grid; gap: 16px; }
+.school { padding: 18px; border-top: 4px solid var(--school); }
+.school-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+.school-head h3 { margin: 0; font-size: 18px; flex: 1; min-width: 0; }
+.subject-row { display: flex; align-items: center; gap: 12px; padding: 10px 8px; border-radius: 10px; }
+.subject-row + .subject-row { border-top: 1px solid var(--border); }
+.subject-row:hover { background: var(--panel-2); }
+.subject-row a { flex: 1; min-width: 0; }
+.subject-row .name { font-weight: 600; }
+.subject-row .meta { font-size: 13px; color: var(--muted); }
+
+@media (max-width: 520px) {
+  .lesson { flex-direction: column; gap: 8px; }
+  .lesson-time { flex-direction: row; gap: 6px; align-items: baseline; width: auto; }
+  .lesson-time .now { margin: 0 0 0 6px; }
+}

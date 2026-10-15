@@ -3,24 +3,33 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Личная панель</title>
+  <title>Университет — Личная панель</title>
   <script src="/shared/theme.js"></script>
   <link rel="stylesheet" href="/shared/base.css">
-  <link rel="stylesheet" href="/shared/stub.css">
+  <link rel="stylesheet" href="/shared/panel.css">
+  <link rel="stylesheet" href="/shared/app.css">
 </head>
 <body data-panel="university">
-  <div class="page">
+  <div class="page wide">
     <header class="topbar">
       <a class="back-link" href="/">← Все панели</a>
-      <button class="icon-btn" id="theme-btn" aria-label="Сменить тему">◐</button>
+      <div class="topbar-right">
+        <span class="save-status" id="save-status"></span>
+        <button class="icon-btn" id="theme-btn" aria-label="Сменить тему">◐</button>
+      </div>
     </header>
-    <section class="panel-head" id="panel-head"></section>
-    <section class="card empty-state">
-      <h2>Панель создана</h2>
-      <p>Здесь пока пусто. Что именно отслеживать в этой панели, обсудим и добавим следующим шагом.</p>
+    <section class="panel-head" id="panel-head">
+      <button class="btn primary" id="add-task-btn">+ Задание</button>
     </section>
+    <div class="app">
+      <nav class="side" id="side"></nav>
+      <main class="main" id="main"></main>
+    </div>
   </div>
   <script src="/shared/panels.js"></script>
-  <script src="/shared/stub.js"></script>
+  <script src="/shared/panel.js"></script>
+  <script src="/shared/util.js"></script>
+  <script src="/shared/store.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>

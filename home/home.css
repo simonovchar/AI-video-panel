@@ -45,3 +45,17 @@
 .tile-meta { display: flex; flex-direction: column; gap: 2px; margin-top: 10px; font-size: 13px; color: var(--muted); }
 .tile-meta span:first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .tile-meta b { color: var(--text); }
+
+.tile-alert {
+  margin-left: auto; font-size: 12px; font-weight: 700;
+  padding: 2px 8px; border-radius: 99px;
+  color: #dc2626; background: color-mix(in srgb, #dc2626 14%, transparent);
+}
+.tile-list { display: flex; flex-direction: column; gap: 8px; }
+.tile-label { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; font-weight: 700; color: var(--muted); }
+.tile-item { display: flex; flex-direction: column; padding-left: 10px; border-left: 3px solid var(--border); min-width: 0; }
+.tile-item span { font-size: 14px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tile-item small { font-size: 12.5px; color: var(--muted); }
+.tile-item.prio-high { border-left-color: #dc2626; }
+.tile-item.prio-medium { border-left-color: #d97706; }
+.tile-item.prio-low { border-left-color: #94a3b8; }

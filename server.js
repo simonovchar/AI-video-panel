@@ -11,7 +11,7 @@ const path = require("path");
 const { exec } = require("child_process");
 
 const ROOT = __dirname;
-const DATA_DIR = path.join(ROOT, "data");
+const DATA_DIR = process.env.DATA_DIR ? path.resolve(process.env.DATA_DIR) : path.join(ROOT, "data");
 const PANELS_DIR = path.join(ROOT, "panels");
 const START_PORT = Number(process.env.PORT) || 4321;
 const TYPES = {
