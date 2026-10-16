@@ -1,22 +1,16 @@
-(() => {
+// Плитки панелей со сводками (вкладка «Все панели» на главной).
+window.renderTiles = (el) => {
   "use strict";
 
-  const MONTHS = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
-  const WEEKDAYS = ["воскресенье", "понедельник", "вторник", "среда", "четверг", "пятница", "суббота"];
-  const $ = (sel) => document.querySelector(sel);
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
   const sameDay = (a, b) => a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
 
-  // ---------- Приветствие ----------
   const now = new Date();
-  const h = now.getHours();
-  $("#greeting").textContent = h < 5 ? "Доброй ночи" : h < 12 ? "Доброе утро" : h < 18 ? "Добрый день" : "Добрый вечер";
-  $("#today").textContent = `${WEEKDAYS[now.getDay()]}, ${now.getDate()} ${MONTHS[now.getMonth()]}`;
 
   // ---------- Плитки ----------
   const icon = (p) => `<div class="panel-icon"><svg viewBox="0 0 24 24" aria-hidden="true">${p.icon}</svg></div>`;
 
-  $("#tiles").innerHTML = window.PANELS.map((p) => `
+  el.innerHTML = window.PANELS.map((p) => `
     <a class="card tile" href="/${p.id}/" style="--c:${p.color}" data-panel="${p.id}">
       <div class="tile-head">
         ${icon(p)}
@@ -142,6 +136,7 @@
   };
 
   function loadScript(src) {
+    if (src.endsWith("roadmap.js") && window.ROADMAP) return Promise.resolve();
     return new Promise((resolve, reject) => {
       const s = document.createElement("script");
       s.src = src;
@@ -152,9 +147,7 @@
   }
 
   for (const [id, fn] of Object.entries(summaries)) {
-    const el = document.querySelector(`[data-panel="${id}"] [data-summary]`);
-    fn().then((html) => { if (html) el.innerHTML = html; }).catch(() => { /* оставляем описание */ });
+    const box = el.querySelector(`[data-panel="${id}"] [data-summary]`);
+    fn().then((html) => { if (html) box.innerHTML = html; }).catch(() => { /* оставляем описание */ });
   }
-
-  $("#theme-btn").addEventListener("click", () => window.PanelTheme.toggle());
-})();
+};

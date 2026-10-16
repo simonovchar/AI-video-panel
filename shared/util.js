@@ -55,7 +55,7 @@ window.U = (() => {
   }
 
   // ---------- Диалог-форма ----------
-  // fields: [{ name, label, type: text|textarea|date|time|number|select|segmented, value, required,
+  // fields: [{ name, label, type: text|textarea|date|time|number|select|segmented|checkbox, value, required,
   //            options: [{ value, label, group?, color? }], suggestions: [строки для подсказок], placeholder, half, hint, min, max }]
   // Возвращает Promise: { action: "save", values } | { action: "delete" } | null (отмена)
   function formDialog({ title, fields, submit = "Сохранить", deleteLabel = "" }) {
@@ -78,6 +78,9 @@ window.U = (() => {
           const opt = (o) => `<option value="${esc(o.value)}" ${String(o.value) === String(f.value) ? "selected" : ""}>${esc(o.label)}</option>`;
           input = `<select id="${id}" name="${f.name}" ${req}>${[...groups].map(([g, os]) =>
             g ? `<optgroup label="${esc(g)}">${os.map(opt).join("")}</optgroup>` : os.map(opt).join("")).join("")}</select>`;
+        } else if (f.type === "checkbox") {
+          return `<div class="field ${f.half ? "half" : ""}"><label class="check-field">
+            <input type="checkbox" class="check" name="${f.name}" value="1" ${f.value ? "checked" : ""}> ${esc(f.label)}</label></div>`;
         } else if (f.type === "segmented") {
           input = `<div class="segmented">${f.options.map((o) => `
             <label style="--seg:${o.color || "var(--accent)"}"><input type="radio" name="${f.name}" value="${esc(o.value)}" ${o.value === f.value ? "checked" : ""}><span>${esc(o.label)}</span></label>`).join("")}</div>`;
@@ -115,7 +118,7 @@ window.U = (() => {
         const values = {};
         for (const f of fields) {
           const v = new FormData(form).get(f.name);
-          values[f.name] = typeof v === "string" ? v.trim() : v ?? "";
+          values[f.name] = f.type === "checkbox" ? v !== null : typeof v === "string" ? v.trim() : v ?? "";
         }
         finish({ action: "save", values });
       });

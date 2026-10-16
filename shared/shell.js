@@ -2,10 +2,11 @@
 // (по <body data-panel="...">), мобильное меню, переключатель темы и статус сохранения.
 (() => {
   const id = document.body.dataset.panel;
-  const p = window.PANELS.find((x) => x.id === id);
+  // На главной странице панели нет — бренд задаёт window.HUB_BRAND
+  const p = window.PANELS.find((x) => x.id === id) || window.HUB_BRAND;
   const $ = (sel) => document.querySelector(sel);
 
-  document.title = `${p.title} — Личная панель`;
+  document.title = id ? `${p.title} — Личная панель` : p.title;
   document.documentElement.style.setProperty("--c", p.color);
   $("#brand").innerHTML = `
     <div class="brand-mark"><svg viewBox="0 0 24 24" aria-hidden="true">${p.icon}</svg></div>

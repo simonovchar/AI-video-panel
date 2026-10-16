@@ -321,7 +321,7 @@ h2 { font-size: 18px; margin: 0; }
 .field.half { flex: 1 1 calc(50% - 7px); }
 .field label { font-size: 13px; font-weight: 600; color: var(--muted); }
 .field .hint { font-size: 13px; color: var(--muted); }
-.field input:not([type=radio]), .field textarea, .field select {
+.field input:not([type=radio]):not([type=checkbox]), .field textarea, .field select {
   width: 100%;
   padding: 9px 12px;
   border: 1px solid var(--border);
@@ -332,6 +332,7 @@ h2 { font-size: 18px; margin: 0; }
 }
 .field textarea { resize: vertical; }
 .field input:focus, .field textarea:focus, .field select:focus { border-color: var(--accent); }
+.check-field { display: inline-flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 500 !important; color: var(--text) !important; cursor: pointer; }
 .dialog-actions { display: flex; align-items: center; gap: 8px; margin-top: 22px; }
 .dialog-actions .spacer { flex: 1; }
 

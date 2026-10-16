@@ -5,30 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Личная панель</title>
   <script src="/shared/theme.js"></script>
-  <link rel="stylesheet" href="/shared/base.css">
+  <link rel="stylesheet" href="/shared/shell.css">
   <link rel="stylesheet" href="/home/home.css">
 </head>
 <body>
-  <div class="page">
-    <header class="topbar">
-      <div class="topbar-left">
-        <div class="brand-mark">◷</div>
-        <span class="brand-title">Личная панель</span>
-      </div>
-      <button class="icon-btn" id="theme-btn" aria-label="Сменить тему">◐</button>
-    </header>
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand" id="brand"></div>
+      <nav class="nav" id="nav"></nav>
+      <div class="block-group" id="side-list"></div>
+    </aside>
 
-    <section class="hero">
-      <div class="eyebrow" id="today"></div>
-      <h1 id="greeting">Привет!</h1>
-      <p class="lead">Контроль моего времени. Выберите панель, чтобы открыть её.</p>
-    </section>
-
-    <section class="tiles" id="tiles"></section>
+    <div class="main-wrap">
+      <header class="topbar">
+        <button class="icon-btn menu-btn" id="menu-btn" aria-label="Меню">☰</button>
+        <div class="overall" id="overall"></div>
+        <div class="topbar-actions">
+          <span class="save-status" id="save-status"></span>
+          <button class="btn primary" id="primary-btn">+ Задача</button>
+          <button class="icon-btn" id="theme-btn" aria-label="Сменить тему">◐</button>
+        </div>
+      </header>
+      <main class="main wide" id="main"></main>
+    </div>
   </div>
-
+  <script>
+    window.HUB_BRAND = {
+      title: "Личная панель",
+      subtitle: "Расписание и панели",
+      color: "#4f46e5",
+      icon: '<rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4M7.5 13.5h3M7.5 16.5h6"/>',
+    };
+  </script>
   <script src="/shared/panels.js"></script>
   <script src="/shared/util.js"></script>
-  <script src="/home/home.js"></script>
+  <script src="/shared/store.js"></script>
+  <script src="/shared/shell.js"></script>
+  <script src="/home/schedule-default.js"></script>
+  <script src="/home/tiles.js"></script>
+  <script src="/home/app.js"></script>
 </body>
 </html>
