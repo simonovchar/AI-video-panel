@@ -181,3 +181,5 @@
   .cal-toolbar h1 { font-size: 18px; flex-basis: 100%; order: -1; margin: 0 0 4px; }
   .cal-scroll { max-height: calc(100vh - 210px); }
 }
+.rm-tag { color: var(--accent); font-weight: 700; }
+.blk.rm { border-left-style: double; border-left-width: 4px; }

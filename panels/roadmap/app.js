@@ -142,6 +142,50 @@
   const checkedOn = (key) => [...itemIndex.keys()].filter((id) => state.items[id] && dateKey(new Date(state.items[id])) === key);
 
   // ---------- Рендер: общие куски ----------
+  // ---------- Пункты в расписании (главная страница) ----------
+  let scheduled = {};
+  async function loadScheduled() {
+    scheduled = await Sync.roadmapBlocks().catch(() => ({}));
+  }
+  // Ближайший незавершённый блок расписания с этим пунктом (сегодня или позже)
+  function nextScheduled(id) {
+    const today = dateKey(new Date());
+    return (scheduled[id] || []).find((b) => !b.done && b.date >= today);
+  }
+
+  async function scheduleItem(id) {
+    const { item, section, stage } = itemIndex.get(id);
+    const now = new Date();
+    const nextSlot = Math.min(23 * 60, Math.ceil((now.getHours() * 60 + now.getMinutes()) / 30) * 30);
+    const r = await U.formDialog({
+      title: "Поставить в расписание",
+      fields: [
+        { name: "_", type: "hidden", value: "", hint: item.text },
+        { name: "date", label: "День", type: "date", value: dateKey(now), required: true },
+        { name: "start", label: "Начало", type: "time", value: `${pad(Math.floor(nextSlot / 60))}:${pad(nextSlot % 60)}`, required: true, half: true },
+        { name: "duration", label: "Длительность, мин", type: "number", value: 60, min: 15, max: 600, step: 15, half: true },
+        { name: "note", label: "Заметка", type: "textarea", rows: 2, value: `${stageLabel(stage)}. ${stage.title} · ${section.title}` },
+      ],
+      submit: "Добавить в расписание",
+    });
+    if (!r) return;
+    const v = r.values;
+    const [h, m] = v.start.split(":").map(Number);
+    const end = Math.min(1440, h * 60 + m + Math.max(15, Number(v.duration) || 60));
+    try {
+      await Sync.addBlock(v.date, {
+        id: U.uid(), title: item.text, category: "work", start: v.start,
+        end: end >= 1440 ? "00:00" : `${pad(Math.floor(end / 60))}:${pad(end % 60)}`,
+        note: v.note, done: false, roadmapId: id,
+      });
+      await loadScheduled();
+      setStatus(`Добавлено в расписание на ${U.shortDate(v.date)}, ${v.start}`);
+      render();
+    } catch {
+      setStatus("Не удалось добавить в расписание — сервер запущен?", true);
+    }
+  }
+
   function itemHtml(item, opts = {}) {
     const checked = isChecked(item.id);
     let text = esc(item.text);
@@ -155,9 +199,15 @@
     }
     const attr = opts.periodic ? `data-periodic="${opts.periodic}"` : "";
     const isOn = opts.periodic ? Boolean((state.periodic[opts.periodic] || {})[item.id]) : checked;
+    let sched = "";
+    if (!opts.periodic && !isOn) {
+      const next = nextScheduled(item.id);
+      sched = `${next ? `<span class="sched">в расписании: ${U.shortDate(next.date)}, ${next.start}</span>` : ""}
+        <button class="sched-btn" data-schedule="${item.id}" title="Поставить в расписание на главной">+ в расписание</button>`;
+    }
     return `<li class="item ${isOn ? "checked" : ""}" data-id="${item.id}" ${attr}>
       <input type="checkbox" class="check" ${isOn ? "checked" : ""} tabindex="-1">
-      <span class="text">${text}${where}</span>${when}
+      <span class="text">${text}${where}</span>${sched}${when}
     </li>`;
   }
 
@@ -505,6 +555,9 @@
       return;
     }
 
+    const schedBtn = e.target.closest("[data-schedule]");
+    if (schedBtn) { e.preventDefault(); scheduleItem(schedBtn.dataset.schedule); return; }
+
     const item = e.target.closest(".item");
     if (item) {
       e.preventDefault();
@@ -583,5 +636,12 @@
     }
   });
 
-  load().then(render);
+  // Вернулись на вкладку — перечитываем прогресс (его могли отметить из расписания) и расписание
+  window.addEventListener("focus", async () => {
+    if (saveTimer || document.querySelector("dialog[open]")) return;
+    await Promise.all([load(), loadScheduled()]);
+    render();
+  });
+
+  Promise.all([load(), loadScheduled()]).then(render);
 })();

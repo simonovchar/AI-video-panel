@@ -9,6 +9,7 @@
   --accent-soft: #eef0ff;
   --done: #16a34a;
   --done-soft: #e8f7ee;
+  --danger: #dc2626;
   --partial: #d97706;
   --tool: #0e7490;
   --tool-soft: #e3f5f8;
@@ -28,6 +29,7 @@
   --accent-soft: #24233d;
   --done: #34d27b;
   --done-soft: #15291f;
+  --danger: #f87171;
   --partial: #f0a43a;
   --tool: #4cc3d9;
   --tool-soft: #132a30;
@@ -47,6 +49,7 @@
     --accent-soft: #24233d;
     --done: #34d27b;
     --done-soft: #15291f;
+  --danger: #f87171;
     --partial: #f0a43a;
     --tool: #4cc3d9;
     --tool-soft: #132a30;
@@ -374,3 +377,61 @@ h2 { font-size: 18px; margin: 0; }
   color: var(--muted);
 }
 .back-link:hover { color: var(--accent); }
+
+/* ---------- Пункты в расписании ---------- */
+.item .sched { font-size: 11.5px; color: var(--accent); font-weight: 600; white-space: nowrap; padding-top: 3px; }
+.sched-btn {
+  border: 1px solid var(--border); background: var(--panel); color: var(--muted);
+  font-size: 12px; padding: 2px 9px; border-radius: 99px; cursor: pointer; white-space: nowrap;
+  opacity: 0; transition: opacity .12s;
+}
+.item:hover .sched-btn, .sched-btn:focus-visible { opacity: 1; }
+.sched-btn:hover { border-color: var(--accent); color: var(--accent); }
+@media (hover: none) { .sched-btn { opacity: 1; } }
+.btn.danger { color: var(--danger); }
+
+/* ---------- Диалоги и формы ---------- */
+.dialog {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--panel);
+  color: var(--text);
+  padding: 0;
+  width: min(520px, calc(100vw - 32px));
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .3);
+}
+.dialog::backdrop { background: rgba(10, 12, 18, .45); }
+.dialog-form { padding: 22px; }
+.dialog-form h2 { margin: 0 0 16px; font-size: 19px; }
+.fields { display: flex; flex-wrap: wrap; gap: 14px; }
+.field { flex: 1 1 100%; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.field.half { flex: 1 1 calc(50% - 7px); }
+.field label { font-size: 13px; font-weight: 600; color: var(--muted); }
+.field .hint { font-size: 13px; color: var(--muted); }
+.field input:not([type=radio]):not([type=checkbox]), .field textarea, .field select {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  background: var(--panel-2);
+  color: var(--text);
+  border-radius: 10px;
+  outline: none;
+}
+.field textarea { resize: vertical; }
+.field input:focus, .field textarea:focus, .field select:focus { border-color: var(--accent); }
+.check-field { display: inline-flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 500 !important; color: var(--text) !important; cursor: pointer; }
+.dialog-actions { display: flex; align-items: center; gap: 8px; margin-top: 22px; }
+.dialog-actions .spacer { flex: 1; }
+
+.segmented { display: flex; gap: 6px; flex-wrap: wrap; }
+.segmented label { cursor: pointer; }
+.segmented input { position: absolute; opacity: 0; pointer-events: none; }
+.segmented span {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 14px; border-radius: 10px;
+  border: 1px solid var(--border); font-size: 14px;
+}
+.segmented span::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--seg); }
+.segmented input:checked + span { border-color: var(--seg); background: color-mix(in srgb, var(--seg) 14%, transparent); font-weight: 600; }
+.segmented input:focus-visible + span { outline: 2px solid var(--seg); outline-offset: 1px; }
+

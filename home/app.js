@@ -154,10 +154,10 @@
     }
     const b = it.b;
     const cat = catOf(b);
-    return `<div class="blk cat-${b.category} ${size} ${b.done ? "done" : ""}" data-col="${colKey}" data-block="${b.id}"
+    return `<div class="blk cat-${b.category} ${size} ${b.done ? "done" : ""} ${b.roadmapId ? "rm" : ""}" data-col="${colKey}" data-block="${b.id}"
         style="${pos};--cat:${cat.color}" title="${esc(`${b.title} · ${b.start}–${b.end}${b.note ? `\n${b.note}` : ""}`)}">
       <div class="blk-title">${b.done ? "✓ " : ""}${esc(b.title)}</div>
-      <div class="blk-time">${b.start}–${b.end}</div>
+      <div class="blk-time">${b.start}–${b.end}${b.roadmapId ? ` · <span class="rm-tag">Roadmap</span>` : ""}</div>
       ${b.note ? `<div class="blk-note">${esc(b.note)}</div>` : ""}
       <div class="blk-resize"></div>
     </div>`;
@@ -357,6 +357,47 @@
     $("#primary-btn").textContent = "+ Задача";
   }
 
+  // ---------- Пункты Roadmap для задач расписания ----------
+  let roadmap = { stages: [], checked: {} };
+  async function loadRoadmap() {
+    try {
+      if (!window.ROADMAP) {
+        await new Promise((resolve, reject) => {
+          const el = document.createElement("script");
+          el.src = "/roadmap/roadmap.js";
+          el.onload = resolve;
+          el.onerror = reject;
+          document.head.append(el);
+        });
+      }
+      const progress = await fetch("/api/store/progress", { cache: "no-store" }).then((r) => r.json());
+      roadmap = { stages: window.ROADMAP.stages, checked: progress.items || {} };
+    } catch { /* без Roadmap поле просто будет пустым */ }
+  }
+  const roadmapItem = (id) => {
+    for (const st of roadmap.stages) for (const sec of st.sections) for (const it of sec.items) if (it.id === id) return { ...it, stage: st, section: sec };
+    return null;
+  };
+  // Непройденные пункты текущего и следующего этапов (+ уже выбранный пункт)
+  function roadmapOptions(currentId) {
+    const main = roadmap.stages.filter((s) => !s.extra);
+    const done = (st) => st.sections.every((sec) => sec.items.every((it) => roadmap.checked[it.id]));
+    const i = main.findIndex((st) => !done(st));
+    const stages = i < 0 ? [] : main.slice(i, i + 2);
+    const opts = [{ value: "", label: "— не из Roadmap —" }];
+    const cur = currentId && roadmapItem(currentId);
+    if (cur && !stages.includes(cur.stage)) opts.push({ value: cur.id, label: cur.text, group: `Этап ${cur.stage.num}` });
+    for (const st of stages) {
+      for (const sec of st.sections) {
+        for (const it of sec.items) {
+          if (roadmap.checked[it.id] && it.id !== currentId) continue;
+          opts.push({ value: it.id, label: it.text.length > 90 ? `${it.text.slice(0, 88)}…` : it.text, group: `Этап ${st.num}. ${st.title} · ${sec.title}` });
+        }
+      }
+    }
+    return opts;
+  }
+
   // ---------- Формы ----------
   const categoryOptions = [{ value: "", label: "Определить по названию" }, ...Object.entries(CAT).map(([value, c]) => ({ value, label: c.label }))];
   const titleSuggestions = () => [...new Set(Object.values(D.templates.main).flat().map((b) => b.title))];
@@ -367,7 +408,9 @@
     const s = block ? startMin(block) : presetStart;
     const e = block ? endMin(block) : Math.min(1440, s + 60);
     const fields = [
-      { name: "title", label: "Название", value: block?.title || "", required: true, placeholder: "Например, Работа: монтаж ролика", suggestions: titleSuggestions() },
+      ...(isTemplate ? [] : [{ name: "roadmapId", label: "Из Roadmap", type: "select", value: block?.roadmapId || "", options: roadmapOptions(block?.roadmapId),
+        hint: "Пункт текущего этапа. Когда отметите задачу выполненной, он отметится и в Roadmap" }]),
+      { name: "title", label: "Название", value: block?.title || "", required: isTemplate, placeholder: isTemplate ? "Например, Работа" : "Можно не заполнять, если выбран пункт Roadmap", suggestions: titleSuggestions() },
       { name: "category", label: "Категория", type: "select", value: block?.category || "", options: categoryOptions },
       isTemplate
         ? { name: "wd", label: "День недели", type: "select", value: col.wd, options: [1, 2, 3, 4, 5, 6, 7].map((wd) => ({ value: wd, label: WD_FULL[wd] })) }
@@ -389,10 +432,17 @@
       const st = toMin(v.start);
       let en = v.end === "00:00" ? 1440 : toMin(v.end);
       if (en <= st) en = Math.min(1440, st + 30);
+      const rmItem = v.roadmapId ? roadmapItem(v.roadmapId) : null;
+      const title = v.title || rmItem?.text || "Задача";
       const updated = {
-        id: block?.id || uid(), title: v.title, category: v.category || S.categoryOf(v.title),
+        id: block?.id || uid(), title, category: v.category || (rmItem ? "work" : S.categoryOf(title)),
         start: fromMin(st), end: en >= 1440 ? "00:00" : fromMin(en), note: v.note, done: Boolean(v.done),
       };
+      if (v.roadmapId) updated.roadmapId = v.roadmapId;
+      // «Выполнено» у задачи из Roadmap отмечает и сам пункт Roadmap
+      if (v.roadmapId && updated.done !== Boolean(block?.done && block?.roadmapId === v.roadmapId)) {
+        Sync.setRoadmapChecked(v.roadmapId, updated.done).then(loadRoadmap).catch(() => Shell.status("Не удалось отметить пункт в Roadmap", true));
+      }
       if (idx >= 0) source.splice(idx, 1);
       const targetKey = isTemplate ? `t${v.wd}` : v.date;
       const target = isTemplate ? D.templates[route().variant][v.wd] : materialize(v.date);
@@ -514,9 +564,14 @@
 
   window.addEventListener("hashchange", render);
   // Свежие события панелей при возврате на вкладку
-  window.addEventListener("focus", () => loadExternal().then(() => { if (!drag && !document.querySelector("dialog[open]")) render(); }));
+  // Вернулись на вкладку — перечитываем расписание (его могли поменять из Roadmap) и события панелей
+  window.addEventListener("focus", async () => {
+    if (drag || document.querySelector("dialog[open]")) return;
+    await Promise.all([store.reload(), loadExternal(), loadRoadmap()]);
+    render();
+  });
   setInterval(() => { if (!drag && !document.querySelector("dialog[open]")) render(); }, 60_000);
 
   render();
-  loadExternal().then(render);
+  Promise.all([loadExternal(), loadRoadmap()]).then(render);
 })();

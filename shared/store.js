@@ -39,6 +39,18 @@ window.PanelStore = {
     return {
       data,
       mode,
+      // Перечитать данные с диска (другая вкладка могла их поменять); не трогает несохранённые правки
+      async reload() {
+        if (timer || mode !== "server") return false;
+        try {
+          const r = await fetch(`/api/store/${key}`, { cache: "no-store" });
+          if (!r.ok) return false;
+          const fresh = Object.assign(structuredClone(defaults), await r.json());
+          for (const k of Object.keys(data)) delete data[k];
+          Object.assign(data, fresh);
+          return true;
+        } catch { return false; }
+      },
       save() {
         clearTimeout(timer);
         onStatus("Сохранение…", false);
