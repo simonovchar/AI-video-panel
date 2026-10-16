@@ -13,15 +13,8 @@
   const PRIO_LABEL = Object.fromEntries(PRIORITIES.map((p) => [p.value, p.label]));
   const COLORS = ["#4f46e5", "#0e9f6e", "#d97706", "#db2777", "#0891b2", "#7c3aed", "#65a30d", "#ea580c", "#2563eb", "#be123c"];
 
-  const store = await PanelStore.open("university", { version: 1, subjects: [], tasks: [] }, (text, error) => {
-    const el = $("#save-status");
-    el.textContent = text;
-    el.classList.toggle("error", error);
-  });
+  const store = await PanelStore.open("university", { version: 1, subjects: [], tasks: [] }, Shell.status);
   const D = store.data;
-
-  const panel = window.PANELS.find((p) => p.id === "university");
-  $("#brand-mark").innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true">${panel.icon}</svg>`;
 
   let filter = { priority: "all", showDone: false };
 
@@ -75,7 +68,7 @@
       <a href="#/" class="${subjectId || searchQuery ? "" : "active"}">Все задания<span class="count">${openTasks().length || ""}</span></a>
       ${overdue ? `<a href="#/" data-act="show-overdue">Просрочено<span class="count alert">${overdue}</span></a>` : ""}`;
 
-    $("#subject-nav").innerHTML = `
+    $("#side-list").innerHTML = `
       <div class="block-title"><span>Предметы</span><span>${D.subjects.length || ""}</span></div>
       ${D.subjects.map((s) => {
         const open = openTasks(s.id);
@@ -309,13 +302,9 @@
     if (e.target.id === "search") { searchQuery = e.target.value.trim(); render(); }
   });
   function clearSearch() { searchQuery = ""; $("#search").value = ""; }
-  // Переход по меню закрывает поиск и мобильное меню
-  $("#sidebar").addEventListener("click", (e) => {
-    if (e.target.closest("a")) { clearSearch(); $("#sidebar").classList.remove("open"); }
-  });
-  $("#menu-btn").addEventListener("click", () => $("#sidebar").classList.toggle("open"));
-  $("#theme-btn").addEventListener("click", () => window.PanelTheme.toggle());
-  $("#add-task-btn").addEventListener("click", () => editTask(null));
+  // Переход по меню закрывает поиск
+  $("#sidebar").addEventListener("click", (e) => { if (e.target.closest("a")) clearSearch(); });
+  $("#primary-btn").addEventListener("click", () => editTask(null));
   window.addEventListener("hashchange", () => { clearSearch(); render(); });
   // Раз в минуту обновляем «просрочено / сегодня»
   setInterval(() => { if (!document.querySelector("dialog[open]")) render(); }, 60_000);

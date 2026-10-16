@@ -1,15 +1,12 @@
 (async () => {
   "use strict";
 
-  const { esc, uid, dateKey, toDate, addDays, daysFromToday, shortDate, dayTitle, plural, formDialog, confirmDialog } = window.U;
+  const { esc, uid, dateKey, addDays, daysFromToday, shortDate, plural, formDialog, confirmDialog } = window.U;
+  const { endOf, hhmm, byStart, isPast, isLive, prepBadge, card, byDate } = window.Events;
   const $ = (sel) => document.querySelector(sel);
   const COLORS = ["#d97706", "#4f46e5", "#0e9f6e", "#db2777", "#0891b2", "#7c3aed", "#65a30d", "#2563eb"];
 
-  const store = await PanelStore.open("tutoring", { version: 1, schools: [], subjects: [], lessons: [] }, (text, error) => {
-    const el = $("#save-status");
-    el.textContent = text;
-    el.classList.toggle("error", error);
-  });
+  const store = await PanelStore.open("tutoring", { version: 1, schools: [], subjects: [], lessons: [] }, Shell.status);
   const D = store.data;
 
   // ---------- Данные ----------
@@ -17,24 +14,17 @@
   const subjectById = (id) => D.subjects.find((s) => s.id === id);
   const lessonById = (id) => D.lessons.find((l) => l.id === id);
   const subjectsOf = (schoolId) => D.subjects.filter((s) => s.schoolId === schoolId);
-  const startOf = (l) => toDate(l.date, l.time);
-  const endOf = (l) => new Date(+startOf(l) + (Number(l.duration) || 60) * 60_000);
-  const byStart = (a, b) => startOf(a) - startOf(b);
-  const hhmm = (d) => `${String(d.getHours()).padStart(2, "0")}:${String(d.getMinutes()).padStart(2, "0")}`;
+  const upcoming = () => D.lessons.filter((l) => !l.conducted && !isPast(l)).sort(byStart);
+  const awaiting = () => D.lessons.filter((l) => !l.conducted && isPast(l)).sort(byStart);
+  const inWeek = (l) => daysFromToday(l.date) <= 7;
 
-  // Готовность занятия и его проведение — разные вещи:
-  // все задания выполнены → «Готов к проведению»; «Проведено» отмечается отдельной кнопкой.
-  function statusOf(l) {
-    if (l.conducted) return { key: "done", label: "Проведено" };
-    const done = l.tasks.filter((t) => t.done).length;
-    if (endOf(l) < new Date()) return { key: "late", label: "Ждёт отметки «Проведено»" };
-    if (!l.tasks.length) return { key: "none", label: "Заданий нет" };
-    if (done === l.tasks.length) return { key: "ready", label: "Готов к проведению" };
-    return { key: "prep", label: `Подготовка ${done}/${l.tasks.length}` };
+  // Готовность и проведение — разные вещи: все задания выполнены → «Готов к проведению»,
+  // «Проведено» отмечается отдельной кнопкой.
+  function badgeOf(l) {
+    if (l.conducted) return { cls: "is-done", label: "Проведено" };
+    if (isPast(l)) return { cls: "is-late", label: "Ждёт отметки «Проведено»" };
+    return prepBadge(l.tasks, "Готов к проведению") || { cls: "", label: "Заданий нет" };
   }
-  const upcoming = () => D.lessons.filter((l) => !l.conducted && endOf(l) >= new Date()).sort(byStart);
-  const awaiting = () => D.lessons.filter((l) => !l.conducted && endOf(l) < new Date()).sort(byStart);
-  const inDays = (l, n) => daysFromToday(l.date) <= n;
 
   // ---------- Маршрут ----------
   function route() {
@@ -48,113 +38,87 @@
   function lessonCard(l) {
     const subject = subjectById(l.subjectId);
     const school = schoolById(subject.schoolId);
-    const st = statusOf(l);
-    const now = new Date();
-    const live = !l.conducted && startOf(l) <= now && now <= endOf(l);
-    return `<article class="card lesson status-${st.key}" style="--school:${school.color}" data-lesson="${l.id}">
-      <div class="lesson-time">
-        <b>${esc(l.time)}</b><span>–${hhmm(endOf(l))}</span>
-        ${live ? `<span class="now">идёт сейчас</span>` : ""}
-      </div>
-      <div class="lesson-body">
-        <div class="lesson-head">
-          <div>
-            <div class="lesson-title"><span class="school-name">${esc(school.name)} ·</span> ${esc(subject.name)}</div>
-            ${l.topic ? `<div class="lesson-topic">${esc(l.topic)}</div>` : ""}
-          </div>
-          <span class="badge is-${st.key}">${st.label}</span>
-        </div>
-        ${l.tasks.length ? `<ul class="prep">${l.tasks.map((t) => `
-          <li class="prep-item ${t.done ? "done" : ""}" data-ptask="${t.id}">
-            <input type="checkbox" class="check" ${t.done ? "checked" : ""} tabindex="-1">
-            <span>${esc(t.title)}</span>
-            <button class="x" data-pdel title="Удалить задание" aria-label="Удалить задание">×</button>
-          </li>`).join("")}</ul>` : ""}
-        ${l.conducted ? "" : `<form class="prep-add" data-padd>
-          <input class="inline-input" name="title" placeholder="+ Добавить задание к занятию и нажать Enter" autocomplete="off">
-        </form>`}
-        <div class="lesson-actions">
-          ${l.conducted
-            ? `<button class="btn small" data-act="unconduct">Вернуть в непроведённые</button>`
-            : `<button class="btn small ok" data-act="conduct">✓ Отметить проведённым</button>`}
-          <button class="btn small ghost" data-act="edit-lesson">Изменить</button>
-        </div>
-      </div>
-    </article>`;
+    return card({
+      id: l.id,
+      color: school.color,
+      time: l.time,
+      endTime: hhmm(endOf(l)),
+      live: !l.conducted && isLive(l),
+      done: l.conducted,
+      pre: school.name,
+      title: subject.name,
+      subHtml: l.topic ? esc(l.topic) : "",
+      badges: [badgeOf(l)],
+      checklist: {
+        title: "Подготовка",
+        items: l.tasks,
+        placeholder: l.conducted ? "" : "+ Добавить задание к занятию и нажать Enter",
+      },
+      actions: [
+        l.conducted
+          ? { act: "unconduct", label: "Вернуть в непроведённые" }
+          : { act: "conduct", label: "✓ Отметить проведённым", cls: "ok" },
+        { act: "edit-lesson", label: "Изменить", cls: "ghost" },
+      ],
+    });
   }
 
-  function lessonGroups(list) {
-    const byDate = new Map();
-    for (const l of list) {
-      if (!byDate.has(l.date)) byDate.set(l.date, []);
-      byDate.get(l.date).push(l);
-    }
-    return [...byDate].map(([date, ls]) => `
-      <section class="group">
-        <div class="group-head">${dayTitle(date)} <span class="n">${ls.length}</span></div>
-        <div class="lessons">${ls.map(lessonCard).join("")}</div>
-      </section>`).join("");
-  }
-
-  function emptySchools() {
-    return `<div class="card empty-state">
+  const emptySchools = () => `<div class="card empty-state">
       <h2>Добавьте первую IT-школу</h2>
       <p>Школа → предметы, которые вы в ней ведёте → занятия с датой, временем и заданиями для подготовки.</p>
       <button class="btn primary" data-act="add-school">+ Добавить школу</button>
     </div>`;
-  }
 
   // ---------- Страницы ----------
   function pageUpcoming() {
-    if (!D.schools.length) return emptySchools();
+    const head = `<div class="eyebrow">Репетиторство</div><h1>Ближайшие занятия</h1>`;
+    if (!D.schools.length) return head + emptySchools();
     const up = upcoming();
     const late = awaiting();
     const today = up.filter((l) => l.date === dateKey());
-    const week = up.filter((l) => inDays(l, 7));
-    const notReady = week.filter((l) => statusOf(l).key === "prep");
+    const week = up.filter(inWeek);
+    const notReady = week.filter((l) => badgeOf(l).cls === "is-prep");
     const openTasks = week.reduce((n, l) => n + l.tasks.filter((t) => !t.done).length, 0);
-
-    return `
-      <div class="main-head"><h2>Ближайшие занятия</h2></div>
+    return `${head}
       <div class="stats">
         <div class="card stat"><div class="value">${today.length}</div><div class="label">${plural(today.length, "занятие", "занятия", "занятий")} сегодня</div></div>
         <div class="card stat"><div class="value">${week.length}</div><div class="label">в ближайшие 7 дней</div></div>
         <div class="card stat ${notReady.length ? "alert" : ""}"><div class="value">${notReady.length}</div><div class="label">ещё не готовы</div></div>
         <div class="card stat"><div class="value">${openTasks}</div><div class="label">${plural(openTasks, "задание", "задания", "заданий")} к подготовке</div></div>
       </div>
-      ${late.length ? `<section class="group overdue">
+      ${late.length ? `<section class="group late">
         <div class="group-head">Прошли — отметьте, проведены ли <span class="n">${late.length}</span></div>
-        <div class="lessons">${late.map(lessonCard).join("")}</div>
+        <div class="events">${late.map(lessonCard).join("")}</div>
       </section>` : ""}
-      ${up.length ? lessonGroups(up) : `<div class="card empty">Предстоящих занятий нет — нажмите «+ Занятие».</div>`}`;
+      ${up.length ? byDate(up, lessonCard) : `<div class="card empty">Предстоящих занятий нет — нажмите «+ Занятие».</div>`}`;
   }
 
   function pageSchools() {
-    if (!D.schools.length) return emptySchools();
-    return `
-      <div class="main-head">
-        <h2>Школы и предметы</h2>
-        <div class="actions"><button class="btn small" data-act="add-school">+ Школа</button></div>
-      </div>
-      <div class="schools">${D.schools.map((school) => {
+    const head = `<div class="page-head">
+        <div><div class="eyebrow">Репетиторство</div><h1>Школы и предметы</h1></div>
+        ${D.schools.length ? `<div class="actions"><button class="btn" data-act="add-school">+ Школа</button></div>` : ""}
+      </div>`;
+    if (!D.schools.length) return head + emptySchools();
+    return `${head}
+      <div class="sections" style="margin-top:22px">${D.schools.map((school) => {
         const subjects = subjectsOf(school.id);
-        return `<section class="card school" style="--school:${school.color}" data-school="${school.id}">
-          <div class="school-head">
-            <h3>${esc(school.name)}</h3>
+        return `<section class="card sec" data-school="${school.id}" style="border-top:4px solid ${school.color}">
+          <div class="sec-head">
+            <h2>${esc(school.name)}</h2>
             <button class="btn small" data-act="add-subject">+ Предмет</button>
             <button class="btn small ghost" data-act="edit-school">Переименовать</button>
-            <button class="btn small ghost" data-act="delete-school">Удалить</button>
+            <button class="btn small ghost danger" data-act="delete-school">Удалить</button>
           </div>
-          ${subjects.length ? subjects.map((s) => {
+          ${subjects.length ? `<div class="list-card">${subjects.map((s) => {
             const next = upcoming().find((l) => l.subjectId === s.id);
-            return `<div class="subject-row" data-subject="${s.id}">
-              <a href="#/subject/${s.id}">
-                <div class="name">${esc(s.name)}</div>
-                <div class="meta">${next ? `Ближайшее: ${shortDate(next.date)}, ${next.time} · ${statusOf(next).label}` : "Нет запланированных занятий"}</div>
+            return `<div class="entity" data-subject="${s.id}">
+              <a class="entity-main" href="#/subject/${s.id}">
+                <div class="entity-title">${esc(s.name)}</div>
+                <div class="entity-sub">${next ? `Ближайшее: ${shortDate(next.date)}, ${next.time} · ${badgeOf(next).label}` : "Нет запланированных занятий"}</div>
               </a>
-              <button class="btn small" data-act="add-lesson-for">+ Занятие</button>
+              <div class="entity-actions"><button class="btn small" data-act="add-lesson-for">+ Занятие</button></div>
             </div>`;
-          }).join("") : `<div class="empty">Предметов пока нет — добавьте предмет, который ведёте в этой школе.</div>`}
+          }).join("")}</div>` : `<div class="empty">Предметов пока нет — добавьте предмет, который ведёте в этой школе.</div>`}
         </section>`;
       }).join("")}</div>`;
   }
@@ -163,73 +127,87 @@
     const subject = subjectById(subjectId);
     const school = schoolById(subject.schoolId);
     const all = D.lessons.filter((l) => l.subjectId === subjectId);
-    const up = all.filter((l) => !l.conducted && endOf(l) >= new Date()).sort(byStart);
-    const past = all.filter((l) => l.conducted || endOf(l) < new Date()).sort((a, b) => byStart(b, a));
+    const up = all.filter((l) => !l.conducted && !isPast(l)).sort(byStart);
+    const past = all.filter((l) => l.conducted || isPast(l)).sort((a, b) => byStart(b, a));
     return `
-      <div class="main-head">
-        <span class="dot" style="--dot:${school.color};width:14px;height:14px"></span>
-        <h2>${esc(subject.name)} <span class="muted" style="font-weight:500;font-size:16px">· ${esc(school.name)}</span></h2>
+      <div class="page-head">
+        <div><div class="eyebrow">${esc(school.name)}</div><h1>${esc(subject.name)}</h1></div>
         <div class="actions">
-          <button class="btn small" data-act="add-lesson-for" data-subject="${subject.id}">+ Занятие</button>
-          <button class="btn small ghost" data-act="edit-subject" data-subject="${subject.id}">Переименовать</button>
-          <button class="btn small ghost" data-act="delete-subject" data-subject="${subject.id}">Удалить</button>
+          <button class="btn" data-act="add-lesson-for" data-subject="${subject.id}">+ Занятие</button>
+          <button class="btn ghost" data-act="edit-subject" data-subject="${subject.id}">Изменить</button>
+          <button class="btn ghost danger" data-act="delete-subject" data-subject="${subject.id}">Удалить</button>
         </div>
       </div>
-      <section class="group">
-        <div class="group-head">Предстоящие <span class="n">${up.length}</span></div>
-        ${up.length ? `<div class="lessons">${up.map(lessonCard).join("")}</div>` : `<div class="card empty">Предстоящих занятий нет.</div>`}
-      </section>
-      ${past.length ? `<section class="group">
-        <div class="group-head">Прошедшие <span class="n">${past.length}</span></div>
-        <div class="lessons">${past.map(lessonCard).join("")}</div>
-      </section>` : ""}`;
+      <div style="margin-top:22px">
+        ${up.length ? byDate(up, lessonCard) : `<div class="card empty" style="margin-bottom:22px">Предстоящих занятий нет.</div>`}
+        ${past.length ? `<section class="group">
+          <div class="group-head">Прошедшие <span class="n">${past.length}</span></div>
+          <div class="events">${past.map(lessonCard).join("")}</div>
+        </section>` : ""}
+      </div>`;
   }
 
   function pageHistory() {
     const done = D.lessons.filter((l) => l.conducted).sort((a, b) => byStart(b, a));
-    return `
-      <div class="main-head"><h2>Проведённые занятия</h2></div>
-      ${done.length ? `<ul class="card rows">${done.map((l) => {
+    return `<div class="eyebrow">Репетиторство</div><h1>Проведённые занятия</h1>
+      <div style="margin-top:22px">${done.length ? `<div class="card list-card">${done.map((l) => {
         const subject = subjectById(l.subjectId);
         const school = schoolById(subject.schoolId);
-        return `<li class="row" data-lesson="${l.id}" data-act="edit-lesson">
-          <span class="dot" style="--dot:${school.color};margin-top:6px"></span>
-          <div class="row-main">
-            <div class="row-title">${esc(school.name)} · ${esc(subject.name)}</div>
-            <div class="row-meta">${l.topic ? `<span>${esc(l.topic)}</span>` : ""}<span>${l.tasks.length ? `заданий: ${l.tasks.filter((t) => t.done).length}/${l.tasks.length}` : ""}</span></div>
+        return `<div class="entity" data-event="${l.id}" data-act="edit-lesson" style="cursor:pointer">
+          <span class="dot" style="width:10px;height:10px;border-radius:50%;background:${school.color}"></span>
+          <div class="entity-main">
+            <div class="entity-title">${esc(school.name)} · ${esc(subject.name)}</div>
+            <div class="entity-sub">${[l.topic, l.tasks.length ? `заданий: ${l.tasks.filter((t) => t.done).length}/${l.tasks.length}` : ""].filter(Boolean).map(esc).join(" · ")}</div>
           </div>
-          <div class="row-side">${shortDate(l.date)}<small>${esc(l.time)}–${hhmm(endOf(l))}</small></div>
-        </li>`;
-      }).join("")}</ul>` : `<div class="card empty">Проведённых занятий пока нет.</div>`}`;
+          <div class="when">${shortDate(l.date)}<small>${esc(l.time)}–${hhmm(endOf(l))}</small></div>
+        </div>`;
+      }).join("")}</div>` : `<div class="card empty">Проведённых занятий пока нет.</div>`}</div>`;
   }
 
-  function renderSide() {
+  function renderSidebar() {
     const r = route();
-    const week = upcoming().filter((l) => inDays(l, 7)).length;
-    const link = (href, label, count, active, extra = "") =>
-      `<a class="side-link ${extra} ${active ? "active" : ""}" href="${href}"><span class="label">${label}</span><span class="count">${count || ""}</span></a>`;
-    $("#side").innerHTML = `
-      ${link("#/", "Ближайшие занятия", week + awaiting().length, r.name === "")}
-      ${link("#/schools", "Школы и предметы", "", r.name === "schools")}
-      ${link("#/history", "Проведённые", D.lessons.filter((l) => l.conducted).length, r.name === "history")}
-      ${D.schools.length ? `<div class="side-title">Школы</div>` : ""}
+    const week = upcoming().filter(inWeek).length;
+    const late = awaiting().length;
+    $("#nav").innerHTML = `
+      <a href="#/" class="${r.name === "" ? "active" : ""}">Ближайшие занятия<span class="count ${late ? "alert" : ""}">${late ? `${late} не отмеч.` : week || ""}</span></a>
+      <a href="#/schools" class="${r.name === "schools" ? "active" : ""}">Школы и предметы</a>
+      <a href="#/history" class="${r.name === "history" ? "active" : ""}">Проведённые<span class="count">${D.lessons.filter((l) => l.conducted).length || ""}</span></a>`;
+    $("#side-list").innerHTML = `
       ${D.schools.map((school) => `
-        <a class="side-link" href="#/schools"><span class="dot" style="--dot:${school.color}"></span><span class="label">${esc(school.name)}</span></a>
-        ${subjectsOf(school.id).map((s) => `
-          <a class="side-link sub ${r.subjectId === s.id ? "active" : ""}" href="#/subject/${s.id}">
+        <div class="block-title" style="margin-top:12px"><span>${esc(school.name)}</span><span>${subjectsOf(school.id).length || ""}</span></div>
+        ${subjectsOf(school.id).map((s) => {
+          const n = upcoming().filter((l) => l.subjectId === s.id).length;
+          return `<a href="#/subject/${s.id}" class="stage-link ${r.subjectId === s.id ? "active" : ""}" style="--subj:${school.color}" title="${esc(s.name)}">
+            <span class="num">${esc(s.name.trim()[0] || "?").toUpperCase()}</span>
             <span class="label">${esc(s.name)}</span>
-            <span class="count">${upcoming().filter((l) => l.subjectId === s.id).length || ""}</span>
-          </a>`).join("")}`).join("")}
-      <button class="side-link add" data-act="add-school">+ Добавить школу</button>`;
+            <span class="pct">${n || ""}</span>
+          </a>`;
+        }).join("")}`).join("")}
+      <button class="stage-link add" data-act="add-school"><span class="num">+</span><span class="label">Добавить школу</span></button>`;
   }
 
+  function renderOverall() {
+    const week = upcoming().filter(inWeek);
+    const ready = week.filter((l) => badgeOf(l).cls !== "is-prep").length;
+    const late = awaiting().length;
+    const pct = week.length ? Math.round((ready / week.length) * 100) : 0;
+    $("#overall").innerHTML = `<div class="bar"><span style="width:${pct}%"></span></div>
+      <span class="overall-text"><b>${week.length}</b> ${plural(week.length, "занятие", "занятия", "занятий")} за 7 дней
+        <span class="hide-sm">· готово <b>${ready}/${week.length}</b></span>${late ? ` · не отмечено <b class="alert">${late}</b>` : ""}</span>`;
+  }
+
+  let lastView = "";
   function render() {
     const r = route();
-    renderSide();
+    const scroll = window.scrollY;
     $("#main").innerHTML = r.name === "schools" ? pageSchools()
       : r.name === "subject" ? pageSubject(r.subjectId)
       : r.name === "history" ? pageHistory()
       : pageUpcoming();
+    window.scrollTo(0, location.hash === lastView ? scroll : 0);
+    lastView = location.hash;
+    renderSidebar();
+    renderOverall();
   }
 
   // ---------- Формы ----------
@@ -293,10 +271,7 @@
   }
 
   async function editLesson(lesson, subjectId) {
-    if (!D.subjects.length) {
-      if (!D.schools.length) return editSchool(null);
-      return editSubject(null);
-    }
+    if (!D.subjects.length) return D.schools.length ? editSubject(null) : editSchool(null);
     const subjectOptions = D.subjects.map((s) => ({ value: s.id, label: s.name, group: schoolById(s.schoolId).name }));
     // Время по умолчанию — как у последнего занятия этого предмета
     const defaultSubject = lesson?.subjectId || subjectId || route().subjectId || D.subjects[0].id;
@@ -344,12 +319,19 @@
   }
 
   // ---------- События ----------
+  window.Events.bindChecklists({
+    toggle(lessonId, taskId) { const t = lessonById(lessonId).tasks.find((x) => x.id === taskId); t.done = !t.done; store.save(); render(); },
+    remove(lessonId, taskId) { const l = lessonById(lessonId); l.tasks = l.tasks.filter((x) => x.id !== taskId); store.save(); render(); },
+    add(lessonId, title) { lessonById(lessonId).tasks.push({ id: uid(), title, done: false }); store.save(); render(); },
+  });
+
   document.addEventListener("click", (e) => {
     const actEl = e.target.closest("[data-act]");
-    const act = actEl?.dataset.act;
-    const lesson = lessonById(e.target.closest("[data-lesson]")?.dataset.lesson);
+    if (!actEl) return;
+    const act = actEl.dataset.act;
+    const lesson = lessonById(e.target.closest("[data-event]")?.dataset.event);
     const school = schoolById(e.target.closest("[data-school]")?.dataset.school);
-    const subject = subjectById(actEl?.dataset.subject || e.target.closest("[data-subject]")?.dataset.subject);
+    const subject = subjectById(actEl.dataset.subject || e.target.closest("[data-subject]")?.dataset.subject);
 
     if (act === "add-school") return editSchool(null);
     if (act === "edit-school") return editSchool(school);
@@ -363,37 +345,11 @@
       lesson.conducted = act === "conduct";
       lesson.conductedAt = lesson.conducted ? new Date().toISOString() : "";
       store.save();
-      return render();
-    }
-
-    const ptask = e.target.closest("[data-ptask]");
-    if (ptask && lesson) {
-      const idx = lesson.tasks.findIndex((t) => t.id === ptask.dataset.ptask);
-      if (e.target.closest("[data-pdel]")) lesson.tasks.splice(idx, 1);
-      else {
-        e.preventDefault();
-        lesson.tasks[idx].done = !lesson.tasks[idx].done;
-      }
-      store.save();
       render();
     }
   });
 
-  document.addEventListener("submit", (e) => {
-    const form = e.target.closest("[data-padd]");
-    if (!form) return;
-    e.preventDefault();
-    const title = form.elements.title.value.trim();
-    if (!title) return;
-    const lesson = lessonById(form.closest("[data-lesson]").dataset.lesson);
-    lesson.tasks.push({ id: uid(), title, done: false });
-    store.save();
-    render();
-    // Курсор остаётся в поле, чтобы добавлять задания подряд
-    document.querySelector(`[data-lesson="${lesson.id}"] [data-padd] input`)?.focus();
-  });
-
-  $("#add-lesson-btn").addEventListener("click", () => editLesson(null));
+  $("#primary-btn").addEventListener("click", () => editLesson(null));
   window.addEventListener("hashchange", render);
   setInterval(() => {
     const busy = document.querySelector("dialog[open]") || document.activeElement?.matches("input, textarea");

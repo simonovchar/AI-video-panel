@@ -56,7 +56,7 @@ window.U = (() => {
 
   // ---------- Диалог-форма ----------
   // fields: [{ name, label, type: text|textarea|date|time|number|select|segmented, value, required,
-  //            options: [{ value, label, group?, color? }], placeholder, half, hint, min, max }]
+  //            options: [{ value, label, group?, color? }], suggestions: [строки для подсказок], placeholder, half, hint, min, max }]
   // Возвращает Promise: { action: "save", values } | { action: "delete" } | null (отмена)
   function formDialog({ title, fields, submit = "Сохранить", deleteLabel = "" }) {
     return new Promise((resolve) => {
@@ -83,7 +83,9 @@ window.U = (() => {
             <label style="--seg:${o.color || "var(--accent)"}"><input type="radio" name="${f.name}" value="${esc(o.value)}" ${o.value === f.value ? "checked" : ""}><span>${esc(o.label)}</span></label>`).join("")}</div>`;
         } else {
           const extra = [f.min != null ? `min="${f.min}"` : "", f.max != null ? `max="${f.max}"` : "", f.step ? `step="${f.step}"` : ""].join(" ");
-          input = `<input id="${id}" type="${f.type || "text"}" name="${f.name}" value="${esc(f.value)}" ${ph} ${req} ${extra} autocomplete="off">`;
+          const list = f.suggestions?.length ? `list="${id}-list"` : "";
+          input = `<input id="${id}" type="${f.type || "text"}" name="${f.name}" value="${esc(f.value)}" ${ph} ${req} ${extra} ${list} autocomplete="off">`
+            + (list ? `<datalist id="${id}-list">${f.suggestions.map((v) => `<option value="${esc(v)}"></option>`).join("")}</datalist>` : "");
         }
         return `<div class="field ${f.half ? "half" : ""}">
           ${f.label ? `<label for="${id}">${esc(f.label)}</label>` : ""}${input}

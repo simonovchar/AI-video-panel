@@ -3,34 +3,37 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Репетиторство — Личная панель</title>
+  <title>Личная панель</title>
   <script src="/shared/theme.js"></script>
-  <link rel="stylesheet" href="/shared/base.css">
-  <link rel="stylesheet" href="/shared/panel.css">
-  <link rel="stylesheet" href="/shared/app.css">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="/shared/shell.css">
 </head>
 <body data-panel="tutoring">
-  <div class="page wide">
-    <header class="topbar">
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
       <a class="back-link" href="/">← Все панели</a>
-      <div class="topbar-right">
-        <span class="save-status" id="save-status"></span>
-        <button class="icon-btn" id="theme-btn" aria-label="Сменить тему">◐</button>
-      </div>
-    </header>
-    <section class="panel-head" id="panel-head">
-      <button class="btn primary" id="add-lesson-btn">+ Занятие</button>
-    </section>
-    <div class="app">
-      <nav class="side" id="side"></nav>
+      <div class="brand" id="brand"></div>
+      <nav class="nav" id="nav"></nav>
+      <div class="block-group" id="side-list"></div>
+    </aside>
+
+    <div class="main-wrap">
+      <header class="topbar">
+        <button class="icon-btn menu-btn" id="menu-btn" aria-label="Меню">☰</button>
+        <div class="overall" id="overall"></div>
+        <div class="topbar-actions">
+          <span class="save-status" id="save-status"></span>
+          <button class="btn primary" id="primary-btn">+ Занятие</button>
+          <button class="icon-btn" id="theme-btn" aria-label="Сменить тему">◐</button>
+        </div>
+      </header>
       <main class="main" id="main"></main>
     </div>
   </div>
   <script src="/shared/panels.js"></script>
-  <script src="/shared/panel.js"></script>
   <script src="/shared/util.js"></script>
   <script src="/shared/store.js"></script>
+  <script src="/shared/shell.js"></script>
+  <script src="/shared/events.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

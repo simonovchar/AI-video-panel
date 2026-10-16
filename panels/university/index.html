@@ -3,24 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Университет — Личная панель</title>
+  <title>Личная панель</title>
   <script src="/shared/theme.js"></script>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="/shared/shell.css">
 </head>
-<body>
+<body data-panel="university">
   <div class="layout">
     <aside class="sidebar" id="sidebar">
       <a class="back-link" href="/">← Все панели</a>
-      <div class="brand">
-        <div class="brand-mark" id="brand-mark"></div>
-        <div>
-          <div class="brand-title">Университет</div>
-          <div class="brand-sub">Предметы и задания</div>
-        </div>
-      </div>
+      <div class="brand" id="brand"></div>
       <input class="search" id="search" type="search" placeholder="Поиск по заданиям…" autocomplete="off">
       <nav class="nav" id="nav"></nav>
-      <div class="block-group" id="subject-nav"></div>
+      <div class="block-group" id="side-list"></div>
     </aside>
 
     <div class="main-wrap">
@@ -29,7 +23,7 @@
         <div class="overall" id="overall"></div>
         <div class="topbar-actions">
           <span class="save-status" id="save-status"></span>
-          <button class="btn primary" id="add-task-btn">+ Задание</button>
+          <button class="btn primary" id="primary-btn">+ Задание</button>
           <button class="icon-btn" id="theme-btn" aria-label="Сменить тему">◐</button>
         </div>
       </header>
@@ -39,6 +33,8 @@
   <script src="/shared/panels.js"></script>
   <script src="/shared/util.js"></script>
   <script src="/shared/store.js"></script>
+  <script src="/shared/shell.js"></script>
+  <script src="/shared/events.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
