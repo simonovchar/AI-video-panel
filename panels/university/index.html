@@ -5,29 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Университет — Личная панель</title>
   <script src="/shared/theme.js"></script>
-  <link rel="stylesheet" href="/shared/base.css">
-  <link rel="stylesheet" href="/shared/panel.css">
-  <link rel="stylesheet" href="/shared/app.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body data-panel="university">
-  <div class="page wide">
-    <header class="topbar">
+<body>
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
       <a class="back-link" href="/">← Все панели</a>
-      <div class="topbar-right">
-        <span class="save-status" id="save-status"></span>
-        <button class="icon-btn" id="theme-btn" aria-label="Сменить тему">◐</button>
+      <div class="brand">
+        <div class="brand-mark" id="brand-mark"></div>
+        <div>
+          <div class="brand-title">Университет</div>
+          <div class="brand-sub">Предметы и задания</div>
+        </div>
       </div>
-    </header>
-    <section class="panel-head" id="panel-head">
-      <button class="btn primary" id="add-task-btn">+ Задание</button>
-    </section>
-    <div class="app">
-      <nav class="side" id="side"></nav>
+      <input class="search" id="search" type="search" placeholder="Поиск по заданиям…" autocomplete="off">
+      <nav class="nav" id="nav"></nav>
+      <div class="block-group" id="subject-nav"></div>
+    </aside>
+
+    <div class="main-wrap">
+      <header class="topbar">
+        <button class="icon-btn menu-btn" id="menu-btn" aria-label="Меню">☰</button>
+        <div class="overall" id="overall"></div>
+        <div class="topbar-actions">
+          <span class="save-status" id="save-status"></span>
+          <button class="btn primary" id="add-task-btn">+ Задание</button>
+          <button class="icon-btn" id="theme-btn" aria-label="Сменить тему">◐</button>
+        </div>
+      </header>
       <main class="main" id="main"></main>
     </div>
   </div>
   <script src="/shared/panels.js"></script>
-  <script src="/shared/panel.js"></script>
   <script src="/shared/util.js"></script>
   <script src="/shared/store.js"></script>
   <script src="app.js"></script>

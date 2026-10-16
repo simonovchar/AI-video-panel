@@ -20,6 +20,9 @@
   });
   const D = store.data;
 
+  const panel = window.PANELS.find((p) => p.id === "university");
+  $("#brand-mark").innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true">${panel.icon}</svg>`;
+
   let filter = { priority: "all", showDone: false };
 
   // ---------- Данные ----------
@@ -63,60 +66,102 @@
   };
 
   // ---------- Рендер ----------
-  function renderSide() {
+  let searchQuery = "";
+
+  function renderSidebar() {
     const { subjectId } = route();
-    $("#side").innerHTML = `
-      <a class="side-link ${subjectId ? "" : "active"}" href="#/">
-        <span class="label">Все задания</span><span class="count">${openTasks().length || ""}</span>
-      </a>
-      <div class="side-title">Предметы</div>
-      ${D.subjects.map((s) => `
-        <a class="side-link ${subjectId === s.id ? "active" : ""}" href="#/subject/${s.id}">
-          <span class="dot" style="--dot:${s.color}"></span>
+    const overdue = D.tasks.filter(isOverdue).length;
+    $("#nav").innerHTML = `
+      <a href="#/" class="${subjectId || searchQuery ? "" : "active"}">Все задания<span class="count">${openTasks().length || ""}</span></a>
+      ${overdue ? `<a href="#/" data-act="show-overdue">Просрочено<span class="count alert">${overdue}</span></a>` : ""}`;
+
+    $("#subject-nav").innerHTML = `
+      <div class="block-title"><span>Предметы</span><span>${D.subjects.length || ""}</span></div>
+      ${D.subjects.map((s) => {
+        const open = openTasks(s.id);
+        const late = open.filter(isOverdue).length;
+        return `<a href="#/subject/${s.id}" class="stage-link ${subjectId === s.id && !searchQuery ? "active" : ""}" style="--subj:${s.color}" title="${esc(s.name)}">
+          <span class="num">${esc(s.name.trim()[0] || "?").toUpperCase()}</span>
           <span class="label">${esc(s.name)}</span>
-          <span class="count">${openTasks(s.id).length || ""}</span>
-        </a>`).join("")}
-      <button class="side-link add" data-act="add-subject">+ Добавить предмет</button>`;
+          <span class="pct ${late ? "alert" : ""}">${late ? `${late} просроч.` : open.length || ""}</span>
+        </a>`;
+      }).join("")}
+      <button class="stage-link add" data-act="add-subject"><span class="num">+</span><span class="label">Добавить предмет</span></button>`;
   }
 
-  function taskRow(t, showSubject) {
+  function renderOverall() {
+    const total = D.tasks.length;
+    const done = D.tasks.filter((t) => t.done).length;
+    const pct = total ? Math.round((done / total) * 100) : 0;
+    const overdue = D.tasks.filter(isOverdue).length;
+    $("#overall").innerHTML = `<div class="bar"><span style="width:${pct}%"></span></div>
+      <span class="overall-text"><b>${total - done}</b> ${plural(total - done, "открытое", "открытых", "открытых")}
+        <span class="hide-sm">· выполнено <b>${done}/${total}</b></span>${overdue ? ` · просрочено <b class="alert">${overdue}</b>` : ""}</span>`;
+  }
+
+  function taskItem(t, showSubject) {
     const s = subjectById(t.subjectId);
-    let side = "";
+    let when = "";
     if (t.deadline) {
       const overdue = isOverdue(t);
       const diff = daysFromToday(t.deadline);
       const cls = overdue ? "overdue" : !t.done && diff <= 1 ? "soon" : "";
-      const when = t.done ? "" : overdue
+      const rel = t.done ? "" : overdue
         ? (diff === 0 ? "просрочено сегодня" : `просрочено на ${U.days(-diff)}`)
         : relative(t.deadline);
-      side = `<div class="row-side ${cls}">${shortDate(t.deadline)}${t.deadlineTime ? `, ${t.deadlineTime}` : ""}<small>${when}</small></div>`;
+      when = `<div class="when ${cls}">${shortDate(t.deadline)}${t.deadlineTime ? `, ${t.deadlineTime}` : ""}<small>${rel}</small></div>`;
     }
-    return `<li class="row prio-${t.priority} ${t.done ? "done" : ""}" data-task="${t.id}">
+    return `<li class="item prio-${t.priority} ${t.done ? "checked" : ""}" data-task="${t.id}">
       <input type="checkbox" class="check" data-toggle ${t.done ? "checked" : ""} aria-label="Выполнено">
-      <div class="row-main">
-        <div class="row-title">${esc(t.title)}</div>
-        <div class="row-meta">
-          ${showSubject && s ? `<span class="tag"><span class="dot" style="--dot:${s.color}"></span>${esc(s.name)}</span>` : ""}
+      <div class="text">
+        <div class="title">${esc(t.title)}</div>
+        <div class="meta">
+          ${showSubject && s ? `<span class="subj" style="--subj:${s.color}">${esc(s.name)}</span>` : ""}
           <span class="prio ${t.priority}">${PRIO_LABEL[t.priority]} приоритет</span>
           ${t.deadline ? "" : `<span>без дедлайна</span>`}
         </div>
-        ${t.notes ? `<div class="row-notes">${esc(t.notes)}</div>` : ""}
+        ${t.notes ? `<div class="notes">${esc(t.notes)}</div>` : ""}
       </div>
-      ${side}
+      ${when}
     </li>`;
   }
 
-  function renderMain() {
-    const { subjectId } = route();
+  function sectionsHtml(tasks, showSubject, emptyText) {
+    const groups = BUCKETS.map(([key, title]) => [key, title, tasks.filter((t) => bucketOf(t) === key)])
+      .filter(([, , list]) => list.length);
+    for (const [key, , list] of groups) {
+      if (key === "done") list.sort((a, b) => (b.doneAt || "").localeCompare(a.doneAt || ""));
+      else list.sort(sortTasks);
+    }
+    if (!groups.length) return `<div class="card empty">${emptyText}</div>`;
+    return `<div class="sections">${groups.map(([key, title, list]) => `
+      <section class="card sec ${key}" id="sec-${key}">
+        <div class="sec-head"><h2>${title}</h2><span class="count">${list.length}</span></div>
+        <ul class="items">${list.map((t) => taskItem(t, showSubject)).join("")}</ul>
+      </section>`).join("")}</div>`;
+  }
+
+  function pageSearch(q) {
+    const needle = q.toLowerCase();
+    const hits = D.tasks.filter((t) => `${t.title} ${t.notes}`.toLowerCase().includes(needle));
+    return `
+      <div class="eyebrow">Поиск</div>
+      <h1>«${esc(q)}»</h1>
+      <p class="muted">Найдено: ${hits.length}</p>
+      ${sectionsHtml(hits, true, "Ничего не найдено")}`;
+  }
+
+  function pageTasks(subjectId) {
     const subject = subjectId && subjectById(subjectId);
 
     if (!D.subjects.length) {
-      $("#main").innerHTML = `<div class="card empty-state">
-        <h2>Добавьте первый предмет</h2>
-        <p>Предметы — это дисциплины, по которым вы получаете задания. У каждого задания будет приоритет и дедлайн.</p>
-        <button class="btn primary" data-act="add-subject">+ Добавить предмет</button>
-      </div>`;
-      return;
+      return `<div class="eyebrow">Университет</div>
+        <h1>Предметы и задания</h1>
+        <div class="card empty-state">
+          <h2>Добавьте первый предмет</h2>
+          <p>Предметы — это дисциплины, по которым вы получаете задания. У каждого задания будет приоритет и дедлайн.</p>
+          <button class="btn primary" data-act="add-subject">+ Добавить предмет</button>
+        </div>`;
     }
 
     const scope = D.tasks.filter((t) => !subjectId || t.subjectId === subjectId);
@@ -124,29 +169,22 @@
     const overdue = open.filter(isOverdue).length;
     const week = open.filter((t) => t.deadline && !isOverdue(t) && daysFromToday(t.deadline) <= 7).length;
     const high = open.filter((t) => t.priority === "high").length;
-
     const visible = scope
       .filter((t) => filter.priority === "all" || t.priority === filter.priority)
       .filter((t) => filter.showDone || !t.done);
-    const groups = BUCKETS.map(([key, title]) => [key, title, visible.filter((t) => bucketOf(t) === key)])
-      .filter(([, , list]) => list.length);
-    for (const [key, , list] of groups) {
-      if (key === "done") list.sort((a, b) => (b.doneAt || "").localeCompare(a.doneAt || ""));
-      else list.sort(sortTasks);
-    }
 
     const head = subject
-      ? `<div class="main-head">
-          <span class="dot" style="--dot:${subject.color};width:14px;height:14px"></span>
-          <h2>${esc(subject.name)}</h2>
+      ? `<div class="page-head">
+          <div><div class="eyebrow">Предмет</div><h1>${esc(subject.name)}</h1></div>
           <div class="actions">
-            <button class="btn small" data-act="edit-subject">Переименовать</button>
-            <button class="btn small danger" data-act="delete-subject">Удалить предмет</button>
+            <button class="btn" data-act="add-task-here">+ Задание</button>
+            <button class="btn ghost" data-act="edit-subject">Переименовать</button>
+            <button class="btn ghost danger" data-act="delete-subject">Удалить предмет</button>
           </div>
         </div>`
-      : `<div class="main-head"><h2>Все задания</h2></div>`;
+      : `<div class="eyebrow">Университет</div><h1>Все задания</h1>`;
 
-    $("#main").innerHTML = `${head}
+    return `${head}
       <div class="stats">
         <div class="card stat"><div class="value">${open.length}</div><div class="label">${plural(open.length, "открытое задание", "открытых задания", "открытых заданий")}</div></div>
         <div class="card stat ${overdue ? "alert" : ""}"><div class="value">${overdue}</div><div class="label">просрочено</div></div>
@@ -158,16 +196,19 @@
           `<button class="chip-btn ${filter.priority === v ? "active" : ""}" data-prio="${v}">${l}</button>`).join("")}
         <label class="toggle"><input type="checkbox" class="check" id="show-done" ${filter.showDone ? "checked" : ""}> Показать выполненные</label>
       </div>
-      ${groups.length ? groups.map(([key, title, list]) => `
-        <section class="group ${key}">
-          <div class="group-head">${title} <span class="n">${list.length}</span></div>
-          <ul class="card rows">${list.map((t) => taskRow(t, !subjectId)).join("")}</ul>
-        </section>`).join("") : `<div class="card empty">${scope.length ? "Нет заданий по выбранному фильтру." : "Заданий пока нет — нажмите «+ Задание»."}</div>`}`;
+      ${sectionsHtml(visible, !subjectId, scope.length ? "Нет заданий по выбранному фильтру." : "Заданий пока нет — нажмите «+ Задание».")}`;
   }
 
+  let lastView = "";
   function render() {
-    renderSide();
-    renderMain();
+    const { subjectId } = route();
+    const view = searchQuery ? "search" : location.hash;
+    const scroll = window.scrollY;
+    $("#main").innerHTML = searchQuery ? pageSearch(searchQuery) : pageTasks(subjectId);
+    window.scrollTo(0, view === lastView ? scroll : 0);
+    lastView = view;
+    renderSidebar();
+    renderOverall();
   }
 
   // ---------- Формы ----------
@@ -236,9 +277,18 @@
     if (act === "add-subject") return editSubject(null);
     if (act === "edit-subject") return editSubject(subject);
     if (act === "delete-subject") return deleteSubject(subject);
+    if (act === "add-task-here") return editTask(null);
+    if (act === "show-overdue") {
+      e.preventDefault();
+      clearSearch();
+      if (location.hash && location.hash !== "#/") location.hash = "#/";
+      filter = { priority: "all", showDone: false };
+      render();
+      return document.querySelector("#sec-overdue")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
 
     const prio = e.target.closest("[data-prio]");
-    if (prio) { filter.priority = prio.dataset.prio; return renderMain(); }
+    if (prio) { filter.priority = prio.dataset.prio; return render(); }
 
     const row = e.target.closest("[data-task]");
     if (row) {
@@ -253,12 +303,22 @@
     }
   });
   document.addEventListener("change", (e) => {
-    if (e.target.id === "show-done") { filter.showDone = e.target.checked; renderMain(); }
+    if (e.target.id === "show-done") { filter.showDone = e.target.checked; render(); }
   });
+  document.addEventListener("input", (e) => {
+    if (e.target.id === "search") { searchQuery = e.target.value.trim(); render(); }
+  });
+  function clearSearch() { searchQuery = ""; $("#search").value = ""; }
+  // Переход по меню закрывает поиск и мобильное меню
+  $("#sidebar").addEventListener("click", (e) => {
+    if (e.target.closest("a")) { clearSearch(); $("#sidebar").classList.remove("open"); }
+  });
+  $("#menu-btn").addEventListener("click", () => $("#sidebar").classList.toggle("open"));
+  $("#theme-btn").addEventListener("click", () => window.PanelTheme.toggle());
   $("#add-task-btn").addEventListener("click", () => editTask(null));
-  window.addEventListener("hashchange", render);
+  window.addEventListener("hashchange", () => { clearSearch(); render(); });
   // Раз в минуту обновляем «просрочено / сегодня»
-  setInterval(() => { if (!document.querySelector("dialog[open]")) renderMain(); }, 60_000);
+  setInterval(() => { if (!document.querySelector("dialog[open]")) render(); }, 60_000);
 
   render();
 })();
