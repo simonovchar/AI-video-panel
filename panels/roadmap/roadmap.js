@@ -251,134 +251,194 @@ window.ROADMAP = {
       },
       {
        "id": "s02-topics-05",
-       "text": "Symmetry — симметрия"
+       "text": "Minimal composition — минимальная композиция"
       },
       {
        "id": "s02-topics-06",
-       "text": "Balance — баланс кадра"
+       "text": "Diagonal composition — диагональная композиция"
       },
       {
        "id": "s02-topics-07",
-       "text": "Leading lines — направляющие линии"
+       "text": "Symmetry — симметрия"
       },
       {
        "id": "s02-topics-08",
-       "text": "Negative space — негативное пространство"
+       "text": "Asymmetry — асимметрия"
       },
       {
        "id": "s02-topics-09",
-       "text": "Visual hierarchy — визуальная иерархия"
+       "text": "Balance — баланс кадра"
       },
       {
        "id": "s02-topics-10",
-       "text": "Headroom — пространство над головой"
+       "text": "Accent / Focal point — акцент, визуальная доминанта"
       },
       {
        "id": "s02-topics-11",
-       "text": "Lead room / Nose room — пространство по направлению взгляда или движения"
+       "text": "Color accent — цветовой акцент"
       },
       {
        "id": "s02-topics-12",
-       "text": "Foreground — передний план"
+       "text": "Leading lines — направляющие линии"
       },
       {
        "id": "s02-topics-13",
-       "text": "Midground — средний план"
+       "text": "Perspective — перспектива"
       },
       {
        "id": "s02-topics-14",
-       "text": "Background — задний план"
+       "text": "Negative space — негативное пространство"
       },
       {
        "id": "s02-topics-15",
-       "text": "Depth — глубина кадра"
+       "text": "Visual hierarchy — визуальная иерархия"
       },
       {
        "id": "s02-topics-16",
-       "text": "Scale — масштаб"
+       "text": "Rhythm — ритм в кадре"
       },
       {
        "id": "s02-topics-17",
-       "text": "Silhouette — силуэт"
+       "text": "Series rhythm — внутренний ритм серии кадров"
       },
       {
        "id": "s02-topics-18",
-       "text": "Frame within a frame — кадр внутри кадра"
+       "text": "Recurring motif — серия с повторяющимся мотивом"
       },
       {
        "id": "s02-topics-19",
-       "text": "Aspect ratio — соотношение сторон кадра (16:9, 9:16, 1:1, 4:5, 2.39:1)"
+       "text": "Edge cropping — обрезка по краям кадра"
       },
       {
        "id": "s02-topics-20",
-       "text": "Extreme wide shot — сверхобщий план"
+       "text": "Urban geometry — геометрия города"
       },
       {
        "id": "s02-topics-21",
-       "text": "Wide shot — общий план"
+       "text": "Facade textures — текстуры фасадов"
       },
       {
        "id": "s02-topics-22",
-       "text": "Full shot — человек в полный рост"
+       "text": "Headroom — пространство над головой"
       },
       {
        "id": "s02-topics-23",
-       "text": "Cowboy shot / Medium full shot — план «по колено»"
+       "text": "Lead room / Nose room — пространство по направлению взгляда или движения"
       },
       {
        "id": "s02-topics-24",
-       "text": "Medium shot — средний план"
+       "text": "Foreground — передний план"
       },
       {
        "id": "s02-topics-25",
-       "text": "Close-up — крупный план"
+       "text": "Midground — средний план"
       },
       {
        "id": "s02-topics-26",
-       "text": "Extreme close-up — сверхкрупный план"
+       "text": "Background — задний план"
       },
       {
        "id": "s02-topics-27",
-       "text": "Macro — макросъёмка"
+       "text": "Depth — глубина кадра"
       },
       {
        "id": "s02-topics-28",
-       "text": "Two-shot — кадр с двумя персонажами"
+       "text": "Scale — масштаб"
       },
       {
        "id": "s02-topics-29",
-       "text": "Over-the-shoulder, OTS — кадр через плечо"
+       "text": "Silhouette — силуэт"
       },
       {
        "id": "s02-topics-30",
-       "text": "Eye level — уровень глаз"
+       "text": "Frame within a frame — кадр внутри кадра"
       },
       {
        "id": "s02-topics-31",
-       "text": "Low angle — нижний ракурс"
+       "text": "Frame format — формат кадра"
       },
       {
        "id": "s02-topics-32",
-       "text": "High angle — верхний ракурс"
+       "text": "Aspect ratio — соотношение сторон кадра (16:9, 9:16, 1:1, 4:5, 2.39:1)"
       },
       {
        "id": "s02-topics-33",
-       "text": "Worm's-eye view — вид с уровня земли"
+       "text": "Vertical frame — вертикальный кадр"
       },
       {
        "id": "s02-topics-34",
-       "text": "Bird's-eye view — вид сверху"
+       "text": "Horizontal frame — горизонтальный кадр"
       },
       {
        "id": "s02-topics-35",
-       "text": "Dutch angle — голландский (заваленный) угол"
+       "text": "Extreme wide shot — сверхобщий план"
       },
       {
        "id": "s02-topics-36",
-       "text": "POV, Point of View — вид от первого лица"
+       "text": "Wide shot — общий план"
       },
       {
        "id": "s02-topics-37",
+       "text": "Full shot — человек в полный рост"
+      },
+      {
+       "id": "s02-topics-38",
+       "text": "Cowboy shot / Medium full shot — план «по колено»"
+      },
+      {
+       "id": "s02-topics-39",
+       "text": "Medium shot — средний план"
+      },
+      {
+       "id": "s02-topics-40",
+       "text": "Close-up — крупный план"
+      },
+      {
+       "id": "s02-topics-41",
+       "text": "Extreme close-up — сверхкрупный план"
+      },
+      {
+       "id": "s02-topics-42",
+       "text": "Macro — макросъёмка"
+      },
+      {
+       "id": "s02-topics-43",
+       "text": "Two-shot — кадр с двумя персонажами"
+      },
+      {
+       "id": "s02-topics-44",
+       "text": "Over-the-shoulder, OTS — кадр через плечо"
+      },
+      {
+       "id": "s02-topics-45",
+       "text": "Eye level — уровень глаз"
+      },
+      {
+       "id": "s02-topics-46",
+       "text": "Low angle — нижний ракурс"
+      },
+      {
+       "id": "s02-topics-47",
+       "text": "High angle — верхний ракурс"
+      },
+      {
+       "id": "s02-topics-48",
+       "text": "Worm's-eye view — вид с уровня земли"
+      },
+      {
+       "id": "s02-topics-49",
+       "text": "Bird's-eye view — вид сверху"
+      },
+      {
+       "id": "s02-topics-50",
+       "text": "Dutch angle — голландский (заваленный) угол"
+      },
+      {
+       "id": "s02-topics-51",
+       "text": "POV, Point of View — вид от первого лица"
+      },
+      {
+       "id": "s02-topics-52",
        "text": "Top-down — строго сверху"
       }
      ]
