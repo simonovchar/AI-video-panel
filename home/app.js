@@ -101,15 +101,22 @@
     }
     for (const c of nav.calls || []) addTimed(c.date, c.time, c.duration, { title: c.title, sub: "Созвон", color: color("navigator"), href: "/navigator/#/", done: c.held });
     for (const l of rig.lessons || []) addTimed(l.date, l.time, l.duration, { title: l.topic || "Урок вождения", sub: "Права", color: color("rights"), href: "/rights/#/practice", done: l.done });
+    // Сверху дня: «Сделать» — день выполнения, «Дедлайн» / «Проверить» — срок
     for (const t of uni.tasks || []) {
-      if (t.done || !t.deadline) continue;
+      if (t.done) continue;
       const subj = (uni.subjects || []).find((s) => s.id === t.subjectId);
-      push(allday, t.deadline, { title: `${t.deadlineTime ? `${t.deadlineTime} ` : ""}${t.title}`, sub: subj?.name, color: color("university"), href: `/university/#/subject/${t.subjectId}` });
+      const base = { sub: subj?.name, color: color("university"), href: `/university/#/subject/${t.subjectId}` };
+      if (t.planDate) push(allday, t.planDate, { ...base, plan: true, title: `Сделать: ${t.title}` });
+      if (t.deadline) push(allday, t.deadline, { ...base, title: `Дедлайн${t.deadlineTime ? ` ${t.deadlineTime}` : ""}: ${t.title}` });
     }
     for (const t of nav.tasks || []) {
-      if (t.done || !t.checkDate) continue;
-      push(allday, t.checkDate, { title: `Проверить: ${t.title}`, sub: t.assignee && t.assignee !== "Я" ? t.assignee : "", color: color("navigator"), href: "/navigator/#/tasks" });
+      if (t.done) continue;
+      const base = { sub: t.assignee && t.assignee !== "Я" ? t.assignee : "", color: color("navigator"), href: "/navigator/#/tasks" };
+      if (t.planDate) push(allday, t.planDate, { ...base, plan: true, title: `Сделать: ${t.title}` });
+      if (t.checkDate) push(allday, t.checkDate, { ...base, title: `Проверить: ${t.title}` });
     }
+    // Сначала то, что запланировано сделать, потом сроки
+    for (const list of allday.values()) list.sort((a, b) => Number(Boolean(b.plan)) - Number(Boolean(a.plan)));
     ext = { timed, allday };
   }
 
@@ -173,8 +180,8 @@
     }).join("");
 
     const alldays = cols.map((c) => (c.date && showPanels ? ext.allday.get(c.date) || [] : []));
-    const allday = alldays.some((l) => l.length) ? `<div class="cal-allday"><div class="gut">дедлайны</div>${alldays.map((list) =>
-      `<div class="cell">${list.map((x) => `<a class="chip-ev" href="${esc(x.href)}" style="--cat:${x.color}" title="${esc(`${x.title}${x.sub ? ` · ${x.sub}` : ""}`)}">${esc(x.title)}</a>`).join("")}</div>`).join("")}</div>` : "";
+    const allday = alldays.some((l) => l.length) ? `<div class="cal-allday"><div class="gut">задачи</div>${alldays.map((list) =>
+      `<div class="cell">${list.map((x) => `<a class="chip-ev ${x.plan ? "plan" : ""}" href="${esc(x.href)}" style="--cat:${x.color}" title="${esc(`${x.title}${x.sub ? ` · ${x.sub}` : ""}`)}">${esc(x.title)}</a>`).join("")}</div>`).join("")}</div>` : "";
 
     const hours = Array.from({ length: 23 }, (_, i) => `<span style="top:${(i + 1) * HOUR}px">${pad(i + 1)}:00</span>`).join("");
     const body = cols.map((c) => {

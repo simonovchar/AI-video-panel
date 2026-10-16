@@ -54,6 +54,20 @@ window.U = (() => {
     return diff > 0 ? `через ${days(diff)}` : `${days(-diff)} назад`;
   }
 
+  // День, в который задание планируется сделать: «сделать сегодня» / «план прошёл: ср, 14 окт»
+  function planInfo(planDate, dueDate = "") {
+    if (!planDate) return null;
+    const diff = daysFromToday(planDate);
+    const text = diff === 0 ? "сделать сегодня" : diff === 1 ? "сделать завтра"
+      : diff < 0 ? `план прошёл: ${shortDate(planDate)}` : `сделать ${shortDate(planDate)}`;
+    return { text, cls: diff < 0 ? "late" : diff === 0 ? "today" : "", afterDue: Boolean(dueDate && planDate > dueDate) };
+  }
+  const planHtml = (planDate, dueDate) => {
+    const p = planInfo(planDate, dueDate);
+    if (!p) return "";
+    return `<span class="plan ${p.cls}">${esc(p.text)}</span>${p.afterDue ? `<span class="plan late">позже дедлайна</span>` : ""}`;
+  };
+
   // ---------- Диалог-форма ----------
   // fields: [{ name, label, type: text|textarea|date|time|number|select|segmented|checkbox, value, required,
   //            options: [{ value, label, group?, color? }], suggestions: [строки для подсказок], placeholder, half, hint, min, max }]
@@ -133,5 +147,5 @@ window.U = (() => {
     return Boolean(r);
   };
 
-  return { esc, uid, pad, dateKey, timeKey, toDate, addDays, daysFromToday, plural, days, shortDate, dayTitle, relative, formDialog, confirmDialog, MONTHS, WEEKDAYS };
+  return { planInfo, planHtml, esc, uid, pad, dateKey, timeKey, toDate, addDays, daysFromToday, plural, days, shortDate, dayTitle, relative, formDialog, confirmDialog, MONTHS, WEEKDAYS };
 })();

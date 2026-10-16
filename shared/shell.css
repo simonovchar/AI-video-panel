@@ -278,6 +278,9 @@ h2 { font-size: 18px; margin: 0; }
 
 .subj { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; }
 .subj::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--subj); }
+.plan { font-weight: 600; color: var(--accent); }
+.plan.today { color: var(--warn); }
+.plan.late { color: var(--danger); }
 .prio { font-weight: 600; display: inline-flex; align-items: center; gap: 5px; }
 .prio.high { color: var(--p-high); }
 .prio.medium { color: var(--p-medium); }

@@ -105,6 +105,7 @@
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .chip-ev.late { border-left-color: var(--danger); }
+.chip-ev.plan { background: color-mix(in srgb, var(--cat) 34%, var(--panel)); font-weight: 600; }
 
 .cal-scroll { overflow-y: auto; max-height: calc(100vh - 230px); min-height: 360px; position: relative; }
 .cal-grid { position: relative; height: calc(24 * var(--hour)); }

@@ -111,6 +111,7 @@
         <div class="meta">
           ${showSubject && s ? `<span class="subj" style="--subj:${s.color}">${esc(s.name)}</span>` : ""}
           <span class="prio ${t.priority}">${PRIO_LABEL[t.priority]} приоритет</span>
+          ${t.done ? "" : U.planHtml(t.planDate, t.deadline)}
           ${t.deadline ? "" : `<span>без дедлайна</span>`}
         </div>
         ${t.notes ? `<div class="notes">${esc(t.notes)}</div>` : ""}
@@ -243,6 +244,7 @@
         { name: "subjectId", label: "Предмет", type: "select", value: task?.subjectId || route().subjectId || D.subjects[0].id,
           options: D.subjects.map((s) => ({ value: s.id, label: s.name })) },
         { name: "priority", label: "Приоритет", type: "segmented", value: task?.priority || "medium", options: PRIORITIES },
+        { name: "planDate", label: "День выполнения", type: "date", value: task?.planDate || "", hint: "Когда хотите сделать задание — оно появится в этот день в расписании" },
         { name: "deadline", label: "Дедлайн", type: "date", value: task?.deadline || "", half: true },
         { name: "deadlineTime", label: "Время (необязательно)", type: "time", value: task?.deadlineTime || "", half: true },
         { name: "notes", label: "Заметки", type: "textarea", value: task?.notes || "", placeholder: "Ссылки, требования, детали" },
@@ -255,7 +257,7 @@
       D.tasks = D.tasks.filter((t) => t !== task);
     } else {
       const v = r.values;
-      const fields = { title: v.title, subjectId: v.subjectId, priority: v.priority || "medium", deadline: v.deadline, deadlineTime: v.deadline ? v.deadlineTime : "", notes: v.notes };
+      const fields = { title: v.title, subjectId: v.subjectId, priority: v.priority || "medium", planDate: v.planDate, deadline: v.deadline, deadlineTime: v.deadline ? v.deadlineTime : "", notes: v.notes };
       if (task) Object.assign(task, fields);
       else D.tasks.push({ id: uid(), ...fields, done: false, doneAt: "", createdAt: new Date().toISOString() });
     }

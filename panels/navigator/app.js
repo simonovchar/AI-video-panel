@@ -125,6 +125,7 @@
         <div class="meta">
           <span class="subj" style="--subj:${mine ? "var(--accent)" : "var(--p-low)"}">${mine ? "Делаю я" : esc(t.assignee)}</span>
           <span>${t.checkDate ? (mine ? "дедлайн" : "проверить до") : "без срока"}</span>
+          ${t.done ? "" : U.planHtml(t.planDate, t.checkDate)}
         </div>
         ${t.notes ? `<div class="notes">${esc(t.notes)}</div>` : ""}
       </div>
@@ -257,6 +258,7 @@
         { name: "title", label: "Задача", value: task?.title || "", required: true, placeholder: "Что нужно сделать" },
         { name: "assignee", label: "Кому", value: task?.assignee || (route().person || ME), required: true,
           suggestions: [ME, ...people()], hint: "«Я» — делаю сам; иначе имя человека, которому распределил задачу" },
+        { name: "planDate", label: "День выполнения", type: "date", value: task?.planDate || "", hint: "Когда задачу планируется сделать — она появится в этот день в расписании" },
         { name: "checkDate", label: "Дедлайн проверки", type: "date", value: task?.checkDate || "", half: true },
         { name: "checkTime", label: "Время (необязательно)", type: "time", value: task?.checkTime || "", half: true },
         { name: "notes", label: "Заметки", type: "textarea", value: task?.notes || "", placeholder: "Критерии готовности, ссылки" },
@@ -269,7 +271,7 @@
     else {
       const v = r.values;
       const assignee = v.assignee.toLowerCase() === "я" ? ME : v.assignee;
-      const fields = { title: v.title, assignee, checkDate: v.checkDate, checkTime: v.checkDate ? v.checkTime : "", notes: v.notes };
+      const fields = { title: v.title, assignee, planDate: v.planDate, checkDate: v.checkDate, checkTime: v.checkDate ? v.checkTime : "", notes: v.notes };
       if (task) Object.assign(task, fields);
       else D.tasks.push({ id: uid(), ...fields, done: false, doneAt: "", createdAt: new Date().toISOString() });
     }
